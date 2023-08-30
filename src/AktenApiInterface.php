@@ -16,8 +16,6 @@ namespace Datana\Iusta\Api;
 use Datana\Iusta\Api\Domain\Value\IustaId;
 use Datana\Iusta\Api\Response\AktenResponse;
 use Datana\Iusta\Api\Response\ETerminInfoResponse;
-use Datana\Iusta\Api\Response\KtAktenInfoResponse;
-use Datana\Iusta\Api\Response\SachstandResponse;
 use Datana\Iusta\Api\Response\SimplyBookInfoResponse;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -26,29 +24,15 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
  */
 interface AktenApiInterface
 {
-    public function getById(IustaId $datapoolId): ResponseInterface;
+    public function getById(IustaId $iustaId): ResponseInterface;
 
     public function getByAktenzeichen(string $aktenzeichen): ResponseInterface;
 
     public function getOneByAktenzeichen(string $aktenzeichen): AktenResponse;
 
-    public function getETerminInfo(IustaId $datapoolId): ETerminInfoResponse;
+    public function getETerminInfo(IustaId $iustaId): ETerminInfoResponse;
 
-    public function getSimplyBookInfo(IustaId $datapoolId): SimplyBookInfoResponse;
-
-    public function getKtAktenInfo(IustaId $datapoolId): KtAktenInfoResponse;
-
-    public function getSachstand(IustaId $datapoolId): SachstandResponse;
+    public function getSimplyBookInfo(IustaId $iustaId): SimplyBookInfoResponse;
 
     public function search(string $searchTerm): ResponseInterface;
-
-    public function getByFahrzeugIdentifikationsnummer(string $fahrzeugIdentifikationsnummer): ResponseInterface;
-
-    /**
-     * Diese Methode setzt "Ja" in KT beim Feld "Nutzer Mandantencockpit", das bedeutet,
-     * dass nur noch das Mandantencockpit für die Benachrichtigungen an den User zuständig ist.
-     *
-     * Andere Systeme wie KT, Formulario, VWV senden dann keine E-Mails oder SMS mehr an den Mandanten!
-     */
-    public function setValueNutzerMandantencockpit(IustaId $datapoolId, bool $value): bool;
 }
