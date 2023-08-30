@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,14 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api;
+namespace Datana\Iusta\Api;
 
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
-use Datana\Datapool\Api\Response\AktenResponse;
-use Datana\Datapool\Api\Response\ETerminInfoResponse;
-use Datana\Datapool\Api\Response\KtAktenInfoResponse;
-use Datana\Datapool\Api\Response\SachstandResponse;
-use Datana\Datapool\Api\Response\SimplyBookInfoResponse;
+use Datana\Iusta\Api\Domain\Value\IustaId;
+use Datana\Iusta\Api\Response\AktenResponse;
+use Datana\Iusta\Api\Response\ETerminInfoResponse;
+use Datana\Iusta\Api\Response\KtAktenInfoResponse;
+use Datana\Iusta\Api\Response\SachstandResponse;
+use Datana\Iusta\Api\Response\SimplyBookInfoResponse;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -27,10 +27,10 @@ use function Safe\sprintf;
 
 final class AktenApi implements AktenApiInterface
 {
-    private DatapoolClient $client;
+    private IustaClient $client;
     private LoggerInterface $logger;
 
-    public function __construct(DatapoolClient $client, ?LoggerInterface $logger = null)
+    public function __construct(IustaClient $client, ?LoggerInterface $logger = null)
     {
         $this->client = $client;
         $this->logger = $logger ?? new NullLogger();
@@ -116,7 +116,7 @@ final class AktenApi implements AktenApiInterface
         }
     }
 
-    public function getById(DatapoolId $datapoolId): ResponseInterface
+    public function getById(IustaId $datapoolId): ResponseInterface
     {
         try {
             $response = $this->client->request(
@@ -134,7 +134,7 @@ final class AktenApi implements AktenApiInterface
         }
     }
 
-    public function getKtAktenInfo(DatapoolId $datapoolId): KtAktenInfoResponse
+    public function getKtAktenInfo(IustaId $datapoolId): KtAktenInfoResponse
     {
         try {
             $response = $this->client->request(
@@ -152,7 +152,7 @@ final class AktenApi implements AktenApiInterface
         }
     }
 
-    public function getETerminInfo(DatapoolId $datapoolId): ETerminInfoResponse
+    public function getETerminInfo(IustaId $datapoolId): ETerminInfoResponse
     {
         try {
             $response = $this->client->request(
@@ -170,7 +170,7 @@ final class AktenApi implements AktenApiInterface
         }
     }
 
-    public function getSimplyBookInfo(DatapoolId $datapoolId): SimplyBookInfoResponse
+    public function getSimplyBookInfo(IustaId $datapoolId): SimplyBookInfoResponse
     {
         try {
             $response = $this->client->request(
@@ -188,7 +188,7 @@ final class AktenApi implements AktenApiInterface
         }
     }
 
-    public function getSachstand(DatapoolId $datapoolId): SachstandResponse
+    public function getSachstand(IustaId $datapoolId): SachstandResponse
     {
         try {
             $response = $this->client->request(
@@ -209,7 +209,7 @@ final class AktenApi implements AktenApiInterface
     /**
      * {@inheritDoc}
      */
-    public function setValueNutzerMandantencockpit(DatapoolId $datapoolId, bool $value): bool
+    public function setValueNutzerMandantencockpit(IustaId $datapoolId, bool $value): bool
     {
         $this->logger->debug(sprintf(
             'Set value "Nutzer Mandantencockpit" to: %s',

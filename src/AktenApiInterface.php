@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,14 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api;
+namespace Datana\Iusta\Api;
 
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
-use Datana\Datapool\Api\Response\AktenResponse;
-use Datana\Datapool\Api\Response\ETerminInfoResponse;
-use Datana\Datapool\Api\Response\KtAktenInfoResponse;
-use Datana\Datapool\Api\Response\SachstandResponse;
-use Datana\Datapool\Api\Response\SimplyBookInfoResponse;
+use Datana\Iusta\Api\Domain\Value\IustaId;
+use Datana\Iusta\Api\Response\AktenResponse;
+use Datana\Iusta\Api\Response\ETerminInfoResponse;
+use Datana\Iusta\Api\Response\KtAktenInfoResponse;
+use Datana\Iusta\Api\Response\SachstandResponse;
+use Datana\Iusta\Api\Response\SimplyBookInfoResponse;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
@@ -26,19 +26,19 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
  */
 interface AktenApiInterface
 {
-    public function getById(DatapoolId $datapoolId): ResponseInterface;
+    public function getById(IustaId $datapoolId): ResponseInterface;
 
     public function getByAktenzeichen(string $aktenzeichen): ResponseInterface;
 
     public function getOneByAktenzeichen(string $aktenzeichen): AktenResponse;
 
-    public function getETerminInfo(DatapoolId $datapoolId): ETerminInfoResponse;
+    public function getETerminInfo(IustaId $datapoolId): ETerminInfoResponse;
 
-    public function getSimplyBookInfo(DatapoolId $datapoolId): SimplyBookInfoResponse;
+    public function getSimplyBookInfo(IustaId $datapoolId): SimplyBookInfoResponse;
 
-    public function getKtAktenInfo(DatapoolId $datapoolId): KtAktenInfoResponse;
+    public function getKtAktenInfo(IustaId $datapoolId): KtAktenInfoResponse;
 
-    public function getSachstand(DatapoolId $datapoolId): SachstandResponse;
+    public function getSachstand(IustaId $datapoolId): SachstandResponse;
 
     public function search(string $searchTerm): ResponseInterface;
 
@@ -50,5 +50,5 @@ interface AktenApiInterface
      *
      * Andere Systeme wie KT, Formulario, VWV senden dann keine E-Mails oder SMS mehr an den Mandanten!
      */
-    public function setValueNutzerMandantencockpit(DatapoolId $datapoolId, bool $value): bool;
+    public function setValueNutzerMandantencockpit(IustaId $datapoolId, bool $value): bool;
 }

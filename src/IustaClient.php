@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api;
+namespace Datana\Iusta\Api;
 
 use OskarStark\Value\TrimmedNonEmptyString;
 use Psr\Log\LoggerInterface;
@@ -26,7 +26,7 @@ use function Safe\sprintf;
 /**
  * @author Oskar Stark <oskarstark@googlemail.com>
  */
-final class DatapoolClient
+final class IustaClient
 {
     private HttpClientInterface $client;
     private string $username;

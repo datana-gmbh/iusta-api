@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api\Response;
+namespace Datana\Iusta\Api\Response;
 
 use OskarStark\Value\TrimmedNonEmptyString;
 use Symfony\Contracts\HttpClient\ResponseInterface;

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,14 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api\Tests\Unit;
+namespace Datana\Iusta\Api\Tests\Unit;
 
-use Datana\Datapool\Api\FakeAktenzeichenApi;
+use Datana\Iusta\Api\FakeAktenzeichenApi;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Datapool\Api\FakeAktenzeichenApi
+ * @covers \Datana\Iusta\Api\FakeAktenzeichenApi
  */
 final class FakeAktenzeichenApiTest extends TestCase
 {

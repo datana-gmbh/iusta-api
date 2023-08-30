@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api\Response;
+namespace Datana\Iusta\Api\Response;
 
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Webmozart\Assert\Assert;
 
@@ -26,7 +26,7 @@ final class AktenResponse
         $this->response = $response;
     }
 
-    public function getId(): DatapoolId
+    public function getId(): IustaId
     {
         $response = $this->toArray();
 
@@ -34,7 +34,7 @@ final class AktenResponse
         Assert::keyExists($response, 'id');
         Assert::integer($response['id']);
 
-        return DatapoolId::fromInt($response['id']);
+        return IustaId::fromInt($response['id']);
     }
 
     public function toArray(): array

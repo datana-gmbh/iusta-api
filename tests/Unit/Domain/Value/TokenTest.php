@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,15 +11,15 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api\Tests\Unit\Domain\Value;
+namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
 
-use Datana\Datapool\Api\Domain\Value\Token;
+use Datana\Iusta\Api\Domain\Value\Token;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
- * @covers \Datana\Datapool\Api\Domain\Value\Token
+ * @covers \Datana\Iusta\Api\Domain\Value\Token
  */
 final class TokenTest extends TestCase
 {
