@@ -16,8 +16,6 @@ namespace Datana\Iusta\Api;
 use Datana\Iusta\Api\Domain\Value\IustaId;
 use Datana\Iusta\Api\Response\AktenResponse;
 use Datana\Iusta\Api\Response\ETerminInfoResponse;
-use Datana\Iusta\Api\Response\KtAktenInfoResponse;
-use Datana\Iusta\Api\Response\SachstandResponse;
 use Datana\Iusta\Api\Response\SimplyBookInfoResponse;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -47,31 +45,6 @@ final class AktenApi implements AktenApiInterface
                 [
                     'query' => [
                         'aktenzeichen' => $aktenzeichen,
-                    ],
-                ],
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return $response;
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
-    }
-
-    public function getByFahrzeugIdentifikationsnummer(string $fahrzeugIdentifikationsnummer): ResponseInterface
-    {
-        Assert::stringNotEmpty($fahrzeugIdentifikationsnummer);
-
-        try {
-            $response = $this->client->request(
-                'GET',
-                '/api/akten',
-                [
-                    'query' => [
-                        'fahrzeugIdentifikationsnummer' => $fahrzeugIdentifikationsnummer,
                     ],
                 ],
             );
@@ -116,12 +89,12 @@ final class AktenApi implements AktenApiInterface
         }
     }
 
-    public function getById(IustaId $datapoolId): ResponseInterface
+    public function getById(IustaId $iustaId): ResponseInterface
     {
         try {
             $response = $this->client->request(
                 'GET',
-                sprintf('/api/akte/%s', $datapoolId->toInt()),
+                sprintf('/api/akte/%s', $iustaId->toInt()),
             );
 
             $this->logger->debug('Response', $response->toArray(false));
@@ -134,30 +107,12 @@ final class AktenApi implements AktenApiInterface
         }
     }
 
-    public function getKtAktenInfo(IustaId $datapoolId): KtAktenInfoResponse
+    public function getETerminInfo(IustaId $iustaId): ETerminInfoResponse
     {
         try {
             $response = $this->client->request(
                 'GET',
-                sprintf('/api/akte/%s/kt-akte-info', $datapoolId->toInt()),
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return new KtAktenInfoResponse($response);
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
-    }
-
-    public function getETerminInfo(IustaId $datapoolId): ETerminInfoResponse
-    {
-        try {
-            $response = $this->client->request(
-                'GET',
-                sprintf('/api/akte/%s/e-termin-info', $datapoolId->toInt()),
+                sprintf('/api/akte/%s/e-termin-info', $iustaId->toInt()),
             );
 
             $this->logger->debug('Response', $response->toArray(false));
@@ -170,72 +125,17 @@ final class AktenApi implements AktenApiInterface
         }
     }
 
-    public function getSimplyBookInfo(IustaId $datapoolId): SimplyBookInfoResponse
+    public function getSimplyBookInfo(IustaId $iustaId): SimplyBookInfoResponse
     {
         try {
             $response = $this->client->request(
                 'GET',
-                sprintf('/api/akte/%s/simply-book-info', $datapoolId->toInt()),
+                sprintf('/api/akte/%s/simply-book-info', $iustaId->toInt()),
             );
 
             $this->logger->debug('Response', $response->toArray(false));
 
             return new SimplyBookInfoResponse($response);
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
-    }
-
-    public function getSachstand(IustaId $datapoolId): SachstandResponse
-    {
-        try {
-            $response = $this->client->request(
-                'GET',
-                sprintf('/api/akte/%s/sachstand', $datapoolId->toInt()),
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return new SachstandResponse($response);
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setValueNutzerMandantencockpit(IustaId $datapoolId, bool $value): bool
-    {
-        $this->logger->debug(sprintf(
-            'Set value "Nutzer Mandantencockpit" to: %s',
-            $value ? 'true' : 'false',
-        ), [
-            'datapool_id' => $datapoolId->toInt(),
-        ]);
-
-        try {
-            $response = $this->client->request(
-                'PUT',
-                sprintf('/api/akte/%s/set-value-nutzer-mandantencockpit', $datapoolId->toInt()),
-                [
-                    'json' => [
-                        'value' => $value,
-                    ],
-                ],
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            if (200 !== $response->getStatusCode()) {
-                return false;
-            }
-
-            return true;
         } catch (\Throwable $e) {
             $this->logger->error($e->getMessage());
 
