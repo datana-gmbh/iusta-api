@@ -15,7 +15,7 @@ composer require datana-gmbh/iusta-api
 ### Setup
 
 ```php
-use Datana\Datapool\Api\IustaClient;
+use Datana\Iusta\Api\IustaClient;
 
 $baseUri = 'https://api.iusta...';
 $username = '...';
@@ -30,13 +30,13 @@ $client->request('GET', '/api/something', $options);
 
 ## Akten
 
-In your code you should type-hint to `Datana\Datapool\Api\AktenApiInterface`
+In your code you should type-hint to `Datana\Iusta\Api\AktenApiInterface`
 
 ### Search by string (`string`)
 
 ```php
-use Datana\Datapool\Api\AktenApi;
-use Datana\Datapool\Api\IustaClient;
+use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\IustaClient;
 
 $client = new IustaClient(/* ... */);
 
@@ -47,9 +47,9 @@ $response = $aktenApi->search('MySearchTerm');
 ### Get by Aktenzeichen (`string`)
 
 ```php
-use Datana\Datapool\Api\AktenApi;
-use Datana\Datapool\Api\IustaClient;
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\IustaClient;
+use Datana\Iusta\Api\Domain\Value\DatapoolId;
 
 $client = new IustaClient(/* ... */);
 
@@ -57,19 +57,19 @@ $aktenApi = new AktenApi($client);
 $response = $aktenApi->getByAktenzeichen('1abcde-1234-5678-Mustermann');
 
 /*
- * to get the DatapoolId transform the response to array
+ * to get the IustaId transform the response to array
  * and use the 'id' key.
  */
 $akten = $response->toArray();
-$datapoolId = DatapoolId::fromInt($akte['id']);
+$iustaId = IustaId::fromInt($akte['id']);
 ```
 
 ### Get by Fahrzeug-Identifikationsnummer (`string`)
 
 ```php
-use Datana\Datapool\Api\AktenApi;
-use Datana\Datapool\Api\IustaClient;
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\IustaClient;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 
 $client = new IustaClient(/* ... */);
 
@@ -77,19 +77,19 @@ $aktenApi = new AktenApi($client);
 $response = $aktenApi->getByFahrzeugIdentifikationsnummer('ABC1234ABCD123456');
 
 /*
- * to get the DatapoolId transform the response to array
+ * to get the IustaId transform the response to array
  * and use the 'id' key.
  */
 $akten = $response->toArray();
-$datapoolId = DatapoolId::fromInt($akte['id']);
+$iustaId = IustaId::fromInt($akte['id']);
 ```
 
 ### Get one by Aktenzeichen (`string`) or get an exception
 
 ```php
-use Datana\Datapool\Api\AktenApi;
-use Datana\Datapool\Api\IustaClient;
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\IustaClient;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 
 $client = new IustaClient(/* ... */);
 
@@ -105,39 +105,39 @@ $result = $aktenApi->getOneByAktenzeichen('1abcde-1234-5678-Mustermann');
  *   ]
  *
  * or use the dedicated getter methods like
- *  - getId(): DatapoolId
+ *  - getId(): IustaId
  * etc.
  */
 ```
 
-### Get by ID (`Datana\Datapool\Api\Domain\Value\DatapoolId`)
+### Get by ID (`Datana\Iusta\Api\Domain\Value\IustaId`)
 
 ```php
-use Datana\Datapool\Api\AktenApi;
-use Datana\Datapool\Api\IustaClient;
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\IustaClient;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 
 $client = new IustaClient(/* ... */);
 
 $aktenApi = new AktenApi($client);
 
-$id = DatapoolId::fromInt(123);
+$id = IustaId::fromInt(123);
 
 $aktenApi->getById($id);
 ```
 
-### Get KT Akten Info (`Datana\Datapool\Api\Domain\Value\DatapoolId`)
+### Get KT Akten Info (`Datana\Iusta\Api\Domain\Value\IustaId`)
 
 ```php
-use Datana\Datapool\Api\AktenApi;
-use Datana\Datapool\Api\IustaClient;
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\IustaClient;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 
 $client = new IustaClient(/* ... */);
 
 $aktenApi = new AktenApi($client);
 
-$id = DatapoolId::fromInt(123);
+$id = IustaId::fromInt(123);
 
 // is an instance of KtAktenInfoResponse
 $result = $aktenApi->getKtAktenInfo($id);
@@ -159,20 +159,20 @@ $result = $aktenApi->getKtAktenInfo($id);
  */
 ```
 
-### Get E-Termin Info (`Datana\Datapool\Api\Domain\Value\DatapoolId`)
+### Get E-Termin Info (`Datana\Iusta\Api\Domain\Value\IustaId`)
 
 ```php
-use Datana\Datapool\Api\AktenApi;
-use Datana\Datapool\Api\IustaClient;
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\IustaClient;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 
 $client = new IustaClient(/* ... */);
 
 $aktenApi = new AktenApi($client);
 
-$id = DatapoolId::fromInt(123);
+$id = IustaId::fromInt(123);
 
-/* @var $response Datana\Datapool\Api\Domain\Response\EterminInfoResponse */
+/* @var $response Datana\Iusta\Api\Domain\Response\EterminInfoResponse */
 $response = $aktenApi->getETerminInfo($id);
 /*
  * $response->toArray():
@@ -188,20 +188,20 @@ $response = $aktenApi->getETerminInfo($id);
  */
 ```
 
-### Get SimplyBook Info (`Datana\Datapool\Api\Domain\Value\DatapoolId`)
+### Get SimplyBook Info (`Datana\Iusta\Api\Domain\Value\IustaId`)
 
 ```php
-use Datana\Datapool\Api\AktenApi;
-use Datana\Datapool\Api\IustaClient;
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\IustaClient;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 
 $client = new IustaClient(/* ... */);
 
 $aktenApi = new AktenApi($client);
 
-$id = DatapoolId::fromInt(123);
+$id = IustaId::fromInt(123);
 
-/* @var $response Datana\Datapool\Api\Domain\Response\SimplyBookInfoResponse */
+/* @var $response Datana\Iusta\Api\Domain\Response\SimplyBookInfoResponse */
 $response = $aktenApi->getETerminInfo($id);
 /*
  * $response->toArray():
@@ -220,28 +220,28 @@ $response = $aktenApi->getETerminInfo($id);
 ### Set value "Nutzer Mandantencockpit" (`bool`)
 
 ```php
-use Datana\Datapool\Api\AktenApi;
-use Datana\Datapool\Api\IustaClient;
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\IustaClient;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 
 $client = new IustaClient(/* ... */);
 
 $aktenApi = new AktenApi($client);
 
-$id = DatapoolId::fromInt(123);
+$id = IustaId::fromInt(123);
 
 $aktenApi->setValueNutzerMandantencockpit($id, true); // or false
 ```
 
 ## Aktenzeichen
 
-In your code you should type-hint to `Datana\Datapool\Api\AktenzeichenApiInterface`
+In your code you should type-hint to `Datana\Iusta\Api\AktenzeichenApiInterface`
 
 ### Get a new one
 
 ```php
-use Datana\Datapool\Api\AktenzeichenApi;
-use Datana\Datapool\Api\IustaClient;
+use Datana\Iusta\Api\AktenzeichenApi;
+use Datana\Iusta\Api\IustaClient;
 
 $client = new IustaClient(/* ... */);
 
@@ -251,13 +251,13 @@ $aktenzeichenApi->new(); // returns sth like "6GU5DCB"
 
 ## AktenEventLog
 
-In your code you should type-hint to `Datana\Datapool\Api\AktenEventLogApiInterface`
+In your code you should type-hint to `Datana\Iusta\Api\AktenEventLogApiInterface`
 
 ### Create a new log
 
 ```php
-use Datana\Datapool\Api\AktenEventLogApi;
-use Datana\Datapool\Api\IustaClient;
+use Datana\Iusta\Api\AktenEventLogApi;
+use Datana\Iusta\Api\IustaClient;
 
 $client = new IustaClient(/* ... */);
 
@@ -273,13 +273,13 @@ $aktenEventLog->log(
 
 ## SystemEventLog
 
-In your code you should type-hint to `Datana\Datapool\Api\SystemEventLogApiInterface`
+In your code you should type-hint to `Datana\Iusta\Api\SystemEventLogApiInterface`
 
 ### Create a new log
 
 ```php
-use Datana\Datapool\Api\IustaClient;
-use Datana\Datapool\Api\SystemEventLogApi;
+use Datana\Iusta\Api\IustaClient;
+use Datana\Iusta\Api\SystemEventLogApi;
 
 $client = new IustaClient(/* ... */);
 
@@ -294,17 +294,17 @@ $systemEventLog->log(
 );
 ```
 
-The API internally converts the "+2 months" to a datetime object. If this datetime is reached, Datapool will delete the log entry. Pass ``null`` to keep the log entry forever.
+The API internally converts the "+2 months" to a datetime object. If this datetime is reached, Iusta will delete the log entry. Pass ``null`` to keep the log entry forever.
 
 ## ChatProtocol
 
-In your code you should type-hint to `Datana\Datapool\Api\ChatProtocolApiInterface`
+In your code you should type-hint to `Datana\Iusta\Api\ChatProtocolApiInterface`
 
 ### Save a new chat protocol
 
 ```php
-use Datana\Datapool\Api\ChatProtoclApi;
-use Datana\Datapool\Api\IustaClient;
+use Datana\Iusta\Api\ChatProtoclApi;
+use Datana\Iusta\Api\IustaClient;
 
 $client = new IustaClient(/* ... */);
 
