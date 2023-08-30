@@ -1,7 +1,7 @@
 {
-    "name": "datana-gmbh/datapool-api",
+    "name": "datana-gmbh/iusta-api",
     "type": "library",
-    "description": "API for Datapool",
+    "description": "API for iusta.io",
     "license": "MIT",
     "authors": [
         {
@@ -12,10 +12,10 @@
     "require": {
         "php": ">=8.1",
         "oskarstark/trimmed-non-empty-string": "^1.0",
-        "psr/log": "^1.1 || ^2.0 || ^3.0",
-        "symfony/http-client": "^4.4 || ^5.1 || ^6.0",
-        "thecodingmachine/safe": "^1.0 || ^2.0",
-        "webmozart/assert": "^1.7"
+        "psr/log": "^3.0",
+        "symfony/http-client": "^6.0",
+        "thecodingmachine/safe": "^2.0",
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.2",
@@ -36,12 +36,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Datana\\Datapool\\Api\\": "src/"
+            "Datana\\Iusta\\Api\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Datana\\Datapool\\Api\\Tests\\": "tests/"
+            "Datana\\Iusta\\Api\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable",

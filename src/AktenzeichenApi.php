@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api;
+namespace Datana\Iusta\Api;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -21,10 +21,10 @@ use Psr\Log\NullLogger;
  */
 final class AktenzeichenApi implements AktenzeichenApiInterface
 {
-    private DatapoolClient $client;
+    private IustaClient $client;
     private LoggerInterface $logger;
 
-    public function __construct(DatapoolClient $client, ?LoggerInterface $logger = null)
+    public function __construct(IustaClient $client, ?LoggerInterface $logger = null)
     {
         $this->client = $client;
         $this->logger = $logger ?? new NullLogger();

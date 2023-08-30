@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api\Tests\Unit\Domain\Value;
+namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
 
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Datapool\Api\Domain\Value\DatapoolId
+ * @covers \Datana\Iusta\Api\Domain\Value\IustaId
  */
-final class DatapoolIdTest extends TestCase
+final class IustaIdTest extends TestCase
 {
     use Helper;
 
@@ -33,7 +33,7 @@ final class DatapoolIdTest extends TestCase
     {
         self::assertSame(
             $value,
-            DatapoolId::fromInt($value)->toInt(),
+            IustaId::fromInt($value)->toInt(),
         );
     }
 
@@ -47,6 +47,6 @@ final class DatapoolIdTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        DatapoolId::fromInt($value);
+        IustaId::fromInt($value);
     }
 }

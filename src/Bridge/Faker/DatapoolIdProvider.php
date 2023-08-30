@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Datapool-Api.
+ * This file is part of Iusta-Api.
  *
  * (c) Datana GmbH <info@datana.rocks>
  *
@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Datapool\Api\Bridge\Faker;
+namespace Datana\Iusta\Api\Bridge\Faker;
 
-use Datana\Datapool\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\Domain\Value\IustaId;
 use Faker\Provider\Base as BaseProvider;
 
-final class DatapoolIdProvider extends BaseProvider
+final class IustaIdProvider extends BaseProvider
 {
-    public function datapoolId(): DatapoolId
+    public function datapoolId(): IustaId
     {
-        return DatapoolId::fromInt(
+        return IustaId::fromInt(
             $this->datapoolIdInteger(),
         );
     }
