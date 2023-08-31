@@ -16,7 +16,7 @@ namespace Datana\Iusta\Api\Bridge\Faker;
 use Datana\Iusta\Api\Domain\Value\IustaId;
 use Faker\Provider\Base as BaseProvider;
 
-final class DatapoolIdProvider extends BaseProvider
+final class IustaIdProvider extends BaseProvider
 {
     public function iustaId(): IustaId
     {
