@@ -32,18 +32,6 @@ $client->request('GET', '/api/something', $options);
 
 In your code you should type-hint to `Datana\Iusta\Api\AktenApiInterface`
 
-### Search by string (`string`)
-
-```php
-use Datana\Iusta\Api\AktenApi;
-use Datana\Iusta\Api\IustaClient;
-
-$client = new IustaClient(/* ... */);
-
-$aktenApi = new AktenApi($client);
-$response = $aktenApi->search('MySearchTerm');
-```
-
 ### Get by Aktenzeichen (`string`)
 
 ```php

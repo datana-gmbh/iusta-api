@@ -64,31 +64,6 @@ final class AktenApi implements AktenApiInterface
         return new AktenResponse($this->getByAktenzeichen($aktenzeichen));
     }
 
-    public function search(string $searchTerm): ResponseInterface
-    {
-        Assert::stringNotEmpty($searchTerm);
-
-        try {
-            $response = $this->client->request(
-                'GET',
-                '/api/akten',
-                [
-                    'query' => [
-                        'searchstring' => $searchTerm,
-                    ],
-                ],
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return $response;
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
-    }
-
     public function getById(IustaId $iustaId): ResponseInterface
     {
         try {
