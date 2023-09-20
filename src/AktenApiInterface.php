@@ -33,6 +33,4 @@ interface AktenApiInterface
     public function getETerminInfo(IustaId $iustaId): ETerminInfoResponse;
 
     public function getSimplyBookInfo(IustaId $iustaId): SimplyBookInfoResponse;
-
-    public function search(string $searchTerm): ResponseInterface;
 }
