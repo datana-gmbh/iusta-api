@@ -1,8 +1,8 @@
 # iusta-api
 
-| Branch    | PHP                                         | Code Coverage                                        |
-|-----------|---------------------------------------------|------------------------------------------------------|
-| `master`  | [![PHP][build-status-master-php]][actions]  | [![Code Coverage][coverage-status-master]][codecov]  |
+| Branch    | PHP                                         |
+|-----------|---------------------------------------------|
+| `master`  | [![PHP][build-status-master-php]][actions]  |
 
 ## Usage
 
@@ -163,3 +163,7 @@ $response = $aktenApi->getETerminInfo($id);
  * etc.
  */
 ```
+
+[build-status-master-php]: https://github.com/datana-gmbh/iusta-api/workflows/PHP/badge.svg?branch=master
+
+[actions]: https://github.com/datana-gmbh/iusta-api/actions
