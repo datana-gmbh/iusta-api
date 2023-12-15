@@ -29,16 +29,14 @@ use function Safe\sprintf;
 final class IustaClient
 {
     private HttpClientInterface $client;
-    private string $username;
-    private string $password;
+    private string $token;
     private int $timeout;
     private LoggerInterface $logger;
 
-    public function __construct(string $baseUri, string $username, string $password, int $timeout = 2, ?LoggerInterface $logger = null)
+    public function __construct(string $baseUri, string $token, int $timeout = 2, ?LoggerInterface $logger = null)
     {
         $this->client = HttpClient::createForBaseUri($baseUri);
-        $this->username = TrimmedNonEmptyString::fromString($username, '$username must not be an empty string')->toString();
-        $this->password = TrimmedNonEmptyString::fromString($password, '$password must not be an empty string')->toString();
+        $this->token = TrimmedNonEmptyString::fromString($token, '$token must not be an empty string')->toString();
         $this->timeout = $timeout;
         $this->logger = $logger ?? new NullLogger();
     }
@@ -72,10 +70,9 @@ final class IustaClient
             array_merge(
                 $options,
                 [
-                    'auth_basic' => sprintf(
-                        '%s:%s',
-                        $this->username,
-                        $this->password,
+                    'auth_bearer' => sprintf(
+                        'Bearer %s',
+                        $this->token,
                     ),
                 ],
             ),

@@ -18,11 +18,10 @@ composer require datana-gmbh/iusta-api
 use Datana\Iusta\Api\IustaClient;
 
 $baseUri = 'https://api.iusta...';
-$username = '...';
-$password = '...';
+$token = '...';
 $timeout = 10; // optional
 
-$client = new IustaClient($baseUri, $username, $password, $timeout);
+$client = new IustaClient($baseUri, $token, $timeout);
 
 // you can now request any endpoint which needs authentication
 $client->request('GET', '/api/something', $options);
