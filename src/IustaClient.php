@@ -70,10 +70,7 @@ final class IustaClient
             array_merge(
                 $options,
                 [
-                    'auth_bearer' => sprintf(
-                        'Bearer %s',
-                        $this->token,
-                    ),
+                    'auth_bearer' => $this->token,
                 ],
             ),
         );
