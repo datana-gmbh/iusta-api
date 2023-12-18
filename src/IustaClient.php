@@ -67,10 +67,12 @@ final class IustaClient
         return $this->client->request(
             $method,
             $url,
-            array_merge(
+            array_merge_recursive(
                 $options,
                 [
-                    'auth_bearer' => $this->token,
+                    'headers' => [
+                        'Authorization' => $this->token,
+                    ],
                 ],
             ),
         );
