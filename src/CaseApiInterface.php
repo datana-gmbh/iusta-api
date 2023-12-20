@@ -28,5 +28,5 @@ interface CaseApiInterface
     /**
      * @param array<int> $groups
      */
-    public function setUserGroupds(CaseId $id, array $groups): ResponseInterface;
+    public function setUserGroups(CaseId $id, array $groups): ResponseInterface;
 }
