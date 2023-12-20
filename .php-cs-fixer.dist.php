@@ -13,7 +13,7 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 HEADER;
 
-$config = PhpCsFixer\Config\Factory::fromRuleSet(new PhpCsFixer\Config\RuleSet\Php81($header), [
+$ruleSet = PhpCsFixer\Config\RuleSet\Php82::create()->withHeader($header)->withRules(PhpCsFixer\Config\Rules::fromArray([
     'blank_line_before_statement' => [
         'statements' => [
             'break',
@@ -57,7 +57,9 @@ $config = PhpCsFixer\Config\Factory::fromRuleSet(new PhpCsFixer\Config\RuleSet\P
         'style' => 'annotation',
     ],
     'php_unit_test_class_requires_covers' => false,
-]);
+]));
+
+$config = PhpCsFixer\Config\Factory::fromRuleSet($ruleSet);
 
 $config->getFinder()
     ->in('src')
