@@ -27,128 +27,39 @@ $client = new IustaClient($baseUri, $token, $timeout);
 $client->request('GET', '/api/something', $options);
 ```
 
-## Akten
+## Cases
 
-In your code you should type-hint to `Datana\Iusta\Api\AktenApiInterface`
+In your code you should type-hint to `Datana\Iusta\Api\CaseApiInterface`
 
-### Get by Aktenzeichen (`string`)
+### Get by ID (`Datana\Iusta\Api\Domain\Value\CaseId`)
 
 ```php
-use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\CaseApi;
 use Datana\Iusta\Api\IustaClient;
-use Datana\Iusta\Api\Domain\Value\DatapoolId;
+use Datana\Iusta\Api\Domain\Value\CaseId;
 
 $client = new IustaClient(/* ... */);
 
-$aktenApi = new AktenApi($client);
-$response = $aktenApi->getByAktenzeichen('AZ-123-Mustermann');
+$api = new CaseApi($client);
 
-/*
- * to get the IustaId transform the response to array
- * and use the 'id' key.
- */
-$akten = $response->toArray();
-$iustaId = IustaId::fromInt($akte['id']);
+$api->getById(new CaseId(123));
 ```
+## Import
 
-### Get one by Aktenzeichen (`string`) or get an exception
+In your code you should type-hint to `Datana\Iusta\Api\ImportApiInterface`
+
+### Get by ID (`Datana\Iusta\Api\Domain\Value\CaseId`)
 
 ```php
-use Datana\Iusta\Api\AktenApi;
+use Datana\Iusta\Api\ImportApi;
 use Datana\Iusta\Api\IustaClient;
-use Datana\Iusta\Api\Domain\Value\IustaId;
+use Datana\Iusta\Api\Domain\Value\CaseId;
 
 $client = new IustaClient(/* ... */);
 
-$aktenApi = new AktenApi($client);
+$api = new ImportApi($client);
 
-// is an instance of AktenResponse
-$result = $aktenApi->getOneByAktenzeichen('1abcde-1234-5678-Mustermann');
-/*
- * $response->toArray():
- *   [
- *     'id' => 123,
- *     ...
- *   ]
- *
- * or use the dedicated getter methods like
- *  - getId(): IustaId
- * etc.
- */
-```
-
-### Get by ID (`Datana\Iusta\Api\Domain\Value\IustaId`)
-
-```php
-use Datana\Iusta\Api\AktenApi;
-use Datana\Iusta\Api\IustaClient;
-use Datana\Iusta\Api\Domain\Value\IustaId;
-
-$client = new IustaClient(/* ... */);
-
-$aktenApi = new AktenApi($client);
-
-$id = IustaId::fromInt(123);
-
-$aktenApi->getById($id);
-```
-
-### Get E-Termin Info (`Datana\Iusta\Api\Domain\Value\IustaId`)
-
-```php
-use Datana\Iusta\Api\AktenApi;
-use Datana\Iusta\Api\IustaClient;
-use Datana\Iusta\Api\Domain\Value\IustaId;
-
-$client = new IustaClient(/* ... */);
-
-$aktenApi = new AktenApi($client);
-
-$id = IustaId::fromInt(123);
-
-/* @var $response Datana\Iusta\Api\Domain\Response\EterminInfoResponse */
-$response = $aktenApi->getETerminInfo($id);
-/*
- * $response->toArray():
- *   [
- *     'service_id' => 123,
- *     'service_url' => 'https://www.etermin.net/Gansel-Rechtsanwaelte/serviceid/123',
- *   ]
- *
- * or use the dedicated getter methods like
- *  - getServiceId()
- *  - getServiceUrl()
- * etc.
- */
-```
-
-### Get SimplyBook Info (`Datana\Iusta\Api\Domain\Value\IustaId`)
-
-```php
-use Datana\Iusta\Api\AktenApi;
-use Datana\Iusta\Api\IustaClient;
-use Datana\Iusta\Api\Domain\Value\IustaId;
-
-$client = new IustaClient(/* ... */);
-
-$aktenApi = new AktenApi($client);
-
-$id = IustaId::fromInt(123);
-
-/* @var $response Datana\Iusta\Api\Domain\Response\SimplyBookInfoResponse */
-$response = $aktenApi->getETerminInfo($id);
-/*
- * $response->toArray():
- *   [
- *     'service_id' => 12,
- *     'service_url' => 'https://ganselrechtsanwaelteag.simplybook.it/v2/#book/service/12/count/1/provider/any/',
- *   ]
- *
- * or use the dedicated getter methods like
- *  - getServiceId()
- *  - getServiceUrl()
- * etc.
- */
+$api->newCase(/* ... */);
 ```
 
 [build-status-master-php]: https://github.com/datana-gmbh/iusta-api/workflows/PHP/badge.svg?branch=master

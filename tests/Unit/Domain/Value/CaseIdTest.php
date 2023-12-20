@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
 
-use Datana\Iusta\Api\Domain\Value\IustaId;
+use Datana\Iusta\Api\Domain\Value\CaseId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\IustaId
+ * @covers \Datana\Iusta\Api\Domain\Value\CaseId
  */
-final class IustaIdTest extends TestCase
+final class CaseIdTest extends TestCase
 {
     use Helper;
 
@@ -33,7 +33,7 @@ final class IustaIdTest extends TestCase
     {
         self::assertSame(
             $value,
-            IustaId::fromInt($value)->toInt(),
+            (new CaseId($value))->value,
         );
     }
 
@@ -47,6 +47,6 @@ final class IustaIdTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        IustaId::fromInt($value);
+        new CaseId($value);
     }
 }

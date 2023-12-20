@@ -13,17 +13,14 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\IustaId;
-use Datana\Iusta\Api\Response\AktenResponse;
-use Datana\Iusta\Api\Response\ETerminInfoResponse;
-use Datana\Iusta\Api\Response\SimplyBookInfoResponse;
+use Datana\Iusta\Api\Domain\Value\CaseId;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Webmozart\Assert\Assert;
 use function Safe\sprintf;
 
-final class AktenApi implements AktenApiInterface
+final class CaseApi implements CaseApiInterface
 {
     private IustaClient $client;
     private LoggerInterface $logger;
@@ -34,83 +31,67 @@ final class AktenApi implements AktenApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function getByAktenzeichen(string $aktenzeichen): ResponseInterface
+    public function getById(CaseId $id): ResponseInterface
     {
-        Assert::stringNotEmpty($aktenzeichen);
-
         try {
             $response = $this->client->request(
                 'GET',
-                '/api/akten',
+                sprintf('/api/Cases/%s', $id->value),
+            );
+
+            $this->logger->debug('Response', $response->toArray(false));
+
+            return $response;
+        } catch (\Throwable $e) {
+            $this->logger->error($e->getMessage());
+
+            throw $e;
+        }
+    }
+
+    public function getAll(): ResponseInterface
+    {
+        try {
+            $response = $this->client->request(
+                'GET',
+                '/api/Cases',
+            );
+
+            $this->logger->debug('Response', $response->toArray(false));
+
+            return $response;
+        } catch (\Throwable $e) {
+            $this->logger->error($e->getMessage());
+
+            throw $e;
+        }
+    }
+
+    public function setUserGroupds(CaseId $id, array $groups): ResponseInterface
+    {
+        Assert::allInteger($groups);
+
+        $payload = [];
+
+        foreach ($groups as $group) {
+            $payload[] = [
+                'referenceType' => 'XUserGroup',
+                'referenceId' => $group,
+            ];
+        }
+
+        try {
+            $response = $this->client->request(
+                'POST',
+                sprintf('/api/Cases/%d/Permissions', $id->value),
                 [
-                    'query' => [
-                        'aktenzeichen' => $aktenzeichen,
-                    ],
+                    'json' => $payload,
                 ],
             );
 
             $this->logger->debug('Response', $response->toArray(false));
 
             return $response;
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
-    }
-
-    public function getOneByAktenzeichen(string $aktenzeichen): AktenResponse
-    {
-        return new AktenResponse($this->getByAktenzeichen($aktenzeichen));
-    }
-
-    public function getById(IustaId $iustaId): ResponseInterface
-    {
-        try {
-            $response = $this->client->request(
-                'GET',
-                sprintf('/api/akte/%s', $iustaId->toInt()),
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return $response;
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
-    }
-
-    public function getETerminInfo(IustaId $iustaId): ETerminInfoResponse
-    {
-        try {
-            $response = $this->client->request(
-                'GET',
-                sprintf('/api/akte/%s/e-termin-info', $iustaId->toInt()),
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return new ETerminInfoResponse($response);
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
-    }
-
-    public function getSimplyBookInfo(IustaId $iustaId): SimplyBookInfoResponse
-    {
-        try {
-            $response = $this->client->request(
-                'GET',
-                sprintf('/api/akte/%s/simply-book-info', $iustaId->toInt()),
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return new SimplyBookInfoResponse($response);
         } catch (\Throwable $e) {
             $this->logger->error($e->getMessage());
 
