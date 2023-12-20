@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value;
 
-use App\Export\Value\Case\CaseId;
 use Webmozart\Assert\Assert;
 
 final readonly class CreatedCase
@@ -21,11 +20,11 @@ final readonly class CreatedCase
     public CaseId $id;
 
     public function __construct(
-        public array $repsonse,
+        public array $response,
     ) {
-        Assert::keyExists($repsonse, 'createdCase');
-        Assert::keyExists($repsonse['createdCase'], 'id');
+        Assert::keyExists($response, 'createdCase');
+        Assert::keyExists($response['createdCase'], 'id');
 
-        $this->id = new CaseId($repsonse['createdCase']['id']);
+        $this->id = new CaseId($response['createdCase']['id']);
     }
 }

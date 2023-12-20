@@ -14,15 +14,9 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CreatedCase;
-use Datana\Iusta\Api\Domain\Value\IustaId;
-use Datana\Iusta\Api\Response\AktenResponse;
-use Datana\Iusta\Api\Response\ETerminInfoResponse;
-use Datana\Iusta\Api\Response\SimplyBookInfoResponse;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 use Webmozart\Assert\Assert;
-use function Safe\sprintf;
 
 final class ImportApi implements ImportApiInterface
 {
@@ -50,7 +44,7 @@ final class ImportApi implements ImportApiInterface
 
             $this->logger->debug('Response', $response->toArray(false));
 
-            return $response;
+            return new CreatedCase($response->toArray());
         } catch (\Throwable $e) {
             $this->logger->error($e->getMessage());
 

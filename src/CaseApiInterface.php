@@ -13,15 +13,20 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\CreatedCase;
+use Datana\Iusta\Api\Domain\Value\CaseId;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * @author Oskar Stark <oskar.stark@googlemail.de>
  */
-interface ImportApiInterface
+interface CaseApiInterface
 {
+    public function getById(CaseId $id): ResponseInterface;
+
+    public function getAll(): ResponseInterface;
+
     /**
-     * @param array<mixed> $payload
+     * @param array<int> $groups
      */
-    public function newCase(array $payload): CreatedCase;
+    public function setUserGroupds(CaseId $id, array $groups): ResponseInterface;
 }

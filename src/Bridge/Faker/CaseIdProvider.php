@@ -16,16 +16,16 @@ namespace Datana\Iusta\Api\Bridge\Faker;
 use Datana\Iusta\Api\Domain\Value\IustaId;
 use Faker\Provider\Base as BaseProvider;
 
-final class IustaIdProvider extends BaseProvider
+final class CaseIdProvider extends BaseProvider
 {
-    public function iustaId(): IustaId
+    public function caseId(): IustaId
     {
         return IustaId::fromInt(
-            $this->iustaIdInteger(),
+            $this->CaseIdInteger(),
         );
     }
 
-    public function iustaIdInteger(): int
+    public function CaseIdInteger(): int
     {
         return $this->generator->numberBetween(1);
     }
