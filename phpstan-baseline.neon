@@ -5,18 +5,3 @@ parameters:
 			count: 1
 			path: src/IustaClient.php
 
-		-
-			message: "#^Method Datana\\\\Iusta\\\\Api\\\\Response\\\\AktenResponse\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Response/AktenResponse.php
-
-		-
-			message: "#^Method Datana\\\\Iusta\\\\Api\\\\Response\\\\ETerminInfoResponse\\:\\:toArray\\(\\) should return array\\{service_id\\: string\\|null, service_url\\: string\\|null\\} but returns array\\.$#"
-			count: 1
-			path: src/Response/ETerminInfoResponse.php
-
-		-
-			message: "#^Method Datana\\\\Iusta\\\\Api\\\\Response\\\\SimplyBookInfoResponse\\:\\:toArray\\(\\) should return array\\{service_id\\: string\\|null, service_url\\: string\\|null\\} but returns array\\.$#"
-			count: 1
-			path: src/Response/SimplyBookInfoResponse.php
-

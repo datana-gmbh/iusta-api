@@ -19,6 +19,9 @@ final readonly class CreatedCase
 {
     public CaseId $id;
 
+    /**
+     * @param array<mixed> $response
+     */
     public function __construct(
         public array $response,
     ) {

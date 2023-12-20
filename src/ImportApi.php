@@ -29,6 +29,9 @@ final class ImportApi implements ImportApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function newCase(array $payload): CreatedCase
     {
         Assert::notEmpty($payload);
