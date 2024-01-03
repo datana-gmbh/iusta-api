@@ -29,4 +29,9 @@ interface CaseApiInterface
      * @param array<int> $groups
      */
     public function setUserGroups(CaseId $id, array $groups): ResponseInterface;
+
+    /**
+     * @param array<mixed> $payload
+     */
+    public function addComment(CaseId $id, array $payload): ResponseInterface;
 }
