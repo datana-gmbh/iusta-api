@@ -22,4 +22,9 @@ final readonly class CaseId
     ) {
         Assert::greaterThan($value, 0);
     }
+
+    public function toInt(): int
+    {
+        return $this->value;
+    }
 }
