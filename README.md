@@ -44,11 +44,12 @@ $api = new CaseApi($client);
 
 $api->getById(new CaseId(123));
 ```
+
 ## Import
 
 In your code you should type-hint to `Datana\Iusta\Api\ImportApiInterface`
 
-### Get by ID (`Datana\Iusta\Api\Domain\Value\CaseId`)
+### New case (`Datana\Iusta\Api\Domain\Value\CaseId`)
 
 ```php
 use Datana\Iusta\Api\ImportApi;
