@@ -29,12 +29,12 @@ final class CaseIdTest extends TestCase
      *
      * @dataProvider \Ergebnis\Test\Util\DataProvider\IntProvider::greaterThanZero()
      */
-    public function fromIntGreaterThanZero(int $value): void
+    public function canBeConstructed(int $value): void
     {
-        self::assertSame(
-            $value,
-            (new CaseId($value))->value,
-        );
+        $id = new CaseId($value);
+
+        self::assertSame($value, $id->value);
+        self::assertSame($value, $id->toInt());
     }
 
     /**
@@ -43,7 +43,7 @@ final class CaseIdTest extends TestCase
      * @dataProvider \Ergebnis\Test\Util\DataProvider\IntProvider::lessThanZero()
      * @dataProvider \Ergebnis\Test\Util\DataProvider\IntProvider::zero()
      */
-    public function fromIntThrowsException(int $value): void
+    public function throwsException(int $value): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
