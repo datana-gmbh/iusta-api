@@ -20,7 +20,6 @@ use Psr\Log\NullLogger;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Webmozart\Assert\Assert;
 use function Safe\fopen;
-use function Safe\sprintf;
 
 final class CaseApi implements CaseApiInterface
 {
