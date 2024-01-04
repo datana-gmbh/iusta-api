@@ -16,6 +16,8 @@ namespace Datana\Iusta\Api;
 use Datana\Iusta\Api\Domain\Value\CaseId;
 use Datana\Iusta\Api\Domain\Value\CreatedDocument;
 use Datana\Iusta\Api\Domain\Value\CreatedDocuments;
+use Datana\Iusta\Api\Domain\Value\CustomFieldId;
+use Datana\Iusta\Api\Domain\Value\DocumentId;
 use OskarStark\Value\TrimmedNonEmptyString;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -29,6 +31,7 @@ final class CaseApi implements CaseApiInterface
 
     public function __construct(
         private IustaClient $client,
+        private ImportApiInterface $importApi,
         ?LoggerInterface $logger = null,
     ) {
         $this->logger = $logger ?? new NullLogger();
@@ -171,5 +174,18 @@ final class CaseApi implements CaseApiInterface
 
             throw $e;
         }
+    }
+
+    public function connectDocument(CaseId $id, DocumentId $documentId, CustomFieldId $customFieldId): ResponseInterface
+    {
+        return $this->importApi->updateCase(
+            id: $id,
+            customFieldvalues: [
+                [
+                    'id' => $customFieldId->toInt(),
+                    'value' => $documentId->toInt(),
+                ],
+            ],
+        );
     }
 }
