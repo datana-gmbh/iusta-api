@@ -16,7 +16,7 @@ namespace Datana\Iusta\Api\Domain\Value;
 final readonly class CreatedDocuments
 {
     /**
-     * @var array<CreatedDocument>
+     * @var list<CreatedDocument>
      */
     public array $documents;
 
