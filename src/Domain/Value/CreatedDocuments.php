@@ -13,12 +13,10 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value;
 
-use Webmozart\Assert\Assert;
-
 final readonly class CreatedDocuments
 {
     /**
-     * @var CreatedDocument[]
+     * @var array<CreatedDocument>
      */
     public array $documents;
 

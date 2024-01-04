@@ -155,13 +155,13 @@ final class CaseApi implements CaseApiInterface
 
             $createdDocuments = new CreatedDocuments($response->toArray());
 
-            $count = count($createdDocuments->documents);
+            $count = \count($createdDocuments->documents);
 
-            if ($count === 0) {
+            if (0 === $count) {
                 throw new \RuntimeException('Expected one document to be created.');
             }
 
-            if ($count > 1) {
+            if (1 < $count) {
                 throw new \RuntimeException('Expected exactly one document to be created.');
             }
 
