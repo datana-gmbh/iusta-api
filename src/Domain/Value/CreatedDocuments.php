@@ -27,8 +27,12 @@ final readonly class CreatedDocuments
      */
     public function __construct(array $response)
     {
+        $documents = [];
+
         foreach ($response as $document) {
-            $this->documents[] = new CreatedDocument($document);
+            $documents[] = new CreatedDocument($document);
         }
+
+        $this->documents = $documents;
     }
 }
