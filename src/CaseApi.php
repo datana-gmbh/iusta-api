@@ -14,21 +14,23 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CaseId;
+use Datana\Iusta\Api\Domain\Value\CreatedDocument;
+use Datana\Iusta\Api\Domain\Value\CreatedDocuments;
 use OskarStark\Value\TrimmedNonEmptyString;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Webmozart\Assert\Assert;
-use function Safe\sprintf;
+use function Safe\fopen;
 
 final class CaseApi implements CaseApiInterface
 {
-    private IustaClient $client;
     private LoggerInterface $logger;
 
-    public function __construct(IustaClient $client, ?LoggerInterface $logger = null)
-    {
-        $this->client = $client;
+    public function __construct(
+        private IustaClient $client,
+        ?LoggerInterface $logger = null,
+    ) {
         $this->logger = $logger ?? new NullLogger();
     }
 
@@ -124,6 +126,46 @@ final class CaseApi implements CaseApiInterface
             $this->logger->debug('Response', $response->toArray(false));
 
             return $response;
+        } catch (\Throwable $e) {
+            $this->logger->error($e->getMessage());
+
+            throw $e;
+        }
+    }
+
+    public function addDocument(CaseId $id, string $filepath, int $documentCategory = 0): CreatedDocument
+    {
+        Assert::fileExists($filepath);
+
+        try {
+            $response = $this->client->request(
+                'POST',
+                sprintf('/api/Imports/v2/updateCase/%s/createDocumentsFromFile', $id->toInt()),
+                [
+                    'query' => [
+                        'documentCategoryId' => $documentCategory,
+                    ],
+                    'body' => [
+                        'file' => fopen($filepath, 'rb'),
+                    ],
+                ],
+            );
+
+            $this->logger->debug('Response', $response->toArray(false));
+
+            $createdDocuments = new CreatedDocuments($response->toArray());
+
+            $count = \count($createdDocuments->documents);
+
+            if (0 === $count) {
+                throw new \RuntimeException('Expected one document to be created.');
+            }
+
+            if (1 < $count) {
+                throw new \RuntimeException('Expected exactly one document to be created.');
+            }
+
+            return $createdDocuments->documents[0];
         } catch (\Throwable $e) {
             $this->logger->error($e->getMessage());
 

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CaseId;
+use Datana\Iusta\Api\Domain\Value\CreatedDocument;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
@@ -34,4 +35,6 @@ interface CaseApiInterface
      * @param array<mixed> $payload
      */
     public function addComment(CaseId $id, array $payload): ResponseInterface;
+
+    public function addDocument(CaseId $id, string $filepath, int $documentCategory = 0): CreatedDocument;
 }

@@ -20,12 +20,12 @@ use Webmozart\Assert\Assert;
 
 final class ImportApi implements ImportApiInterface
 {
-    private IustaClient $client;
     private LoggerInterface $logger;
 
-    public function __construct(IustaClient $client, ?LoggerInterface $logger = null)
-    {
-        $this->client = $client;
+    public function __construct(
+        private IustaClient $client,
+        ?LoggerInterface $logger = null,
+    ) {
         $this->logger = $logger ?? new NullLogger();
     }
 
