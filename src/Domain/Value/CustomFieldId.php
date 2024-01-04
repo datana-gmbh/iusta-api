@@ -35,6 +35,6 @@ final readonly class CustomFieldId
 
     public function toString(): string
     {
-        return 'cf_' . $this->value;
+        return 'cf_'.$this->value;
     }
 }

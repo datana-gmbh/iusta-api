@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
 
-use Datana\Iusta\Api\Domain\Value\CaseId;
 use Datana\Iusta\Api\Domain\Value\CustomFieldId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
@@ -41,7 +40,7 @@ final class CustomFieldIdTest extends TestCase
 
     /**
      * @test
-     *      
+     *
      * @dataProvider \Ergebnis\Test\Util\DataProvider\IntProvider::greaterThanZero()
      */
     public function fromString(int $value): void
