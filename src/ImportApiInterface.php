@@ -28,7 +28,7 @@ interface ImportApiInterface
     public function newCase(array $payload): CreatedCase;
 
     /**
-     * @param array<array{id: int, value: list<string>|string}> $customFieldvalues
+     * @param array<array{id: int, value: int|list<string>|string}> $customFieldvalues
      */
     public function updateCase(CaseId $id, array $customFieldvalues = []): ResponseInterface;
 }
