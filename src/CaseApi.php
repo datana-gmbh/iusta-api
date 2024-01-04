@@ -19,6 +19,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Webmozart\Assert\Assert;
+use function Safe\fopen;
 use function Safe\sprintf;
 
 final class CaseApi implements CaseApiInterface
@@ -118,6 +119,34 @@ final class CaseApi implements CaseApiInterface
                 '/api/Comments',
                 [
                     'json' => $payload,
+                ],
+            );
+
+            $this->logger->debug('Response', $response->toArray(false));
+
+            return $response;
+        } catch (\Throwable $e) {
+            $this->logger->error($e->getMessage());
+
+            throw $e;
+        }
+    }
+
+    public function addDocument(CaseId $id, string $filepath, int $documentCategory = 0): ResponseInterface
+    {
+        Assert::fileExists($filepath);
+
+        try {
+            $response = $this->client->request(
+                'POST',
+                sprintf('/api/Imports/v2/updateCase/%s/createDocumentsFromFile', $id->toInt()),
+                [
+                    'query' => [
+                        'documentCategoryId' => $documentCategory,
+                    ],
+                    'body' => [
+                        'file' => fopen($filepath, 'rb'),
+                    ],
                 ],
             );
 

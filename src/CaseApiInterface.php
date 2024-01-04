@@ -34,4 +34,6 @@ interface CaseApiInterface
      * @param array<mixed> $payload
      */
     public function addComment(CaseId $id, array $payload): ResponseInterface;
+
+    public function addDocument(CaseId $id, string $filepath, int $documentCategory = 0): ResponseInterface;
 }
