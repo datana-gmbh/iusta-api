@@ -178,6 +178,12 @@ final class CaseApi implements CaseApiInterface
 
     public function connectDocument(CaseId $id, DocumentId $documentId, CustomFieldId $customFieldId): ResponseInterface
     {
+        $this->logger->debug('Connect document to case via field', [
+            'caseId' => $id->toInt(),
+            'documentId' => $documentId->toInt(),
+            'customFieldId' => $customFieldId->toInt(),
+        ]);
+
         return $this->importApi->updateCase(
             id: $id,
             customFieldvalues: [
