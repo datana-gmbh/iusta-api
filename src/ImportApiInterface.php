@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
+use Datana\Iusta\Api\Domain\Value\CaseId;
 use Datana\Iusta\Api\Domain\Value\CreatedCase;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * @author Oskar Stark <oskar.stark@googlemail.de>
@@ -24,4 +26,9 @@ interface ImportApiInterface
      * @param array<mixed> $payload
      */
     public function newCase(array $payload): CreatedCase;
+
+    /**
+     * @param array<array{id: int, value: string|list<string>}> $customFieldvalues
+     */
+    public function updateCase(CaseId $id, array $customFieldvalues = []): ResponseInterface;
 }
