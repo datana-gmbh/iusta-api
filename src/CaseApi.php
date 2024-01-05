@@ -17,6 +17,7 @@ use Datana\Iusta\Api\Domain\Value\CaseId;
 use Datana\Iusta\Api\Domain\Value\CreatedDocument;
 use Datana\Iusta\Api\Domain\Value\CreatedDocuments;
 use Datana\Iusta\Api\Domain\Value\CustomFieldId;
+use Datana\Iusta\Api\Domain\Value\DatasetId;
 use Datana\Iusta\Api\Domain\Value\DocumentId;
 use Datana\Iusta\Api\Exception\MoreThanOneDocumentCreatedException;
 use Datana\Iusta\Api\Exception\NoDocumentsCreatedException;
@@ -132,7 +133,7 @@ final class CaseApi implements CaseApiInterface
 
     public function connectDocument(CaseId $id, DocumentId $documentId, CustomFieldId $customFieldId): ResponseInterface
     {
-        $this->logger->debug('Connect document to case via field', [
+        $this->logger->debug('Connect Document to Case via CustomFieldValue', [
             'caseId' => $id->toInt(),
             'documentId' => $documentId->toInt(),
             'customFieldId' => $customFieldId->toInt(),
@@ -144,6 +145,25 @@ final class CaseApi implements CaseApiInterface
                 [
                     'id' => $customFieldId->toInt(),
                     'value' => $documentId->toInt(),
+                ],
+            ],
+        );
+    }
+
+    public function connectDataset(CaseId $id, DatasetId $datasetId, CustomFieldId $customFieldId): ResponseInterface
+    {
+        $this->logger->debug('Connect Dataset to Case via CustomFieldValue', [
+            'caseId' => $id->toInt(),
+            'datasetId' => $datasetId->toInt(),
+            'customFieldId' => $customFieldId->toInt(),
+        ]);
+
+        return $this->importApi->updateCase(
+            id: $id,
+            customFieldvalues: [
+                [
+                    'id' => $customFieldId->toInt(),
+                    'value' => $datasetId->toInt(),
                 ],
             ],
         );
