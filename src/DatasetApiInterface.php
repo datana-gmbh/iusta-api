@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CreatedDataset;
+use Datana\Iusta\Api\Domain\Value\DatasetTypeId;
 
 /**
  * @author Oskar Stark <oskar.stark@googlemail.de>
@@ -23,5 +24,5 @@ interface DatasetApiInterface
     /**
      * @param list<array{id: int, value: mixed}> $customFieldValues
      */
-    public function create(string $name, int $datasetTypeId, array $customFieldValues = []): CreatedDataset;
+    public function create(string $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): CreatedDataset;
 }

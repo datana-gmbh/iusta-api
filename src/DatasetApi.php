@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CreatedDataset;
+use Datana\Iusta\Api\Domain\Value\DatasetTypeId;
 use OskarStark\Value\TrimmedNonEmptyString;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Webmozart\Assert\Assert;
 
 final class DatasetApi implements DatasetApiInterface
 {
@@ -30,15 +30,14 @@ final class DatasetApi implements DatasetApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function create(string $name, int $datasetTypeId, array $customFieldValues = []): CreatedDataset
+    public function create(string $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): CreatedDataset
     {
         TrimmedNonEmptyString::fromString($name);
-        Assert::greaterThan($datasetTypeId, 0);
 
         $payload = [
             'dataset' => [
                 'name' => $name,
-                'datasetTypeId' => $datasetTypeId,
+                'datasetTypeId' => $datasetTypeId->toInt(),
             ],
         ];
 
