@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Property Datana\\\\Iusta\\\\Api\\\\DatasetApi\\:\\:\\$logger is never read, only written\\.$#"
+			count: 1
+			path: src/DatasetApi.php
+
+		-
 			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\CreatedDocument constructor expects array, mixed given\\.$#"
 			count: 1
 			path: src/Domain/Value/CreatedDocuments.php
