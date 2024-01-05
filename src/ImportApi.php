@@ -38,23 +38,15 @@ final class ImportApi implements ImportApiInterface
     {
         Assert::notEmpty($payload);
 
-        try {
-            $response = $this->client->request(
-                'POST',
-                '/api/Imports/v2/newCase',
-                [
-                    'json' => $payload,
-                ],
-            );
+        $response = $this->client->request(
+            'POST',
+            '/api/Imports/v2/newCase',
+            [
+                'json' => $payload,
+            ],
+        );
 
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return new CreatedCase($response->toArray());
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
+        return new CreatedCase($response->toArray(true));
     }
 
     /**
@@ -64,26 +56,14 @@ final class ImportApi implements ImportApiInterface
     {
         Assert::notEmpty($customFieldvalues);
 
-        $payload = [
-            'customFieldValues' => $customFieldvalues,
-        ];
-
-        try {
-            $response = $this->client->request(
-                'POST',
-                sprintf('/api/Imports/v2/updateCase/%s', $id->toInt()),
-                [
-                    'json' => $payload,
+        return $this->client->request(
+            'POST',
+            sprintf('/api/Imports/v2/updateCase/%s', $id->toInt()),
+            [
+                'json' => [
+                    'customFieldValues' => $customFieldvalues,
                 ],
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return $response;
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
+            ],
+        );
     }
 }

@@ -63,17 +63,27 @@ final class IustaClient
             $options['timeout'] = $this->timeout;
         }
 
-        return $this->client->request(
-            $method,
-            $url,
-            array_merge_recursive(
-                $options,
-                [
-                    'headers' => [
-                        'Authorization' => $this->token,
+        try {
+            $response = $this->client->request(
+                $method,
+                $url,
+                array_merge_recursive(
+                    $options,
+                    [
+                        'headers' => [
+                            'Authorization' => $this->token,
+                        ],
                     ],
-                ],
-            ),
-        );
+                ),
+            );
+
+            $this->logger?->debug('Response', $response->toArray(false));
+        } catch (\Throwable $e) {
+            $this->logger?->error($e->getMessage());
+
+            throw $e;
+        }
+
+        return $response;
     }
 }
