@@ -86,7 +86,12 @@ final class IustaClient
                 $response->toArray(false),
             );
         } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
+            $this->logger->error(
+                sprintf('Error while requesting %s %s', $method, $url),
+                [
+                    'error' => $e->getMessage(),
+                ],
+            );
 
             throw $e;
         }
