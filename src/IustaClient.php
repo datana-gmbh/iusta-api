@@ -77,9 +77,9 @@ final class IustaClient
                 ),
             );
 
-            $this->logger?->debug('Response', $response->toArray(false));
+            $this->logger->debug('Response', $response->toArray(false));
         } catch (\Throwable $e) {
-            $this->logger?->error($e->getMessage());
+            $this->logger->error($e->getMessage());
 
             throw $e;
         }
