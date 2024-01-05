@@ -26,7 +26,7 @@ final class ImportApi implements ImportApiInterface
 
     public function __construct(
         private IustaClient $client,
-        LoggerInterface $logger = null,
+        ?LoggerInterface $logger = null,
     ) {
         $this->logger = $logger ?? new NullLogger();
     }

@@ -32,7 +32,7 @@ final class IustaClient
 
     public function __construct(
         string $baseUri,
-        #[\SensitiveParameter]
+        #[\SensitiveParameter()]
         private string $token,
         private int $timeout = 2,
         ?LoggerInterface $logger = null,
