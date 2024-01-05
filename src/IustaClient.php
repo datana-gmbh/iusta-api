@@ -66,6 +66,8 @@ final class IustaClient
         }
 
         try {
+            $this->logger->debug(sprintf('Request %s %s', $method, $url), $options);
+
             $response = $this->client->request(
                 $method,
                 $url,
@@ -79,9 +81,17 @@ final class IustaClient
                 ),
             );
 
-            $this->logger->debug('Response', $response->toArray(false));
+            $this->logger->debug(
+                sprintf('Response %s %s %s', $response->getStatusCode(), $method, $url),
+                $response->toArray(false),
+            );
         } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
+            $this->logger->error(
+                sprintf('Error while requesting %s %s', $method, $url),
+                [
+                    'error' => $e->getMessage(),
+                ],
+            );
 
             throw $e;
         }
