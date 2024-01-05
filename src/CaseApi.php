@@ -49,7 +49,7 @@ final class CaseApi implements CaseApiInterface
 
     public function getAll(): ResponseInterface
     {
-        $response = $this->client->request(
+        return $this->client->request(
             'GET',
             '/api/Cases',
         );
