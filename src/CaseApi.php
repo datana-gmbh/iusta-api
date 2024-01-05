@@ -41,38 +41,18 @@ final class CaseApi implements CaseApiInterface
 
     public function getById(CaseId $id): ResponseInterface
     {
-        try {
-            $response = $this->client->request(
-                'GET',
-                sprintf('/api/Cases/%s', $id->value),
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return $response;
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
+        return $this->client->request(
+            'GET',
+            sprintf('/api/Cases/%s', $id->value),
+        );
     }
 
     public function getAll(): ResponseInterface
     {
-        try {
-            $response = $this->client->request(
-                'GET',
-                '/api/Cases',
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return $response;
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
+        return $this->client->request(
+            'GET',
+            '/api/Cases',
+        );
     }
 
     public function setUserGroups(CaseId $id, array $groups): ResponseInterface
@@ -88,23 +68,13 @@ final class CaseApi implements CaseApiInterface
             ];
         }
 
-        try {
-            $response = $this->client->request(
-                'POST',
-                sprintf('/api/Cases/%d/Permissions', $id->value),
-                [
-                    'json' => $payload,
-                ],
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return $response;
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
+        return $this->client->request(
+            'POST',
+            sprintf('/api/Cases/%d/Permissions', $id->value),
+            [
+                'json' => $payload,
+            ],
+        );
     }
 
     /**
@@ -119,63 +89,45 @@ final class CaseApi implements CaseApiInterface
         $payload['referenceId'] = $id->value;
         $payload['referenceType'] = 'Case';
 
-        try {
-            $response = $this->client->request(
-                'POST',
-                '/api/Comments',
-                [
-                    'json' => $payload,
-                ],
-            );
-
-            $this->logger->debug('Response', $response->toArray(false));
-
-            return $response;
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
-        }
+        return $this->client->request(
+            'POST',
+            '/api/Comments',
+            [
+                'json' => $payload,
+            ],
+        );
     }
 
     public function addDocument(CaseId $id, string $filepath, int $documentCategory = 0): CreatedDocument
     {
         Assert::fileExists($filepath);
 
-        try {
-            $response = $this->client->request(
-                'POST',
-                sprintf('/api/Imports/v2/updateCase/%s/createDocumentsFromFile', $id->toInt()),
-                [
-                    'query' => [
-                        'documentCategoryId' => $documentCategory,
-                    ],
-                    'body' => [
-                        'file' => fopen($filepath, 'rb'),
-                    ],
+        $response = $this->client->request(
+            'POST',
+            sprintf('/api/Imports/v2/updateCase/%s/createDocumentsFromFile', $id->toInt()),
+            [
+                'query' => [
+                    'documentCategoryId' => $documentCategory,
                 ],
-            );
+                'body' => [
+                    'file' => fopen($filepath, 'rb'),
+                ],
+            ],
+        );
 
-            $this->logger->debug('Response', $response->toArray(false));
+        $createdDocuments = new CreatedDocuments($response->toArray());
 
-            $createdDocuments = new CreatedDocuments($response->toArray());
+        $count = \count($createdDocuments->documents);
 
-            $count = \count($createdDocuments->documents);
-
-            if (0 === $count) {
-                throw new NoDocumentsCreatedException();
-            }
-
-            if (1 < $count) {
-                throw new MoreThanOneDocumentCreatedException();
-            }
-
-            return $createdDocuments->documents[0];
-        } catch (\Throwable $e) {
-            $this->logger->error($e->getMessage());
-
-            throw $e;
+        if (0 === $count) {
+            throw new NoDocumentsCreatedException();
         }
+
+        if (1 < $count) {
+            throw new MoreThanOneDocumentCreatedException();
+        }
+
+        return $createdDocuments->documents[0];
     }
 
     public function connectDocument(CaseId $id, DocumentId $documentId, CustomFieldId $customFieldId): ResponseInterface

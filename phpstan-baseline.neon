@@ -6,7 +6,7 @@ parameters:
 			path: src/Domain/Value/CreatedDocuments.php
 
 		-
-			message: "#^Property Datana\\\\Iusta\\\\Api\\\\IustaClient\\:\\:\\$logger is never read, only written\\.$#"
+			message: "#^Property Datana\\\\Iusta\\\\Api\\\\ImportApi\\:\\:\\$logger is never read, only written\\.$#"
 			count: 1
-			path: src/IustaClient.php
+			path: src/ImportApi.php
 
