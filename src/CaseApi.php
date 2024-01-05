@@ -18,6 +18,8 @@ use Datana\Iusta\Api\Domain\Value\CreatedDocument;
 use Datana\Iusta\Api\Domain\Value\CreatedDocuments;
 use Datana\Iusta\Api\Domain\Value\CustomFieldId;
 use Datana\Iusta\Api\Domain\Value\DocumentId;
+use Datana\Iusta\Api\Exception\MoreThanOneDocumentCreatedException;
+use Datana\Iusta\Api\Exception\NoDocumentsCreatedException;
 use OskarStark\Value\TrimmedNonEmptyString;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -161,11 +163,11 @@ final class CaseApi implements CaseApiInterface
             $count = \count($createdDocuments->documents);
 
             if (0 === $count) {
-                throw new \RuntimeException('Expected one document to be created.');
+                throw new NoDocumentsCreatedException();
             }
 
             if (1 < $count) {
-                throw new \RuntimeException('Expected exactly one document to be created.');
+                throw new MoreThanOneDocumentCreatedException();
             }
 
             return $createdDocuments->documents[0];
