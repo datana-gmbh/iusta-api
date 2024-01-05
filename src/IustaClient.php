@@ -28,15 +28,17 @@ use Webmozart\Assert\Assert;
 final class IustaClient
 {
     private HttpClientInterface $client;
-    private string $token;
-    private int $timeout;
     private LoggerInterface $logger;
 
-    public function __construct(string $baseUri, string $token, int $timeout = 2, ?LoggerInterface $logger = null)
-    {
+    public function __construct(
+        string $baseUri,
+        #[\SensitiveParameter]
+        private string $token,
+        private int $timeout = 2,
+        ?LoggerInterface $logger = null,
+    ) {
         $this->client = HttpClient::createForBaseUri($baseUri);
-        $this->token = TrimmedNonEmptyString::fromString($token, '$token must not be an empty string')->toString();
-        $this->timeout = $timeout;
+        TrimmedNonEmptyString::fromString($token, '$token must not be an empty string')->toString();
         $this->logger = $logger ?? new NullLogger();
     }
 
