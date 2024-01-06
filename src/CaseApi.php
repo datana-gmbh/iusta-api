@@ -18,6 +18,7 @@ use Datana\Iusta\Api\Domain\Value\CreatedDocument;
 use Datana\Iusta\Api\Domain\Value\CreatedDocuments;
 use Datana\Iusta\Api\Domain\Value\CustomFieldId;
 use Datana\Iusta\Api\Domain\Value\DatasetId;
+use Datana\Iusta\Api\Domain\Value\DocumentCategoryId;
 use Datana\Iusta\Api\Domain\Value\DocumentId;
 use Datana\Iusta\Api\Exception\MoreThanOneDocumentCreatedException;
 use Datana\Iusta\Api\Exception\NoDocumentsCreatedException;
@@ -99,16 +100,20 @@ final class CaseApi implements CaseApiInterface
         );
     }
 
-    public function addDocument(CaseId $id, string $filepath, int $documentCategory = 0): CreatedDocument
+    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryId $documentCategoryId = null): CreatedDocument
     {
         Assert::fileExists($filepath);
+
+        if (null === $documentCategoryId) {
+            $documentCategoryId = new DocumentCategoryId(0);
+        }
 
         $response = $this->client->request(
             'POST',
             sprintf('/api/Imports/v2/updateCase/%s/createDocumentsFromFile', $id->toInt()),
             [
                 'query' => [
-                    'documentCategoryId' => $documentCategory,
+                    'documentCategoryId' => $documentCategoryId->toInt(),
                 ],
                 'body' => [
                     'file' => fopen($filepath, 'rb'),
