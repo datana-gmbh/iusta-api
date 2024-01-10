@@ -19,7 +19,6 @@ use Datana\Iusta\Api\Domain\Value\Dataset\DatasetName;
 use Datana\Iusta\Api\Domain\Value\DatasetTypeId;
 use Datana\Iusta\Api\Exception\DatasetNotFoundException;
 use Datana\Iusta\Api\Exception\MoreThanOneDatasetFoundException;
-use OskarStark\Value\TrimmedNonEmptyString;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -34,17 +33,11 @@ final class DatasetApi implements DatasetApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function create(DatasetName|string $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): CreatedDataset
+    public function create(DatasetName $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): CreatedDataset
     {
-        if ($name instanceof DatasetName) {
-            $name = $name->toString();
-        } else {
-            TrimmedNonEmptyString::fromString($name);
-        }
-
         $payload = [
             'dataset' => [
-                'name' => $name,
+                'name' => $name->toString(),
                 'datasetTypeId' => $datasetTypeId->toInt(),
             ],
         ];
