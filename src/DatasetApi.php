@@ -67,7 +67,7 @@ final class DatasetApi implements DatasetApiInterface
             '/api/Datasets',
             [
                 'query' => [
-                    'filter' => json_encode([
+                    'filter' => \Safe\json_encode([
                         'where' => [
                             'name' => $name,
                             'datasetTypeId' => $datasetTypeId->toInt(),
