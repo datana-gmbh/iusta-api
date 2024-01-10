@@ -27,6 +27,7 @@ final readonly class CreatedDataset
     ) {
         Assert::keyExists($response, 'createdDataset');
         Assert::keyExists($response['createdDataset'], 'id');
+        Assert::integer($response['createdDataset']['id']);
 
         $this->id = new DatasetId($response['createdDataset']['id']);
     }
