@@ -26,7 +26,7 @@ interface DatasetApiInterface
     /**
      * @param list<array{id: int, value: mixed}> $customFieldValues
      */
-    public function create(string $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): CreatedDataset;
+    public function create(DatasetName|string $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): CreatedDataset;
 
     public function get(DatasetName $name, DatasetTypeId $datasetTypeId): Dataset;
 }

@@ -34,9 +34,13 @@ final class DatasetApi implements DatasetApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function create(string $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): CreatedDataset
+    public function create(DatasetName|string $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): CreatedDataset
     {
-        TrimmedNonEmptyString::fromString($name);
+        if ($name instanceof DatasetName) {
+            $name = $name->toString();
+        } else {
+            TrimmedNonEmptyString::fromString($name);
+        }
 
         $payload = [
             'dataset' => [
