@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Exception;
 
-use Datana\Iusta\Api\Domain\Value\Dataset\FieldgroupName;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
 
 /**
  * @author Oskar Stark <oskarstark@googlemail.com>
