@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\CreatedFieldgroup;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\Fieldgroup;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
 
@@ -21,5 +22,7 @@ use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
  */
 interface FieldgroupApiInterface
 {
+    public function create(FieldgroupName $name, ?int $sort = null): CreatedFieldgroup;
+
     public function get(FieldgroupName $name): Fieldgroup;
 }
