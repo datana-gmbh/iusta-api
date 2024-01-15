@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\Fieldgroup;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
 
 /**
  * @author Oskar Stark <oskar.stark@googlemail.de>
