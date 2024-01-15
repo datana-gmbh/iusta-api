@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\Dataset\FieldgroupName;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\Fieldgroup;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
 use Datana\Iusta\Api\Exception\FieldgroupNotFoundException;
 use Datana\Iusta\Api\Exception\MoreThanOneFieldgroupFoundException;
 use Psr\Log\LoggerInterface;

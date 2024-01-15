@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value\Dataset;
+namespace Datana\Iusta\Api\Domain\Value\Fieldgroup;
 
 use OskarStark\Value\TrimmedNonEmptyString;
 
