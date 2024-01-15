@@ -36,7 +36,7 @@ final class FieldgroupApi implements FieldgroupApiInterface
     {
         $response = $this->client->request(
             'POST',
-            '/api/Imports/v2/newDataset',
+            '/api/CustomFieldGroups',
             [
                 'json' => [
                     'name' => $name->toString(),
