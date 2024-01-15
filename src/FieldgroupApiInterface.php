@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
+use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupId;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\Fieldgroup;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
 
@@ -21,7 +22,10 @@ use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
  */
 interface FieldgroupApiInterface
 {
-    public function create(FieldgroupName $name, ?int $sort = null): Fieldgroup;
+    /**
+     * @param null|CaseGroupId $caseGroupId if set, the fieldgroup will be assigned to the given CaseGroup
+     */
+    public function create(FieldgroupName $name, ?int $sort = null, ?CaseGroupId $caseGroupId = null): Fieldgroup;
 
     public function get(FieldgroupName $name): Fieldgroup;
 }
