@@ -32,7 +32,7 @@ final class FieldgroupApi implements FieldgroupApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function create(FieldgroupName $name, ?int $sort = null): CreatedFieldgroup
+    public function create(FieldgroupName $name, ?int $sort = null): Fieldgroup
     {
         $response = $this->client->request(
             'POST',
@@ -45,7 +45,7 @@ final class FieldgroupApi implements FieldgroupApiInterface
             ],
         );
 
-        return new CreatedFieldgroup($response->toArray());
+        return new Fieldgroup($response->toArray());
     }
 
     public function get(FieldgroupName $name): Fieldgroup
