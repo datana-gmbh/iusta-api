@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\CreatedFieldgroup;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\Fieldgroup;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
 use Datana\Iusta\Api\Exception\FieldgroupNotFoundException;
@@ -29,6 +30,22 @@ final class FieldgroupApi implements FieldgroupApiInterface
         ?LoggerInterface $logger = null,
     ) {
         $this->logger = $logger ?? new NullLogger();
+    }
+
+    public function create(FieldgroupName $name, ?int $sort = null): CreatedFieldgroup
+    {
+        $response = $this->client->request(
+            'POST',
+            '/api/Imports/v2/newDataset',
+            [
+                'json' => [
+                    'name' => $name->toString(),
+                    'sort' => $sort,
+                ],
+            ],
+        );
+
+        return new CreatedFieldgroup($response->toArray());
     }
 
     public function get(FieldgroupName $name): Fieldgroup
