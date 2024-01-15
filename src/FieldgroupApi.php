@@ -34,10 +34,10 @@ final class FieldgroupApi implements FieldgroupApiInterface
 
     public function create(FieldgroupName $name, ?int $sort = null, ?CaseGroupId $caseGroupId = null): Fieldgroup
     {
-        $endpoint = 'api/CustomFieldGroups';
+        $endpoint = '/api/CustomFieldGroups';
 
         if ($caseGroupId instanceof CaseGroupId) {
-            $endpoint = \Safe\sprintf('api/CaseGroups/%d/CustomFieldGroups', $caseGroupId->toInt());
+            $endpoint = sprintf('/api/CaseGroups/%d/CustomFieldGroups', $caseGroupId->toInt());
         }
 
         $response = $this->client->request(
