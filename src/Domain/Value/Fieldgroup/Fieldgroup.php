@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\Fieldgroup;
 
-use Datana\Iusta\Api\Domain\Value\Dataset\FieldgroupName;
 use Webmozart\Assert\Assert;
 
 final readonly class Fieldgroup
