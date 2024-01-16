@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Property Datana\\\\Iusta\\\\Api\\\\CaseGroupApi\\:\\:\\$logger is never read, only written\\.$#"
+			count: 1
+			path: src/CaseGroupApi.php
+
+		-
 			message: "#^Property Datana\\\\Iusta\\\\Api\\\\DatasetApi\\:\\:\\$logger is never read, only written\\.$#"
 			count: 1
 			path: src/DatasetApi.php

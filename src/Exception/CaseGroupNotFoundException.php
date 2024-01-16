@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Exception;
 
-use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
+use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupName;
 
 /**
  * @author Oskar Stark <oskarstark@googlemail.com>
  */
-final class FieldgroupNotFoundException extends \RuntimeException
+final class CaseGroupNotFoundException extends \RuntimeException
 {
-    public static function forName(FieldgroupName $name): self
+    public static function forName(CaseGroupName $name): self
     {
         return new self(sprintf(
-            'Fieldgroup with name "%s" not found.',
+            'CaseGroup with name "%s" not found.',
             $name->toString(),
         ));
     }
