@@ -13,8 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\CustomField;
 
+use OskarStark\Enum\Trait\Comparable;
+
 enum Type: int
 {
+    use Comparable;
+
     case Unknown = 0;
     case Text = 1;
     case Textarea = 2;
