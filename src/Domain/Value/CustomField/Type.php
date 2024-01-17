@@ -18,7 +18,6 @@ use OskarStark\Enum\Trait\Comparable;
 enum Type: int
 {
     use Comparable;
-
     case Unknown = 0;
     case Text = 1;
     case Textarea = 2;
