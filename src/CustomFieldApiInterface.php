@@ -25,7 +25,7 @@ use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
 interface CustomFieldApiInterface
 {
     /**
-     * @param null|array<string> $selectOptions
+     * @param null|array<array{value: string, text: string}> $selectOptions
      */
     public function create(CustomFieldName $name, Shortcode $shortcode, Type $type, FieldgroupId $fieldgroupId, ?int $sort = null, ?string $description = null, ?string $regexp = null, ?array $selectOptions = null): CustomField;
 
