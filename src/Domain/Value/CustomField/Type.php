@@ -47,4 +47,12 @@ enum Type: int
     {
         return $this->value;
     }
+
+    public function isSelect(): bool
+    {
+        return $this->equalsOneOf([
+            self::Select,
+            self::MultiSelect,
+        ]);
+    }
 }
