@@ -21,6 +21,16 @@ parameters:
 			path: src/DatasetTypeApi.php
 
 		-
+			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\DocumentCategory\\\\DocumentCategory constructor expects array\\{id\\: int, name\\: string, createdAt\\: string, updatedAt\\: string, createdBy\\: int, updatedBy\\: int\\}, array given\\.$#"
+			count: 1
+			path: src/DocumentCategoryApi.php
+
+		-
+			message: "#^Property Datana\\\\Iusta\\\\Api\\\\DocumentCategoryApi\\:\\:\\$logger is never read, only written\\.$#"
+			count: 1
+			path: src/DocumentCategoryApi.php
+
+		-
 			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\Fieldgroup\\\\Fieldgroup constructor expects array\\{id\\: int, name\\: string, shortcode\\: string\\|null, sort\\: int\\|null, referenceId\\?\\: int\\|null, referenceType\\?\\: string\\|null, createdAt\\: string, updatedAt\\: string, \\.\\.\\.\\}, array given\\.$#"
 			count: 1
 			path: src/FieldgroupApi.php
