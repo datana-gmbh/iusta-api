@@ -22,6 +22,7 @@ use Datana\Iusta\Api\Exception\CustomFieldNotFoundException;
 use Datana\Iusta\Api\Exception\MoreThanOneCustomFieldFoundException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Webmozart\Assert\Assert;
 
 final class CustomFieldApi implements CustomFieldApiInterface
 {
@@ -36,6 +37,19 @@ final class CustomFieldApi implements CustomFieldApiInterface
 
     public function create(CustomFieldName $name, Shortcode $shortcode, Type $type, FieldgroupId $fieldgroupId, ?int $sort = null, ?string $description = null, ?string $regexp = null, ?array $selectOptions = null): CustomField
     {
+        if (\is_array($selectOptions)) {
+            foreach ($selectOptions as $selectOption) {
+                try {
+                    Assert::keyExists($selectOption, 'value');
+                    Assert::string($selectOption['value']);
+                    Assert::keyExists($selectOption, 'text');
+                    Assert::string($selectOption['text']);
+                } catch (\InvalidArgumentException $e) {
+                    throw new \InvalidArgumentException('Invalid select options structure.');
+                }
+            }
+        }
+
         $response = $this->client->request(
             'POST',
             '/api/CustomFields',
