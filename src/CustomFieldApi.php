@@ -40,6 +40,7 @@ final class CustomFieldApi implements CustomFieldApiInterface
         if (\is_array($selectOptions)) {
             foreach ($selectOptions as $selectOption) {
                 try {
+                    Assert::isArray($selectOption);
                     Assert::keyExists($selectOption, 'value');
                     Assert::string($selectOption['value']);
                     Assert::keyExists($selectOption, 'text');
