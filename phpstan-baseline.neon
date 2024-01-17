@@ -11,11 +11,6 @@ parameters:
 			path: src/DatasetApi.php
 
 		-
-			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\CreatedDocument constructor expects array, mixed given\\.$#"
-			count: 1
-			path: src/Domain/Value/CreatedDocuments.php
-
-		-
 			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\Fieldgroup\\\\Fieldgroup constructor expects array\\{id\\: int, name\\: string, shortcode\\: string\\|null, sort\\: int\\|null, referenceId\\?\\: int\\|null, referenceType\\?\\: string\\|null, createdAt\\: string, updatedAt\\: string, \\.\\.\\.\\}, array given\\.$#"
 			count: 1
 			path: src/FieldgroupApi.php

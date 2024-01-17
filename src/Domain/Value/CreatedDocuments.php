@@ -21,7 +21,7 @@ final readonly class CreatedDocuments
     public array $documents;
 
     /**
-     * @param array<mixed> $response
+     * @param list<array<mixed>> $response
      */
     public function __construct(array $response)
     {
