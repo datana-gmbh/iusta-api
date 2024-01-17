@@ -19,26 +19,22 @@ use Webmozart\Assert\Assert;
 
 final readonly class DatasetType
 {
-    public DatasetId $id;
-    public DatasetName $name;
-    public DatasetTypeId $datasetTypeId;
+    public DatasetTypeId $id;
+    public DatasetTypeName $name;
 
     /**
-     * @param array{id: int, name: string, createdAt: string, updatedAt: string, createdBy: int, updatedBy: int, datasetTypeId: int} $values
+     * @param array{id: int, name: string, createdAt: string, updatedAt: string, createdBy: int, updatedBy: int} $values
      */
     public function __construct(
         public array $values,
     ) {
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
-        $this->id = new DatasetId($values['id']);
+        $this->id = new DatasetTypeId($values['id']);
 
         Assert::keyExists($values, 'name');
         Assert::string($values['name']);
-        $this->name = new DatasetName($values['name']);
+        $this->name = new DatasetTypeName($values['name']);
 
-        Assert::keyExists($values, 'datasetTypeId');
-        Assert::integer($values['datasetTypeId']);
-        $this->datasetTypeId = new DatasetTypeId($values['datasetTypeId']);
     }
 }
