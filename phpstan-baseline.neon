@@ -6,6 +6,16 @@ parameters:
 			path: src/CaseGroupApi.php
 
 		-
+			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\CustomField\\\\CustomField constructor expects array\\{id\\: int, name\\: string, createdAt\\: string, updatedAt\\: string, createdBy\\: int, updatedBy\\: int\\}, array given\\.$#"
+			count: 1
+			path: src/CustomFieldApi.php
+
+		-
+			message: "#^Property Datana\\\\Iusta\\\\Api\\\\CustomFieldApi\\:\\:\\$logger is never read, only written\\.$#"
+			count: 1
+			path: src/CustomFieldApi.php
+
+		-
 			message: "#^Property Datana\\\\Iusta\\\\Api\\\\DatasetApi\\:\\:\\$logger is never read, only written\\.$#"
 			count: 1
 			path: src/DatasetApi.php
