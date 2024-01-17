@@ -38,4 +38,9 @@ enum Type: int
     case CustomerFieldPointer = 19;
     case Email = 20;
     case PhoneNumber = 21;
+
+    public function getId(): int
+    {
+        return $this->value;
+    }
 }
