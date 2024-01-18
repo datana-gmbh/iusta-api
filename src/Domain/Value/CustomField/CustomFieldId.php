@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value;
+namespace Datana\Iusta\Api\Domain\Value\CustomField;
 
 use Webmozart\Assert\Assert;
 
-final readonly class DocumentId
+final readonly class CustomFieldId
 {
     public function __construct(
         public int $value,
@@ -23,8 +23,18 @@ final readonly class DocumentId
         Assert::greaterThan($value, 0);
     }
 
+    public static function fromString(string $value): self
+    {
+        return new self((int) str_replace('cf_', '', $value));
+    }
+
     public function toInt(): int
     {
         return $this->value;
+    }
+
+    public function toString(): string
+    {
+        return 'cf_'.$this->value;
     }
 }

@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
 
-use Datana\Iusta\Api\Domain\Value\DatasetId;
+use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\DatasetId
+ * @covers \Datana\Iusta\Api\Domain\Value\Dataset\DatasetId
  */
 final class DatasetIdTest extends TestCase
 {

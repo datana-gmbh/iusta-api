@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
 
-use Datana\Iusta\Api\Domain\Value\DocumentId;
+use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\DocumentId
+ * @covers \Datana\Iusta\Api\Domain\Value\Document\DocumentId
  */
 final class DocumentIdTest extends TestCase
 {

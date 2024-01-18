@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value;
+namespace Datana\Iusta\Api\Domain\Value\Case;
 
 use Webmozart\Assert\Assert;
 

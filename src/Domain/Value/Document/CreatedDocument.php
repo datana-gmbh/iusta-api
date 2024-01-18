@@ -11,20 +11,21 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value;
+namespace Datana\Iusta\Api\Domain\Value\Document;
 
 use Webmozart\Assert\Assert;
 
-final readonly class DatasetId
+final readonly class CreatedDocument
 {
-    public function __construct(
-        public int $value,
-    ) {
-        Assert::greaterThan($value, 0);
-    }
+    public DocumentId $id;
 
-    public function toInt(): int
-    {
-        return $this->value;
+    /**
+     * @param array<mixed> $values
+     */
+    public function __construct(
+        public array $values,
+    ) {
+        Assert::keyExists($values, 'id');
+        $this->id = new DocumentId($values['id']);
     }
 }

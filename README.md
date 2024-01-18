@@ -35,8 +35,8 @@ In your code you should type-hint to `Datana\Iusta\Api\CaseApiInterface`
 
 ```php
 use Datana\Iusta\Api\CaseApi;
+use Datana\Iusta\Api\Domain\Value\Case\CaseId;
 use Datana\Iusta\Api\IustaClient;
-use Datana\Iusta\Api\Domain\Value\CaseId;
 
 $client = new IustaClient(/* ... */);
 
@@ -54,7 +54,6 @@ In your code you should type-hint to `Datana\Iusta\Api\ImportApiInterface`
 ```php
 use Datana\Iusta\Api\ImportApi;
 use Datana\Iusta\Api\IustaClient;
-use Datana\Iusta\Api\Domain\Value\CaseId;
 
 $client = new IustaClient(/* ... */);
 

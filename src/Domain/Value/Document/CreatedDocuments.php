@@ -11,12 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value;
+namespace Datana\Iusta\Api\Domain\Value\Document;
 
 final readonly class CreatedDocuments
 {
     /**
-     * @var list<CreatedDocument>
+     * @var array<CreatedDocument>
      */
     public array $documents;
 

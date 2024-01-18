@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\CustomField;
 
-use Datana\Iusta\Api\Domain\Value\CustomFieldId;
 use Webmozart\Assert\Assert;
 
 final readonly class CustomField
