@@ -17,6 +17,9 @@ use Datana\Iusta\Api\Domain\Value\DatasetId;
 use Datana\Iusta\Api\Domain\Value\DatasetTypeId;
 use Webmozart\Assert\Assert;
 
+/**
+ * @phpstan-type Values array{id: int, name: string, createdAt: string, updatedAt: string, createdBy: int, updatedBy: int, datasetTypeId: int}
+ */
 final readonly class Dataset
 {
     public DatasetId $id;
@@ -24,11 +27,16 @@ final readonly class Dataset
     public DatasetTypeId $datasetTypeId;
 
     /**
-     * @param array{id: int, name: string, createdAt: string, updatedAt: string, createdBy: int, updatedBy: int, datasetTypeId: int} $values
+     * @param array{createdDataset: Values}|Values $values
      */
     public function __construct(
         public array $values,
     ) {
+        if (\array_key_exists('createdDataset', $values)) {
+            Assert::notEmpty($values['createdDataset']);
+            $values = $values['createdDataset'];
+        }
+
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
         $this->id = new DatasetId($values['id']);
