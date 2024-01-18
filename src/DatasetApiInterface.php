@@ -16,7 +16,7 @@ namespace Datana\Iusta\Api;
 use Datana\Iusta\Api\Domain\Value\Dataset\Dataset;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetName;
-use Datana\Iusta\Api\Domain\Value\DatasetTypeId;
+use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeId;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**

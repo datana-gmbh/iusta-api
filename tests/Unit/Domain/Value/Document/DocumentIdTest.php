@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
+namespace Datana\Iusta\Api\Tests\Unit\Domain\Value\Document;
 
 use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
 use Ergebnis\Test\Util\Helper;

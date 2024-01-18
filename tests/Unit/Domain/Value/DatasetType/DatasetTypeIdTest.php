@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
+namespace Datana\Iusta\Api\Tests\Unit\Domain\Value\DatasetType;
 
-use Datana\Iusta\Api\Domain\Value\DocumentCategoryId;
+use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\DocumentCategoryId
+ * @covers \Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeId
  */
-final class DocumentCategoryIdTest extends TestCase
+final class DatasetTypeIdTest extends TestCase
 {
     use Helper;
 
@@ -31,7 +31,7 @@ final class DocumentCategoryIdTest extends TestCase
      */
     public function canBeConstructed(int $value): void
     {
-        $id = new DocumentCategoryId($value);
+        $id = new DatasetTypeId($value);
 
         self::assertSame($value, $id->value);
         self::assertSame($value, $id->toInt());
@@ -47,6 +47,6 @@ final class DocumentCategoryIdTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new DocumentCategoryId($value);
+        new DatasetTypeId($value);
     }
 }

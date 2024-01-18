@@ -18,7 +18,7 @@ use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
 use Datana\Iusta\Api\Domain\Value\Document\CreatedDocument;
 use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
-use Datana\Iusta\Api\Domain\Value\DocumentCategoryId;
+use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
