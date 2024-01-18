@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\DocumentCategory;
 
-use Datana\Iusta\Api\Domain\Value\DocumentCategoryId;
+use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId;
 use Webmozart\Assert\Assert;
 
 final readonly class DocumentCategory

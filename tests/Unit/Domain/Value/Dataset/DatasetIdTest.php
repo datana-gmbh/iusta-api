@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
+namespace Datana\Iusta\Api\Tests\Unit\Domain\Value\Dataset;
 
-use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
+use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId
+ * @covers \Datana\Iusta\Api\Domain\Value\Dataset\DatasetId
  */
-final class CustomFieldIdTest extends TestCase
+final class DatasetIdTest extends TestCase
 {
     use Helper;
 
@@ -31,23 +31,10 @@ final class CustomFieldIdTest extends TestCase
      */
     public function canBeConstructed(int $value): void
     {
-        $id = new CustomFieldId($value);
+        $id = new DatasetId($value);
 
         self::assertSame($value, $id->value);
         self::assertSame($value, $id->toInt());
-        self::assertSame('cf_'.$value, $id->toString());
-    }
-
-    /**
-     * @test
-     *
-     * @dataProvider \Ergebnis\Test\Util\DataProvider\IntProvider::greaterThanZero()
-     */
-    public function fromString(int $value): void
-    {
-        $id = CustomFieldId::fromString($string = 'cf_'.$value);
-
-        self::assertSame($string, $id->toString());
     }
 
     /**
@@ -60,6 +47,6 @@ final class CustomFieldIdTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new CustomFieldId($value);
+        new DatasetId($value);
     }
 }

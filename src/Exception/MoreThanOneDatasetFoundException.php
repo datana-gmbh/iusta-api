@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api\Exception;
 
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetName;
-use Datana\Iusta\Api\Domain\Value\DatasetTypeId;
+use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeId;
 
 /**
  * @author Oskar Stark <oskarstark@googlemail.com>

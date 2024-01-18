@@ -19,7 +19,7 @@ use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
 use Datana\Iusta\Api\Domain\Value\Document\CreatedDocument;
 use Datana\Iusta\Api\Domain\Value\Document\CreatedDocuments;
 use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
-use Datana\Iusta\Api\Domain\Value\DocumentCategoryId;
+use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId;
 use Datana\Iusta\Api\Exception\MoreThanOneDocumentCreatedException;
 use Datana\Iusta\Api\Exception\NoDocumentsCreatedException;
 use OskarStark\Value\TrimmedNonEmptyString;
