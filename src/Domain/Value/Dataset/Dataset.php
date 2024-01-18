@@ -33,6 +33,7 @@ final readonly class Dataset
         public array $values,
     ) {
         if (\array_key_exists('createdDataset', $values)) {
+            Assert::notEmpty($values['createdDataset']);
             $values = $values['createdDataset'];
         }
 
