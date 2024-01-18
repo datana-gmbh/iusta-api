@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\CreatedDataset;
 use Datana\Iusta\Api\Domain\Value\Dataset\Dataset;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetName;
 use Datana\Iusta\Api\Domain\Value\DatasetTypeId;
@@ -33,7 +32,7 @@ final class DatasetApi implements DatasetApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function create(DatasetName $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): CreatedDataset
+    public function create(DatasetName $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): Dataset
     {
         $payload = [
             'dataset' => [
@@ -54,7 +53,7 @@ final class DatasetApi implements DatasetApiInterface
             ],
         );
 
-        return new CreatedDataset($response->toArray());
+        return new Dataset($response->toArray());
     }
 
     public function get(DatasetName $name, DatasetTypeId $datasetTypeId): Dataset

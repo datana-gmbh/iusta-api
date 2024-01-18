@@ -16,6 +16,11 @@ parameters:
 			path: src/CustomFieldApi.php
 
 		-
+			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\Dataset\\\\Dataset constructor expects array\\{createdDataset\\: array\\{id\\: int, name\\: string, createdAt\\: string, updatedAt\\: string, createdBy\\: int, updatedBy\\: int, datasetTypeId\\: int\\}\\}\\|array\\{id\\: int, name\\: string, createdAt\\: string, updatedAt\\: string, createdBy\\: int, updatedBy\\: int, datasetTypeId\\: int\\}, array given\\.$#"
+			count: 1
+			path: src/DatasetApi.php
+
+		-
 			message: "#^Property Datana\\\\Iusta\\\\Api\\\\DatasetApi\\:\\:\\$logger is never read, only written\\.$#"
 			count: 1
 			path: src/DatasetApi.php
