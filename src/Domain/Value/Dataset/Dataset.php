@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\Dataset;
 
-use Datana\Iusta\Api\Domain\Value\DatasetId;
 use Datana\Iusta\Api\Domain\Value\DatasetTypeId;
 use Webmozart\Assert\Assert;
 

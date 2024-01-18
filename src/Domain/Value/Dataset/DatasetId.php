@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value;
+namespace Datana\Iusta\Api\Domain\Value\Dataset;
 
 use Webmozart\Assert\Assert;
 
-final readonly class CaseId
+final readonly class DatasetId
 {
     public function __construct(
         public int $value,

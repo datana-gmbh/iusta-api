@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value;
 
-use Datana\Iusta\Api\Domain\Value\CustomFieldId;
+use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\CustomFieldId
+ * @covers \Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId
  */
 final class CustomFieldIdTest extends TestCase
 {

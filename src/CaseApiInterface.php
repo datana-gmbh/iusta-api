@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\CaseId;
-use Datana\Iusta\Api\Domain\Value\CreatedDocument;
-use Datana\Iusta\Api\Domain\Value\CustomFieldId;
-use Datana\Iusta\Api\Domain\Value\DatasetId;
+use Datana\Iusta\Api\Domain\Value\Case\CaseId;
+use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
+use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
+use Datana\Iusta\Api\Domain\Value\Document\CreatedDocument;
+use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
 use Datana\Iusta\Api\Domain\Value\DocumentCategoryId;
-use Datana\Iusta\Api\Domain\Value\DocumentId;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**

@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\CaseId;
-use Datana\Iusta\Api\Domain\Value\CreatedCase;
+use Datana\Iusta\Api\Domain\Value\Case\CaseId;
+use Datana\Iusta\Api\Domain\Value\Case\CreatedCase;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
