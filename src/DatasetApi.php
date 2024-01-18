@@ -15,11 +15,13 @@ namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\Dataset\Dataset;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetName;
+use Datana\Iusta\Api\Domain\Value\DatasetId;
 use Datana\Iusta\Api\Domain\Value\DatasetTypeId;
 use Datana\Iusta\Api\Exception\DatasetNotFoundException;
 use Datana\Iusta\Api\Exception\MoreThanOneDatasetFoundException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 final class DatasetApi implements DatasetApiInterface
 {
@@ -84,5 +86,13 @@ final class DatasetApi implements DatasetApiInterface
         }
 
         return new Dataset($array[0]);
+    }
+
+    public function delete(DatasetId $id): ResponseInterface
+    {
+        return $this->client->request(
+            'DELETE',
+            sprintf('/api/Datasets/%s', $id->toInt()),
+        );
     }
 }
