@@ -36,6 +36,16 @@ parameters:
 			path: src/DatasetTypeApi.php
 
 		-
+			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\DeadlineType\\\\DeadlineType constructor expects array\\{id\\: int\\<1, max\\>, name\\: string, prefillReferenceNumberCustomFields\\: array, preselectAssignedUserId\\: int\\<1, max\\>, createdAt\\: string, updatedAt\\: string, createdBy\\: int, updatedBy\\: int\\}, array given\\.$#"
+			count: 1
+			path: src/DeadlineTypeApi.php
+
+		-
+			message: "#^Property Datana\\\\Iusta\\\\Api\\\\DeadlineTypeApi\\:\\:\\$logger is never read, only written\\.$#"
+			count: 1
+			path: src/DeadlineTypeApi.php
+
+		-
 			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\DocumentCategory\\\\DocumentCategory constructor expects array\\{id\\: int, name\\: string, createdAt\\: string, updatedAt\\: string, createdBy\\: int, updatedBy\\: int\\}, array given\\.$#"
 			count: 1
 			path: src/DocumentCategoryApi.php

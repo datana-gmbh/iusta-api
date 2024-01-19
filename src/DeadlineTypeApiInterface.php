@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetType;
-use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeName;
 use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineType;
 use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineTypeName;
 
