@@ -13,17 +13,17 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\CustomField;
 
-use Webmozart\Assert\Assert;
+use OskarStark\Value\TrimmedNonEmptyString;
 
 final readonly class CompoundType
 {
     public function __construct(
-        public int $value,
+        public string $value,
     ) {
-        Assert::greaterThan($value, 0);
+        TrimmedNonEmptyString::fromString($value);
     }
 
-    public function toInt(): int
+    public function toString(): string
     {
         return $this->value;
     }
