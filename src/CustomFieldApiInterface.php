@@ -13,8 +13,11 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
+use Datana\Iusta\Api\Domain\Value\CustomField\CompoundType;
 use Datana\Iusta\Api\Domain\Value\CustomField\CustomField;
 use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldName;
+use Datana\Iusta\Api\Domain\Value\CustomField\Description;
+use Datana\Iusta\Api\Domain\Value\CustomField\RegExp;
 use Datana\Iusta\Api\Domain\Value\CustomField\Shortcode;
 use Datana\Iusta\Api\Domain\Value\CustomField\Type;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
@@ -27,7 +30,17 @@ interface CustomFieldApiInterface
     /**
      * @param null|array<array{value: string, text: string}> $selectOptions
      */
-    public function create(CustomFieldName $name, Shortcode $shortcode, Type $type, FieldgroupId $fieldgroupId, ?int $sort = null, ?string $description = null, ?string $regexp = null, ?array $selectOptions = null): CustomField;
+    public function create(
+        CustomFieldName $name,
+        Shortcode $shortcode,
+        Type $type,
+        FieldgroupId $fieldgroupId,
+        ?int $sort = null,
+        ?Description $description = null,
+        ?RegExp $regexp = null,
+        ?array $selectOptions = null,
+        ?CompoundType $compoundType = null,
+    ): CustomField;
 
     public function get(CustomFieldName $name): CustomField;
 
