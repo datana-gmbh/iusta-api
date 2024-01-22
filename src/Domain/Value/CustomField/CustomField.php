@@ -49,7 +49,7 @@ final readonly class CustomField
      *     name: string,
      *     description?: null|string,
      *     sectionHeading?: null|string,
-     *     compoundType: null|string,
+     *     compoundType: null|string|int,
      *     regExp?: null|string,
      *     sort: null|int,
      *     selectOptions?: null|array<array{value: string, text: string}>,
@@ -112,8 +112,17 @@ final readonly class CustomField
 
         $this->sectionHeading = $sectionHeading;
 
-        Assert::nullOrString($values['compoundType']);
-        $this->compoundType = null === $values['compoundType'] ? null : new CompoundType($values['compoundType']);
+        $compoundType = null;
+
+        if (\array_key_exists('compoundType', $values)) {
+            if (\is_string($values['compoundType'])) {
+                $values['compoundType'] = (int) $values['compoundType'];
+            }
+
+            $compoundType = null === $values['compoundType'] ? null : new CompoundType($values['compoundType']);
+        }
+
+        $this->compoundType = $compoundType;
 
         $regExp = null;
 
