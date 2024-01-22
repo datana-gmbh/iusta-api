@@ -45,18 +45,18 @@ final readonly class CustomField
      *     type: int,
      *     customFieldGroupId: int,
      *     shortcode: null|string,
-     *     metadata: null|string,
+     *     metadata?: null|string,
      *     name: string,
-     *     description: null|string,
-     *     sectionHeading: null|string,
+     *     description?: null|string,
+     *     sectionHeading?: null|string,
      *     compoundType: null|string,
-     *     regExp: null|string,
+     *     regExp?: null|string,
      *     sort: null|int,
-     *     selectOptions: null|array<array{value: string, text: string}>,
-     *     htmlContent: null|string,
-     *     customerPointerProperty: null|string,
-     *     visibilityCondition: null|string,
-     *     customFieldPointerId: null|int,
+     *     selectOptions?: null|array<array{value: string, text: string}>,
+     *     htmlContent?: null|string,
+     *     customerPointerProperty?: null|string,
+     *     visibilityCondition?: null|string,
+     *     customFieldPointerId?: null|int,
      *     createdAt: string,
      *     updatedAt: string,
      *     createdBy: int,
@@ -85,37 +85,91 @@ final readonly class CustomField
         Assert::nullOrString($values['shortcode']);
         $this->shortcode = null === $values['shortcode'] ? null : new Shortcode($values['shortcode']);
 
-        Assert::nullOrString($values['metadata']);
-        $this->metdata = null === $values['metadata'] ? null : new Metadata($values['metadata']);
+        $metadata = null;
 
-        Assert::nullOrString($values['description']);
-        $this->description = null === $values['description'] ? null : new Description($values['description']);
+        if (\array_key_exists('metadata', $values)) {
+            Assert::nullOrString($values['metadata']);
+            $metadata = null === $values['metadata'] ? null : new Metadata($values['metadata']);
+        }
 
-        Assert::nullOrString($values['sectionHeading']);
-        $this->sectionHeading = null === $values['sectionHeading'] ? null : new SectionHeading($values['sectionHeading']);
+        $this->metdata = $metadata;
+
+        $description = null;
+
+        if (\array_key_exists('description', $values)) {
+            Assert::nullOrString($values['description']);
+            $description = null === $values['description'] ? null : new Description($values['description']);
+        }
+
+        $this->description = $description;
+
+        $sectionHeading = null;
+
+        if (\array_key_exists('sectionHeading', $values)) {
+            Assert::nullOrString($values['sectionHeading']);
+            $sectionHeading = null === $values['sectionHeading'] ? null : new SectionHeading($values['sectionHeading']);
+        }
+
+        $this->sectionHeading = $sectionHeading;
 
         Assert::nullOrString($values['compoundType']);
         $this->compoundType = null === $values['compoundType'] ? null : new CompoundType($values['compoundType']);
 
-        Assert::nullOrString($values['regExp']);
-        $this->regExp = null === $values['regExp'] ? null : new RegExp($values['regExp']);
+        $regExp = null;
+
+        if (\array_key_exists('regExp', $values)) {
+            Assert::nullOrString($values['regExp']);
+            $regExp = null === $values['regExp'] ? null : new RegExp($values['regExp']);
+        }
+
+        $this->regExp = $regExp;
 
         Assert::nullOrInteger($values['sort']);
         $this->sort = null === $values['sort'] ? null : $values['sort'];
 
-        Assert::nullOrIsArray($values['selectOptions']);
-        $this->selectOptions = null === $values['selectOptions'] ? null : $values['selectOptions'];
+        $selectOptions = null;
 
-        Assert::nullOrString($values['htmlContent']);
-        $this->htmlContent = null === $values['htmlContent'] ? null : new HtmlContent($values['htmlContent']);
+        if (\array_key_exists('selectOptions', $values)) {
+            Assert::nullOrIsArray($values['selectOptions']);
+            $selectOptions = null === $values['selectOptions'] ? null : $values['selectOptions'];
+        }
 
-        Assert::nullOrString($values['customerPointerProperty']);
-        $this->customerPointerProperty = null === $values['customerPointerProperty'] ? null : new CustomerPointerProperty($values['customerPointerProperty']);
+        $this->selectOptions = $selectOptions;
 
-        Assert::nullOrString($values['visibilityCondition']);
-        $this->visibilityCondition = null === $values['visibilityCondition'] ? null : new VisibilityCondition($values['visibilityCondition']);
+        $htmlContent = null;
 
-        Assert::nullOrInteger($values['customFieldPointerId']);
-        $this->customFieldPointerId = null === $values['customFieldPointerId'] ? null : new CustomFieldPointerId($values['customFieldPointerId']);
+        if (\array_key_exists('htmlContent', $values)) {
+            Assert::nullOrString($values['htmlContent']);
+            $htmlContent = null === $values['htmlContent'] ? null : new HtmlContent($values['htmlContent']);
+        }
+
+        $this->htmlContent = $htmlContent;
+
+        $customerPointerProperty = null;
+
+        if (\array_key_exists('customerPointerProperty', $values)) {
+            Assert::nullOrString($values['customerPointerProperty']);
+            $customerPointerProperty = null === $values['customerPointerProperty'] ? null : new CustomerPointerProperty($values['customerPointerProperty']);
+        }
+
+        $this->customerPointerProperty = $customerPointerProperty;
+
+        $visibilityCondition = null;
+
+        if (\array_key_exists('visibilityCondition', $values)) {
+            Assert::nullOrString($values['visibilityCondition']);
+            $visibilityCondition = null === $values['visibilityCondition'] ? null : new VisibilityCondition($values['visibilityCondition']);
+        }
+
+        $this->visibilityCondition = $visibilityCondition;
+
+        $customFieldPointerId = null;
+
+        if (\array_key_exists('customFieldPointerId', $values)) {
+            Assert::nullOrInteger($values['customFieldPointerId']);
+            $customFieldPointerId = null === $values['customFieldPointerId'] ? null : new CustomFieldPointerId($values['customFieldPointerId']);
+        }
+
+        $this->customFieldPointerId = $customFieldPointerId;
     }
 }
