@@ -76,7 +76,7 @@ final class CustomFieldApi implements CustomFieldApiInterface
                     'description' => $description?->toString(),
                     'regexp' => $regexp?->toString(),
                     'selectOptions' => $selectOptions,
-                    'compoundType' => $compoundType?->toString(),
+                    'compoundType' => $compoundType?->toInt(),
                 ]),
             ],
         );
