@@ -29,7 +29,10 @@ final readonly class CustomField
     public ?CompoundType $compoundType;
     public ?RegExp $regExp;
     public ?int $sort;
-    /** @var array<array{value: string, text: string}>|null */
+
+    /**
+     * @var null|array<array{value: string, text: string}>
+     */
     public ?array $selectOptions;
     public ?HtmlContent $htmlContent;
     public ?CustomerPointerProperty $customerPointerProperty;
