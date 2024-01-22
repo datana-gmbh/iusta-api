@@ -6,7 +6,7 @@ parameters:
 			path: src/CaseGroupApi.php
 
 		-
-			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\CustomField\\\\CustomField constructor expects array\\{id\\: int, type\\: int, customFieldGroupId\\: int, shortcode\\: string\\|null, metadata\\: string\\|null, name\\: string, description\\: string\\|null, sectionHeading\\: string\\|null, \\.\\.\\.\\}, array given\\.$#"
+			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\CustomField\\\\CustomField constructor expects array\\{id\\: int, type\\: int, customFieldGroupId\\: int, shortcode\\: string\\|null, metadata\\?\\: string\\|null, name\\: string, description\\?\\: string\\|null, sectionHeading\\?\\: string\\|null, \\.\\.\\.\\}, array given\\.$#"
 			count: 1
 			path: src/CustomFieldApi.php
 
