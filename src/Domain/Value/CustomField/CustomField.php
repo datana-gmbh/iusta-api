@@ -46,7 +46,7 @@ final readonly class CustomField
      *     name: string,
      *     description: null|string,
      *     sectionHeading: null|string,
-     *     compoundType: null|int,
+     *     compoundType: null|string,
      *     regExp: null|string,
      *     sort: null|int,
      *     selectOptions: null|array<array{value: string, text: string}>,
@@ -91,7 +91,7 @@ final readonly class CustomField
         Assert::nullOrString($values['sectionHeading']);
         $this->sectionHeading = null === $values['sectionHeading'] ? null : new SectionHeading($values['sectionHeading']);
 
-        Assert::nullOrInteger($values['compoundType']);
+        Assert::nullOrString($values['compoundType']);
         $this->compoundType = null === $values['compoundType'] ? null : new CompoundType($values['compoundType']);
 
         Assert::nullOrString($values['regExp']);
