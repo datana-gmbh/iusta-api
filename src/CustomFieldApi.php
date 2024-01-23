@@ -84,17 +84,22 @@ final class CustomFieldApi implements CustomFieldApiInterface
         return new CustomField($response->toArray());
     }
 
-    public function getByName(CustomFieldName $name): CustomField
+    public function getByName(CustomFieldName $name, ?FieldgroupId $fieldgroupId = null): CustomField
     {
+        if ($fieldgroupId instanceof FieldgroupId) {
+            $fieldgroupId = $fieldgroupId->toInt();
+        }
+
         $response = $this->client->request(
             'GET',
             '/api/CustomFields',
             [
                 'query' => [
                     'filter' => \Safe\json_encode([
-                        'where' => [
+                        'where' => array_filter([
                             'name' => $name->toString(),
-                        ],
+                            'customFieldGroupId' => $fieldgroupId,
+                        ]),
                     ]),
                 ],
             ],

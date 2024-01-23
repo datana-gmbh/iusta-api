@@ -42,7 +42,7 @@ interface CustomFieldApiInterface
         ?CompoundType $compoundType = null,
     ): CustomField;
 
-    public function getByName(CustomFieldName $name): CustomField;
+    public function getByName(CustomFieldName $name, ?FieldgroupId $fieldgroupId = null): CustomField;
 
     public function getByShortcode(Shortcode $shortcode): CustomField;
 }
