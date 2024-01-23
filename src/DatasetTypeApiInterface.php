@@ -23,5 +23,5 @@ interface DatasetTypeApiInterface
 {
     public function create(DatasetTypeName $name): DatasetType;
 
-    public function get(DatasetTypeName $name): DatasetType;
+    public function getByName(DatasetTypeName $name): DatasetType;
 }

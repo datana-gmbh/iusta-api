@@ -46,7 +46,7 @@ final class DocumentCategoryApi implements DocumentCategoryApiInterface
         return new DocumentCategory($response->toArray());
     }
 
-    public function get(DocumentCategoryName $name): DocumentCategory
+    public function getByName(DocumentCategoryName $name): DocumentCategory
     {
         $response = $this->client->request(
             'GET',

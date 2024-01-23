@@ -23,5 +23,5 @@ interface DeadlineTypeApiInterface
 {
     public function create(DeadlineTypeName $name): DeadlineType;
 
-    public function get(DeadlineTypeName $name): DeadlineType;
+    public function getByName(DeadlineTypeName $name): DeadlineType;
 }

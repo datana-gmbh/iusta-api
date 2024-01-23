@@ -31,7 +31,7 @@ final class CaseGroupApi implements CaseGroupApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function get(CaseGroupName $name): CaseGroup
+    public function getByName(CaseGroupName $name): CaseGroup
     {
         $response = $this->client->request(
             'GET',
