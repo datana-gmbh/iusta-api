@@ -46,7 +46,7 @@ final class ImportApi implements ImportApiInterface
             ],
         );
 
-        return new CreatedCase($response->toArray(true));
+        return new CreatedCase($response->toArray());
     }
 
     /**
