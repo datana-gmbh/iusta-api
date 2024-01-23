@@ -46,7 +46,7 @@ final class DeadlineTypeApi implements DeadlineTypeApiInterface
         return new DeadlineType($response->toArray());
     }
 
-    public function get(DeadlineTypeName $name): DeadlineType
+    public function getByName(DeadlineTypeName $name): DeadlineType
     {
         $response = $this->client->request(
             'GET',

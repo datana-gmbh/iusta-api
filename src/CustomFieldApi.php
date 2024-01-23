@@ -84,7 +84,7 @@ final class CustomFieldApi implements CustomFieldApiInterface
         return new CustomField($response->toArray());
     }
 
-    public function get(CustomFieldName $name): CustomField
+    public function getByName(CustomFieldName $name): CustomField
     {
         $response = $this->client->request(
             'GET',

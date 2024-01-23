@@ -23,5 +23,5 @@ interface DocumentCategoryApiInterface
 {
     public function create(DocumentCategoryName $name): DocumentCategory;
 
-    public function get(DocumentCategoryName $name): DocumentCategory;
+    public function getByName(DocumentCategoryName $name): DocumentCategory;
 }

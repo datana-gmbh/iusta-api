@@ -21,5 +21,5 @@ use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupName;
  */
 interface CaseGroupApiInterface
 {
-    public function get(CaseGroupName $name): CaseGroup;
+    public function getByName(CaseGroupName $name): CaseGroup;
 }

@@ -29,7 +29,7 @@ interface DatasetApiInterface
      */
     public function create(DatasetName $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): Dataset;
 
-    public function get(DatasetName $name, DatasetTypeId $datasetTypeId): Dataset;
+    public function getByName(DatasetName $name, DatasetTypeId $datasetTypeId): Dataset;
 
     public function delete(DatasetId $id): ResponseInterface;
 }

@@ -27,5 +27,5 @@ interface FieldgroupApiInterface
      */
     public function create(FieldgroupName $name, ?int $sort = null, ?CaseGroupId $caseGroupId = null): Fieldgroup;
 
-    public function get(FieldgroupName $name): Fieldgroup;
+    public function getByName(FieldgroupName $name): Fieldgroup;
 }

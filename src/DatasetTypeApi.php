@@ -46,7 +46,7 @@ final class DatasetTypeApi implements DatasetTypeApiInterface
         return new DatasetType($response->toArray());
     }
 
-    public function get(DatasetTypeName $name): DatasetType
+    public function getByName(DatasetTypeName $name): DatasetType
     {
         $response = $this->client->request(
             'GET',

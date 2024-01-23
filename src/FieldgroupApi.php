@@ -54,7 +54,7 @@ final class FieldgroupApi implements FieldgroupApiInterface
         return new Fieldgroup($response->toArray());
     }
 
-    public function get(FieldgroupName $name): Fieldgroup
+    public function getByName(FieldgroupName $name): Fieldgroup
     {
         $response = $this->client->request(
             'GET',
