@@ -48,6 +48,7 @@ final class DeadlineApi implements DeadlineApiInterface
                     'name' => $name?->toString(),
                     'comment' => $comment,
                     'deadlineTypeId' => $deadlineTypeId->toInt(),
+                    'status' => $status->value,
                 ],
             ],
         );
