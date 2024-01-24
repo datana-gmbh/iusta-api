@@ -41,14 +41,14 @@ final class DeadlineApi implements DeadlineApiInterface
             'POST',
             '/api/Deadlines',
             [
-                'json' => array_filter([
+                'json' => [
                     'caseId' => $caseId->toInt(),
                     'dueAt' => $this->dateTimeFormatter->format($dueAt),
                     'preDueAt' => $preDueAt instanceof \DateTimeInterface ? $this->dateTimeFormatter->format($preDueAt) : null,
                     'name' => $name?->toString(),
                     'comment' => $comment,
                     'deadlineTypeId' => $deadlineTypeId->toInt(),
-                ]),
+                ],
             ],
         );
 
