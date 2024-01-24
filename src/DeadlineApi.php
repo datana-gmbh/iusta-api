@@ -34,7 +34,7 @@ final class DeadlineApi implements DeadlineApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function create(CaseId $caseId, \DateTimeImmutable $dueAt, DeadlineType $deadlineType, Status $status = Status::Open, ?\DateTimeImmutable $preDueAt = null, ?DeadlineName $name = null, ?string $comment = null): Deadline
+    public function create(CaseId $caseId, \DateTimeInterface $dueAt, DeadlineType $deadlineType, Status $status = Status::Open, ?\DateTimeInterface $preDueAt = null, ?DeadlineName $name = null, ?string $comment = null): Deadline
     {
         $response = $this->client->request(
             'POST',
@@ -43,8 +43,8 @@ final class DeadlineApi implements DeadlineApiInterface
                 'json' => array_filter([
                     'caseId' => $caseId->toInt(),
                     'dueAt' => $this->dateTimeFormatter->format($dueAt),
-                    'preDueAt' => $this->dateTimeFormatter->format($preDueAt),
-                    'name' => $name->toString(),
+                    'preDueAt' => $preDueAt instanceof \DateTimeInterface ? $this->dateTimeFormatter->format($preDueAt) : null,
+                    'name' => $name?->toString(),
                     'comment' => $comment,
                     'deadlineTypeId' => $deadlineType->id->toInt(),
                 ]),

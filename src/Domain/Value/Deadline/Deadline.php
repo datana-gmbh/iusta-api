@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\Deadline;
 
+use Safe\DateTimeImmutable;
 use Webmozart\Assert\Assert;
 
 final readonly class Deadline
@@ -20,8 +21,8 @@ final readonly class Deadline
     public DeadlineId $id;
     public DeadlineName $name;
     public Status $status;
-    public \DateTimeImmutable $dueAt;
-    public ?\DateTimeImmutable $preDueAt;
+    public DateTimeImmutable $dueAt;
+    public ?DateTimeImmutable $preDueAt;
     public ?string $comment;
 
     /**
@@ -55,11 +56,11 @@ final readonly class Deadline
 
         Assert::keyExists($values, 'dueAt');
         Assert::string($values['dueAt']);
-        $this->dueAt = new \DateTimeImmutable($values['dueAt']);
+        $this->dueAt = new DateTimeImmutable($values['dueAt']);
 
         Assert::keyExists($values, 'preDueAt');
         Assert::nullOrString($values['preDueAt']);
-        $this->preDueAt = null === $values['preDueAt'] ? null : new \DateTimeImmutable($values['preDueAt']);
+        $this->preDueAt = null === $values['preDueAt'] ? null : new DateTimeImmutable($values['preDueAt']);
 
         Assert::keyExists($values, 'comment');
         Assert::nullOrString($values['comment']);
