@@ -18,7 +18,6 @@ use Datana\Iusta\Api\Domain\Value\Deadline\Deadline;
 use Datana\Iusta\Api\Domain\Value\Deadline\DeadlineName;
 use Datana\Iusta\Api\Domain\Value\Deadline\Status;
 use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineType;
-use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineTypeName;
 
 /**
  * @author Oskar Stark <oskar.stark@googlemail.de>
