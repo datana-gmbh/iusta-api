@@ -16,6 +16,7 @@ namespace Datana\Iusta\Api\Tests\Unit\Formatter;
 use Datana\Iusta\Api\Formatter\DateTimeFormatter;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
+use Safe\DateTimeImmutable;
 
 /**
  * @covers \Datana\Iusta\Api\Formatter\DateTimeFormatter
@@ -31,7 +32,7 @@ final class DateTimeFormatterTest extends TestCase
     {
         self::assertSame(
             '2024-11-12T11:23:59+00:00',
-            (new DateTimeFormatter())->format(new \DateTimeImmutable('2024-11-12 11:23:59')),
+            (new DateTimeFormatter())->format(new DateTimeImmutable('2024-11-12 11:23:59')),
         );
     }
 }
