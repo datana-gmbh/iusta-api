@@ -21,6 +21,7 @@ use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineType;
 use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineTypeName;
 use Datana\Iusta\Api\Exception\DeadlineTypeNotFoundException;
 use Datana\Iusta\Api\Exception\MoreThanOneDeadlineTypeFoundException;
+use Datana\Iusta\Api\Formatter\DateTimeFormatterInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
@@ -30,6 +31,7 @@ final class DeadlineApi implements DeadlineApiInterface
 
     public function __construct(
         private IustaClient $client,
+        private DateTimeFormatterInterface $dateTimeFormatter,
         ?LoggerInterface $logger = null,
     ) {
         $this->logger = $logger ?? new NullLogger();
@@ -43,10 +45,10 @@ final class DeadlineApi implements DeadlineApiInterface
             [
                 'json' => array_filter([
                     'caseId' => $caseId->toInt(),
-                    'dueAt' => $this->dateTimeFormatter->format($deadline->endDate),
+                    'dueAt' => $this->dateTimeFormatter->format($dueAt),
                     'preDueAt' => $this->dateTimeFormatter->format($preDueAt),
-                    'name' => $deadline->name,
-                    'comment' => $deadline->kommentar,
+                    'name' => $name->toString(),
+                    'comment' => $comment,
                     'deadlineTypeId' => $deadlineType->id->toInt(),
                 ]),
             ],
