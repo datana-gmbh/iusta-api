@@ -22,6 +22,7 @@ final readonly class Deadline
     public Status $status;
     public \DateTimeImmutable $dueAt;
     public ?\DateTimeImmutable $preDueAt;
+    public ?string $comment;
 
     /**
      * @param array{
@@ -30,6 +31,7 @@ final readonly class Deadline
      *     status: integer,
      *     dueAt: string,
      *     preDueAt: null|string,
+     *     comment: null|string,
      *     createdAt: string,
      *     updatedAt: string,
      *     createdBy: int,
@@ -58,5 +60,9 @@ final readonly class Deadline
         Assert::keyExists($values, 'preDueAt');
         Assert::nullOrString($values['preDueAt']);
         $this->preDueAt = null === $values['preDueAt'] ? null : new \DateTimeImmutable($values['preDueAt']);
+
+        Assert::keyExists($values, 'comment');
+        Assert::nullOrString($values['comment']);
+        $this->comment = $values['comment'];
     }
 }
