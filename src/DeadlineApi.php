@@ -18,6 +18,7 @@ use Datana\Iusta\Api\Domain\Value\Deadline\Deadline;
 use Datana\Iusta\Api\Domain\Value\Deadline\DeadlineName;
 use Datana\Iusta\Api\Domain\Value\Deadline\Status;
 use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineType;
+use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineTypeId;
 use Datana\Iusta\Api\Formatter\DateTimeFormatterInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -34,7 +35,7 @@ final class DeadlineApi implements DeadlineApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function create(CaseId $caseId, \DateTimeInterface $dueAt, DeadlineType $deadlineType, Status $status = Status::Open, ?\DateTimeInterface $preDueAt = null, ?DeadlineName $name = null, ?string $comment = null): Deadline
+    public function create(CaseId $caseId, \DateTimeInterface $dueAt, DeadlineTypeId $deadlineTypeId, Status $status = Status::Open, ?\DateTimeInterface $preDueAt = null, ?DeadlineName $name = null, ?string $comment = null): Deadline
     {
         $response = $this->client->request(
             'POST',
@@ -46,7 +47,7 @@ final class DeadlineApi implements DeadlineApiInterface
                     'preDueAt' => $preDueAt instanceof \DateTimeInterface ? $this->dateTimeFormatter->format($preDueAt) : null,
                     'name' => $name?->toString(),
                     'comment' => $comment,
-                    'deadlineTypeId' => $deadlineType->id->toInt(),
+                    'deadlineTypeId' => $deadlineTypeId->toInt(),
                 ]),
             ],
         );
