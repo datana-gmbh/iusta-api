@@ -33,7 +33,6 @@ final class DocumentCategoryIdTest extends TestCase
     {
         $id = new DocumentCategoryId($value);
 
-        self::assertSame($value, $id->value);
         self::assertSame($value, $id->toInt());
     }
 

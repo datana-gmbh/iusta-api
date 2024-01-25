@@ -45,7 +45,7 @@ final class CaseApi implements CaseApiInterface
     {
         return $this->client->request(
             'GET',
-            sprintf('/api/Cases/%s', $id->value),
+            sprintf('/api/Cases/%s', $id->toInt()),
         );
     }
 
@@ -72,7 +72,7 @@ final class CaseApi implements CaseApiInterface
 
         return $this->client->request(
             'POST',
-            sprintf('/api/Cases/%d/Permissions', $id->value),
+            sprintf('/api/Cases/%d/Permissions', $id->toInt()),
             [
                 'json' => $payload,
             ],
@@ -88,7 +88,7 @@ final class CaseApi implements CaseApiInterface
         Assert::keyExists($payload, 'msg');
         TrimmedNonEmptyString::fromString($payload['msg']);
 
-        $payload['referenceId'] = $id->value;
+        $payload['referenceId'] = $id->toInt();
         $payload['referenceType'] = 'Case';
 
         return $this->client->request(

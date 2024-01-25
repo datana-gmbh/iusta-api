@@ -13,18 +13,8 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\Fieldgroup;
 
-use Webmozart\Assert\Assert;
+use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final readonly class FieldgroupId
+final class FieldgroupId extends AbstractId
 {
-    public function __construct(
-        public int $value,
-    ) {
-        Assert::greaterThan($value, 0);
-    }
-
-    public function toInt(): int
-    {
-        return $this->value;
-    }
 }

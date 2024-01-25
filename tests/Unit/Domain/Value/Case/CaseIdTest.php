@@ -33,7 +33,6 @@ final class CaseIdTest extends TestCase
     {
         $id = new CaseId($value);
 
-        self::assertSame($value, $id->value);
         self::assertSame($value, $id->toInt());
     }
 

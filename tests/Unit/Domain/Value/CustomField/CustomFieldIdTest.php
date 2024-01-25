@@ -33,7 +33,6 @@ final class CustomFieldIdTest extends TestCase
     {
         $id = new CustomFieldId($value);
 
-        self::assertSame($value, $id->value);
         self::assertSame($value, $id->toInt());
         self::assertSame('cf_'.$value, $id->toString());
     }

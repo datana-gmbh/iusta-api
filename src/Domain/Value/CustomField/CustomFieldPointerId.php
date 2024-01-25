@@ -13,18 +13,8 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\CustomField;
 
-use Webmozart\Assert\Assert;
+use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final readonly class CustomFieldPointerId
+final class CustomFieldPointerId extends AbstractId
 {
-    public function __construct(
-        public int $value,
-    ) {
-        Assert::greaterThan($value, 0);
-    }
-
-    public function toInt(): int
-    {
-        return $this->value;
-    }
 }

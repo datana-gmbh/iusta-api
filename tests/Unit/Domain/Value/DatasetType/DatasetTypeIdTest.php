@@ -33,7 +33,6 @@ final class DatasetTypeIdTest extends TestCase
     {
         $id = new DatasetTypeId($value);
 
-        self::assertSame($value, $id->value);
         self::assertSame($value, $id->toInt());
     }
 

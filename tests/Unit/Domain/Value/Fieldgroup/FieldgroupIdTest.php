@@ -33,7 +33,6 @@ final class FieldgroupIdTest extends TestCase
     {
         $id = new FieldgroupId($value);
 
-        self::assertSame($value, $id->value);
         self::assertSame($value, $id->toInt());
     }
 
