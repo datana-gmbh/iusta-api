@@ -17,7 +17,7 @@ use Webmozart\Assert\Assert;
 
 final readonly class CreatedDocument
 {
-    public DocumentId $id;
+    public DocumentAbstractId $id;
 
     /**
      * @param array<mixed> $values
@@ -26,6 +26,6 @@ final readonly class CreatedDocument
         public array $values,
     ) {
         Assert::keyExists($values, 'id');
-        $this->id = new DocumentId($values['id']);
+        $this->id = new DocumentAbstractId($values['id']);
     }
 }

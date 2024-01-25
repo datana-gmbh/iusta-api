@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\Case\CaseId;
-use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
-use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
+use Datana\Iusta\Api\Domain\Value\Case\CaseAbstractId;
+use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldAbstractId;
+use Datana\Iusta\Api\Domain\Value\Dataset\DatasetAbstractId;
 use Datana\Iusta\Api\Domain\Value\Document\CreatedDocument;
-use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
-use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId;
+use Datana\Iusta\Api\Domain\Value\Document\DocumentAbstractId;
+use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryAbstractId;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
@@ -26,23 +26,23 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
  */
 interface CaseApiInterface
 {
-    public function getById(CaseId $id): ResponseInterface;
+    public function getById(CaseAbstractId $id): ResponseInterface;
 
     public function getAll(): ResponseInterface;
 
     /**
      * @param array<int> $groups
      */
-    public function setUserGroups(CaseId $id, array $groups): ResponseInterface;
+    public function setUserGroups(CaseAbstractId $id, array $groups): ResponseInterface;
 
     /**
      * @param array<mixed> $payload
      */
-    public function addComment(CaseId $id, array $payload): ResponseInterface;
+    public function addComment(CaseAbstractId $id, array $payload): ResponseInterface;
 
-    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryId $documentCategoryId = null): CreatedDocument;
+    public function addDocument(CaseAbstractId $id, string $filepath, ?DocumentCategoryAbstractId $documentCategoryId = null): CreatedDocument;
 
-    public function connectDocument(CaseId $id, DocumentId $documentId, CustomFieldId $customFieldId): ResponseInterface;
+    public function connectDocument(CaseAbstractId $id, DocumentAbstractId $documentId, CustomFieldAbstractId $customFieldId): ResponseInterface;
 
-    public function connectDataset(CaseId $id, DatasetId $datasetId, CustomFieldId $customFieldId): ResponseInterface;
+    public function connectDataset(CaseAbstractId $id, DatasetAbstractId $datasetId, CustomFieldAbstractId $customFieldId): ResponseInterface;
 }

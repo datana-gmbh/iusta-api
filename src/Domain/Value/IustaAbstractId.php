@@ -13,26 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value;
 
-use Webmozart\Assert\Assert;
+use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final class IustaId
+final class IustaAbstractId extends AbstractId
 {
-    private int $value;
-
-    private function __construct(int $value)
-    {
-        Assert::greaterThan($value, 0);
-
-        $this->value = $value;
-    }
-
     public static function fromInt(int $value): self
     {
         return new self($value);
-    }
-
-    public function toInt(): int
-    {
-        return $this->value;
     }
 }

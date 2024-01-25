@@ -20,7 +20,7 @@ use Datana\Iusta\Api\Domain\Value\CustomField\Description;
 use Datana\Iusta\Api\Domain\Value\CustomField\RegExp;
 use Datana\Iusta\Api\Domain\Value\CustomField\Shortcode;
 use Datana\Iusta\Api\Domain\Value\CustomField\Type;
-use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupAbstractId;
 use Datana\Iusta\Api\Exception\CustomFieldNotFoundException;
 use Datana\Iusta\Api\Exception\MoreThanOneCustomFieldFoundException;
 use Psr\Log\LoggerInterface;
@@ -42,7 +42,7 @@ final class CustomFieldApi implements CustomFieldApiInterface
         CustomFieldName $name,
         Shortcode $shortcode,
         Type $type,
-        FieldgroupId $fieldgroupId,
+        FieldgroupAbstractId $fieldgroupId,
         ?int $sort = null,
         ?Description $description = null,
         ?RegExp $regexp = null,
@@ -84,9 +84,9 @@ final class CustomFieldApi implements CustomFieldApiInterface
         return new CustomField($response->toArray());
     }
 
-    public function getByName(CustomFieldName $name, ?FieldgroupId $fieldgroupId = null): CustomField
+    public function getByName(CustomFieldName $name, ?FieldgroupAbstractId $fieldgroupId = null): CustomField
     {
-        if ($fieldgroupId instanceof FieldgroupId) {
+        if ($fieldgroupId instanceof FieldgroupAbstractId) {
             $fieldgroupId = $fieldgroupId->toInt();
         }
 

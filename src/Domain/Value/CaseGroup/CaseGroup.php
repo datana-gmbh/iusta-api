@@ -17,7 +17,7 @@ use Webmozart\Assert\Assert;
 
 final readonly class CaseGroup
 {
-    public CaseGroupId $id;
+    public CaseGroupAbstractId $id;
     public CaseGroupName $name;
 
     /**
@@ -28,7 +28,7 @@ final readonly class CaseGroup
     ) {
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
-        $this->id = new CaseGroupId($values['id']);
+        $this->id = new CaseGroupAbstractId($values['id']);
 
         Assert::keyExists($values, 'name');
         Assert::string($values['name']);

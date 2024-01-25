@@ -17,7 +17,7 @@ use Webmozart\Assert\Assert;
 
 final readonly class CreatedCase
 {
-    public CaseId $id;
+    public CaseAbstractId $id;
 
     /**
      * @param array<mixed> $response
@@ -28,6 +28,6 @@ final readonly class CreatedCase
         Assert::keyExists($response, 'createdCase');
         Assert::keyExists($response['createdCase'], 'id');
 
-        $this->id = new CaseId($response['createdCase']['id']);
+        $this->id = new CaseAbstractId($response['createdCase']['id']);
     }
 }

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\Dataset;
 
-use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeId;
+use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeAbstractId;
 use Webmozart\Assert\Assert;
 
 /**
@@ -21,9 +21,9 @@ use Webmozart\Assert\Assert;
  */
 final readonly class Dataset
 {
-    public DatasetId $id;
+    public DatasetAbstractId $id;
     public DatasetName $name;
-    public DatasetTypeId $datasetTypeId;
+    public DatasetTypeAbstractId $datasetTypeId;
 
     /**
      * @param array{createdDataset: Values}|Values $values
@@ -38,7 +38,7 @@ final readonly class Dataset
 
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
-        $this->id = new DatasetId($values['id']);
+        $this->id = new DatasetAbstractId($values['id']);
 
         Assert::keyExists($values, 'name');
         Assert::string($values['name']);
@@ -46,6 +46,6 @@ final readonly class Dataset
 
         Assert::keyExists($values, 'datasetTypeId');
         Assert::integer($values['datasetTypeId']);
-        $this->datasetTypeId = new DatasetTypeId($values['datasetTypeId']);
+        $this->datasetTypeId = new DatasetTypeAbstractId($values['datasetTypeId']);
     }
 }

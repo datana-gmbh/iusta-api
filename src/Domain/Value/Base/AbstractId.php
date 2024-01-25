@@ -11,19 +11,19 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value\Dataset;
+namespace Datana\Iusta\Api\Domain\Value\Base;
 
 use Webmozart\Assert\Assert;
 
-final readonly class DatasetId
+abstract class AbstractId
 {
     public function __construct(
-        public int $value,
+        protected int $value,
     ) {
         Assert::greaterThan($value, 0);
     }
 
-    public function toInt(): int
+    final public function toInt(): int
     {
         return $this->value;
     }

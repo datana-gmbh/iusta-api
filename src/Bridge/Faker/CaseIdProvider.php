@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Bridge\Faker;
 
-use Datana\Iusta\Api\Domain\Value\IustaId;
+use Datana\Iusta\Api\Domain\Value\IustaAbstractId;
 use Faker\Provider\Base as BaseProvider;
 
 final class CaseIdProvider extends BaseProvider
 {
-    public function caseId(): IustaId
+    public function caseId(): IustaAbstractId
     {
-        return IustaId::fromInt(
+        return IustaAbstractId::fromInt(
             $this->CaseIdInteger(),
         );
     }

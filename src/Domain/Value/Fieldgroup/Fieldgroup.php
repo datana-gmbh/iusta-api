@@ -17,7 +17,7 @@ use Webmozart\Assert\Assert;
 
 final readonly class Fieldgroup
 {
-    public FieldgroupId $id;
+    public FieldgroupAbstractId $id;
     public FieldgroupName $name;
     public ?int $sort;
 
@@ -29,7 +29,7 @@ final readonly class Fieldgroup
     ) {
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
-        $this->id = new FieldgroupId($values['id']);
+        $this->id = new FieldgroupAbstractId($values['id']);
 
         Assert::keyExists($values, 'name');
         Assert::string($values['name']);

@@ -20,7 +20,7 @@ use Datana\Iusta\Api\Domain\Value\CustomField\Description;
 use Datana\Iusta\Api\Domain\Value\CustomField\RegExp;
 use Datana\Iusta\Api\Domain\Value\CustomField\Shortcode;
 use Datana\Iusta\Api\Domain\Value\CustomField\Type;
-use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupAbstractId;
 
 /**
  * @author Oskar Stark <oskar.stark@googlemail.de>
@@ -34,7 +34,7 @@ interface CustomFieldApiInterface
         CustomFieldName $name,
         Shortcode $shortcode,
         Type $type,
-        FieldgroupId $fieldgroupId,
+        FieldgroupAbstractId $fieldgroupId,
         ?int $sort = null,
         ?Description $description = null,
         ?RegExp $regexp = null,
@@ -42,7 +42,7 @@ interface CustomFieldApiInterface
         ?CompoundType $compoundType = null,
     ): CustomField;
 
-    public function getByName(CustomFieldName $name, ?FieldgroupId $fieldgroupId = null): CustomField;
+    public function getByName(CustomFieldName $name, ?FieldgroupAbstractId $fieldgroupId = null): CustomField;
 
     public function getByShortcode(Shortcode $shortcode): CustomField;
 }

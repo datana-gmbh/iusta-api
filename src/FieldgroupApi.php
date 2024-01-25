@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupId;
+use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupAbstractId;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\Fieldgroup;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
 use Datana\Iusta\Api\Exception\FieldgroupNotFoundException;
@@ -32,11 +32,11 @@ final class FieldgroupApi implements FieldgroupApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function create(FieldgroupName $name, ?int $sort = null, ?CaseGroupId $caseGroupId = null): Fieldgroup
+    public function create(FieldgroupName $name, ?int $sort = null, ?CaseGroupAbstractId $caseGroupId = null): Fieldgroup
     {
         $endpoint = '/api/CustomFieldGroups';
 
-        if ($caseGroupId instanceof CaseGroupId) {
+        if ($caseGroupId instanceof CaseGroupAbstractId) {
             $endpoint = sprintf('/api/CaseGroups/%d/CustomFieldGroups', $caseGroupId->toInt());
         }
 

@@ -13,17 +13,16 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\Case\CaseId;
+use Datana\Iusta\Api\Domain\Value\Case\CaseAbstractId;
 use Datana\Iusta\Api\Domain\Value\Deadline\Deadline;
 use Datana\Iusta\Api\Domain\Value\Deadline\DeadlineName;
 use Datana\Iusta\Api\Domain\Value\Deadline\Status;
-use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineType;
-use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineTypeId;
+use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineTypeAbstractId;
 
 /**
  * @author Oskar Stark <oskar.stark@googlemail.de>
  */
 interface DeadlineApiInterface
 {
-    public function create(CaseId $caseId, \DateTimeImmutable $dueAt, DeadlineTypeId $deadlineTypeId, Status $status = Status::Open, ?\DateTimeImmutable $preDueAt = null, ?DeadlineName $name = null, ?string $comment = null): Deadline;
+    public function create(CaseAbstractId $caseId, \DateTimeImmutable $dueAt, DeadlineTypeAbstractId $deadlineTypeId, Status $status = Status::Open, ?\DateTimeImmutable $preDueAt = null, ?DeadlineName $name = null, ?string $comment = null): Deadline;
 }

@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value\Fieldgroup;
 
-use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupAbstractId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId
+ * @covers \Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupAbstractId
  */
 final class FieldgroupIdTest extends TestCase
 {
@@ -31,9 +31,8 @@ final class FieldgroupIdTest extends TestCase
      */
     public function canBeConstructed(int $value): void
     {
-        $id = new FieldgroupId($value);
+        $id = new FieldgroupAbstractId($value);
 
-        self::assertSame($value, $id->value);
         self::assertSame($value, $id->toInt());
     }
 
@@ -47,6 +46,6 @@ final class FieldgroupIdTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new FieldgroupId($value);
+        new FieldgroupAbstractId($value);
     }
 }

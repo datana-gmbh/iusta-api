@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value\DocumentCategory;
 
-use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId;
+use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryAbstractId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId
+ * @covers \Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryAbstractId
  */
 final class DocumentCategoryIdTest extends TestCase
 {
@@ -31,9 +31,8 @@ final class DocumentCategoryIdTest extends TestCase
      */
     public function canBeConstructed(int $value): void
     {
-        $id = new DocumentCategoryId($value);
+        $id = new DocumentCategoryAbstractId($value);
 
-        self::assertSame($value, $id->value);
         self::assertSame($value, $id->toInt());
     }
 
@@ -47,6 +46,6 @@ final class DocumentCategoryIdTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new DocumentCategoryId($value);
+        new DocumentCategoryAbstractId($value);
     }
 }
