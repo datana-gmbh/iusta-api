@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value\Dataset;
+namespace Datana\Iusta\Api\Domain\Value\DatasetType;
 
 use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final class DatasetAbstractId extends AbstractId
+final class DatasetTypeId extends AbstractId
 {
 }

@@ -17,7 +17,7 @@ use Webmozart\Assert\Assert;
 
 final readonly class DocumentCategory
 {
-    public DocumentCategoryAbstractId $id;
+    public DocumentCategoryId $id;
     public DocumentCategoryName $name;
 
     /**
@@ -28,7 +28,7 @@ final readonly class DocumentCategory
     ) {
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
-        $this->id = new DocumentCategoryAbstractId($values['id']);
+        $this->id = new DocumentCategoryId($values['id']);
 
         Assert::keyExists($values, 'name');
         Assert::string($values['name']);

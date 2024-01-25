@@ -15,7 +15,7 @@ namespace Datana\Iusta\Api\Domain\Value\CustomField;
 
 use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final class CustomFieldAbstractId extends AbstractId
+final class CustomFieldId extends AbstractId
 {
     public static function fromString(string $value): self
     {

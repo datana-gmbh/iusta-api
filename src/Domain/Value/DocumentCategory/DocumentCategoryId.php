@@ -11,14 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value;
+namespace Datana\Iusta\Api\Domain\Value\DocumentCategory;
 
 use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final class IustaAbstractId extends AbstractId
+final class DocumentCategoryId extends AbstractId
 {
-    public static function fromInt(int $value): self
-    {
-        return new self($value);
-    }
 }

@@ -11,10 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value\DatasetType;
+namespace Datana\Iusta\Api\Domain\Value;
 
 use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final class DatasetTypeAbstractId extends AbstractId
+final class IustaId extends AbstractId
 {
+    public static function fromInt(int $value): self
+    {
+        return new self($value);
+    }
 }

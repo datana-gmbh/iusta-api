@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\Dataset\Dataset;
-use Datana\Iusta\Api\Domain\Value\Dataset\DatasetAbstractId;
+use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetName;
-use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeAbstractId;
+use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeId;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
@@ -27,9 +27,9 @@ interface DatasetApiInterface
     /**
      * @param list<array{id: int, value: mixed}> $customFieldValues
      */
-    public function create(DatasetName $name, DatasetTypeAbstractId $datasetTypeId, array $customFieldValues = []): Dataset;
+    public function create(DatasetName $name, DatasetTypeId $datasetTypeId, array $customFieldValues = []): Dataset;
 
-    public function getByName(DatasetName $name, DatasetTypeAbstractId $datasetTypeId): Dataset;
+    public function getByName(DatasetName $name, DatasetTypeId $datasetTypeId): Dataset;
 
-    public function delete(DatasetAbstractId $id): ResponseInterface;
+    public function delete(DatasetId $id): ResponseInterface;
 }

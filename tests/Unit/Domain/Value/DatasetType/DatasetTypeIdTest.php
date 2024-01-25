@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value\DatasetType;
 
-use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeAbstractId;
+use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeAbstractId
+ * @covers \Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeId
  */
 final class DatasetTypeIdTest extends TestCase
 {
@@ -31,7 +31,7 @@ final class DatasetTypeIdTest extends TestCase
      */
     public function canBeConstructed(int $value): void
     {
-        $id = new DatasetTypeAbstractId($value);
+        $id = new DatasetTypeId($value);
 
         self::assertSame($value, $id->toInt());
     }
@@ -46,6 +46,6 @@ final class DatasetTypeIdTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new DatasetTypeAbstractId($value);
+        new DatasetTypeId($value);
     }
 }

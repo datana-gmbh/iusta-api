@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\CustomField;
 
-use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupAbstractId;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
 use Webmozart\Assert\Assert;
 
 final readonly class CustomField
 {
-    public CustomFieldAbstractId $id;
+    public CustomFieldId $id;
     public CustomFieldName $name;
     public Type $type;
-    public FieldgroupAbstractId $customFieldGroupId;
+    public FieldgroupId $customFieldGroupId;
     public ?Shortcode $shortcode;
     public ?Metadata $metdata;
     public ?Description $description;
@@ -68,7 +68,7 @@ final readonly class CustomField
     ) {
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
-        $this->id = new CustomFieldAbstractId($values['id']);
+        $this->id = new CustomFieldId($values['id']);
 
         Assert::keyExists($values, 'name');
         Assert::string($values['name']);
@@ -80,7 +80,7 @@ final readonly class CustomField
 
         Assert::keyExists($values, 'customFieldGroupId');
         Assert::integer($values['customFieldGroupId']);
-        $this->customFieldGroupId = new FieldgroupAbstractId($values['customFieldGroupId']);
+        $this->customFieldGroupId = new FieldgroupId($values['customFieldGroupId']);
 
         Assert::nullOrString($values['shortcode']);
         $this->shortcode = null === $values['shortcode'] ? null : new Shortcode($values['shortcode']);

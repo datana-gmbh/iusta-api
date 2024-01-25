@@ -17,7 +17,7 @@ use Webmozart\Assert\Assert;
 
 final readonly class DatasetType
 {
-    public DatasetTypeAbstractId $id;
+    public DatasetTypeId $id;
     public DatasetTypeName $name;
 
     /**
@@ -28,7 +28,7 @@ final readonly class DatasetType
     ) {
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
-        $this->id = new DatasetTypeAbstractId($values['id']);
+        $this->id = new DatasetTypeId($values['id']);
 
         Assert::keyExists($values, 'name');
         Assert::string($values['name']);

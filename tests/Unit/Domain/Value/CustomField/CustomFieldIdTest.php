@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value\CustomField;
 
-use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldAbstractId;
+use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldAbstractId
+ * @covers \Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId
  */
 final class CustomFieldIdTest extends TestCase
 {
@@ -31,7 +31,7 @@ final class CustomFieldIdTest extends TestCase
      */
     public function canBeConstructed(int $value): void
     {
-        $id = new CustomFieldAbstractId($value);
+        $id = new CustomFieldId($value);
 
         self::assertSame($value, $id->toInt());
         self::assertSame('cf_'.$value, $id->toString());
@@ -44,7 +44,7 @@ final class CustomFieldIdTest extends TestCase
      */
     public function fromString(int $value): void
     {
-        $id = CustomFieldAbstractId::fromString($string = 'cf_'.$value);
+        $id = CustomFieldId::fromString($string = 'cf_'.$value);
 
         self::assertSame($string, $id->toString());
     }
@@ -59,6 +59,6 @@ final class CustomFieldIdTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new CustomFieldAbstractId($value);
+        new CustomFieldId($value);
     }
 }

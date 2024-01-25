@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value\Fieldgroup;
+namespace Datana\Iusta\Api\Domain\Value\Document;
 
 use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final class FieldgroupAbstractId extends AbstractId
+final class DocumentId extends AbstractId
 {
 }

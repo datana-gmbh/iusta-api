@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\Case\CaseId;
-use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldAbstractId;
-use Datana\Iusta\Api\Domain\Value\Dataset\DatasetAbstractId;
+use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
+use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
 use Datana\Iusta\Api\Domain\Value\Document\CreatedDocument;
 use Datana\Iusta\Api\Domain\Value\Document\CreatedDocuments;
-use Datana\Iusta\Api\Domain\Value\Document\DocumentAbstractId;
-use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryAbstractId;
+use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
+use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId;
 use Datana\Iusta\Api\Exception\MoreThanOneDocumentCreatedException;
 use Datana\Iusta\Api\Exception\NoDocumentsCreatedException;
 use OskarStark\Value\TrimmedNonEmptyString;
@@ -100,12 +100,12 @@ final class CaseApi implements CaseApiInterface
         );
     }
 
-    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryAbstractId $documentCategoryId = null): CreatedDocument
+    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryId $documentCategoryId = null): CreatedDocument
     {
         Assert::fileExists($filepath);
 
         if (null === $documentCategoryId) {
-            $documentCategoryId = new DocumentCategoryAbstractId(0);
+            $documentCategoryId = new DocumentCategoryId(0);
         }
 
         $response = $this->client->request(
@@ -136,7 +136,7 @@ final class CaseApi implements CaseApiInterface
         return $createdDocuments->documents[0];
     }
 
-    public function connectDocument(CaseId $id, DocumentAbstractId $documentId, CustomFieldAbstractId $customFieldId): ResponseInterface
+    public function connectDocument(CaseId $id, DocumentId $documentId, CustomFieldId $customFieldId): ResponseInterface
     {
         $this->logger->debug('Connect Document to Case via CustomFieldValue', [
             'caseId' => $id->toInt(),
@@ -155,7 +155,7 @@ final class CaseApi implements CaseApiInterface
         );
     }
 
-    public function connectDataset(CaseId $id, DatasetAbstractId $datasetId, CustomFieldAbstractId $customFieldId): ResponseInterface
+    public function connectDataset(CaseId $id, DatasetId $datasetId, CustomFieldId $customFieldId): ResponseInterface
     {
         $this->logger->debug('Connect Dataset to Case via CustomFieldValue', [
             'caseId' => $id->toInt(),

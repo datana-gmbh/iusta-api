@@ -14,14 +14,14 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api\Exception;
 
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetName;
-use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeAbstractId;
+use Datana\Iusta\Api\Domain\Value\DatasetType\DatasetTypeId;
 
 /**
  * @author Oskar Stark <oskarstark@googlemail.com>
  */
 final class DatasetNotFoundException extends \RuntimeException
 {
-    public static function forNameAndDatasetTypeId(DatasetName $name, DatasetTypeAbstractId $datasetTypeId): self
+    public static function forNameAndDatasetTypeId(DatasetName $name, DatasetTypeId $datasetTypeId): self
     {
         return new self(sprintf(
             'Dataset with name "%s" and dataset type id "%s" not found.',
