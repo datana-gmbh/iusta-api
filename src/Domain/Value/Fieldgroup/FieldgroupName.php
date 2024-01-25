@@ -13,18 +13,8 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\Fieldgroup;
 
-use OskarStark\Value\TrimmedNonEmptyString;
+use Datana\Iusta\Api\Domain\Value\Base\AbstractString;
 
-final readonly class FieldgroupName
+final class FieldgroupName extends AbstractString
 {
-    public function __construct(
-        public string $value,
-    ) {
-        TrimmedNonEmptyString::fromString($value);
-    }
-
-    public function toString(): string
-    {
-        return $this->value;
-    }
 }
