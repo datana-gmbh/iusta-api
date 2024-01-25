@@ -17,7 +17,6 @@ use Datana\Iusta\Api\Domain\Value\Case\CaseId;
 use Datana\Iusta\Api\Domain\Value\Deadline\Deadline;
 use Datana\Iusta\Api\Domain\Value\Deadline\DeadlineName;
 use Datana\Iusta\Api\Domain\Value\Deadline\Status;
-use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineType;
 use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineTypeId;
 use Datana\Iusta\Api\Formatter\DateTimeFormatterInterface;
 use Psr\Log\LoggerInterface;
