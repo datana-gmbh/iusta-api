@@ -35,14 +35,14 @@ In your code you should type-hint to `Datana\Iusta\Api\CaseApiInterface`
 
 ```php
 use Datana\Iusta\Api\CaseApi;
-use Datana\Iusta\Api\Domain\Value\Case\CaseAbstractId;
+use Datana\Iusta\Api\Domain\Value\Case\CaseId;
 use Datana\Iusta\Api\IustaClient;
 
 $client = new IustaClient(/* ... */);
 
 $api = new CaseApi($client);
 
-$api->getById(new CaseAbstractId(123));
+$api->getById(new CaseId(123));
 ```
 
 ## Import

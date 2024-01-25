@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Tests\Unit\Domain\Value\CaseGroup;
 
-use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupAbstractId;
+use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupId;
 use Ergebnis\Test\Util\Helper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupAbstractId
+ * @covers \Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupId
  */
 final class CaseGroupIdTest extends TestCase
 {
@@ -31,7 +31,7 @@ final class CaseGroupIdTest extends TestCase
      */
     public function canBeConstructed(int $value): void
     {
-        $id = new CaseGroupAbstractId($value);
+        $id = new CaseGroupId($value);
 
         self::assertSame($value, $id->toInt());
     }
@@ -46,6 +46,6 @@ final class CaseGroupIdTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new CaseGroupAbstractId($value);
+        new CaseGroupId($value);
     }
 }

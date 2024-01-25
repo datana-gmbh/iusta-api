@@ -15,6 +15,6 @@ namespace Datana\Iusta\Api\Domain\Value\DeadlineType;
 
 use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final class DeadlineTypeAbstractId extends AbstractId
+final class DeadlineTypeId extends AbstractId
 {
 }

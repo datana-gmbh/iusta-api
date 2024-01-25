@@ -17,7 +17,7 @@ use Webmozart\Assert\Assert;
 
 final readonly class DeadlineType
 {
-    public DeadlineTypeAbstractId $id;
+    public DeadlineTypeId $id;
     public DeadlineTypeName $name;
 
     /**
@@ -28,7 +28,7 @@ final readonly class DeadlineType
     ) {
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
-        $this->id = new DeadlineTypeAbstractId($values['id']);
+        $this->id = new DeadlineTypeId($values['id']);
 
         Assert::keyExists($values, 'name');
         Assert::string($values['name']);

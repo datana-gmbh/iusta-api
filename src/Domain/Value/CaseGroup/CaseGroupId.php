@@ -15,6 +15,6 @@ namespace Datana\Iusta\Api\Domain\Value\CaseGroup;
 
 use Datana\Iusta\Api\Domain\Value\Base\AbstractId;
 
-final class CaseGroupAbstractId extends AbstractId
+final class CaseGroupId extends AbstractId
 {
 }

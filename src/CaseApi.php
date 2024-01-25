@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\Case\CaseAbstractId;
+use Datana\Iusta\Api\Domain\Value\Case\CaseId;
 use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldAbstractId;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetAbstractId;
 use Datana\Iusta\Api\Domain\Value\Document\CreatedDocument;
@@ -41,7 +41,7 @@ final class CaseApi implements CaseApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function getById(CaseAbstractId $id): ResponseInterface
+    public function getById(CaseId $id): ResponseInterface
     {
         return $this->client->request(
             'GET',
@@ -57,7 +57,7 @@ final class CaseApi implements CaseApiInterface
         );
     }
 
-    public function setUserGroups(CaseAbstractId $id, array $groups): ResponseInterface
+    public function setUserGroups(CaseId $id, array $groups): ResponseInterface
     {
         Assert::allInteger($groups);
 
@@ -82,7 +82,7 @@ final class CaseApi implements CaseApiInterface
     /**
      * @param array<mixed> $payload
      */
-    public function addComment(CaseAbstractId $id, array $payload): ResponseInterface
+    public function addComment(CaseId $id, array $payload): ResponseInterface
     {
         Assert::notEmpty($payload);
         Assert::keyExists($payload, 'msg');
@@ -100,7 +100,7 @@ final class CaseApi implements CaseApiInterface
         );
     }
 
-    public function addDocument(CaseAbstractId $id, string $filepath, ?DocumentCategoryAbstractId $documentCategoryId = null): CreatedDocument
+    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryAbstractId $documentCategoryId = null): CreatedDocument
     {
         Assert::fileExists($filepath);
 
@@ -136,7 +136,7 @@ final class CaseApi implements CaseApiInterface
         return $createdDocuments->documents[0];
     }
 
-    public function connectDocument(CaseAbstractId $id, DocumentAbstractId $documentId, CustomFieldAbstractId $customFieldId): ResponseInterface
+    public function connectDocument(CaseId $id, DocumentAbstractId $documentId, CustomFieldAbstractId $customFieldId): ResponseInterface
     {
         $this->logger->debug('Connect Document to Case via CustomFieldValue', [
             'caseId' => $id->toInt(),
@@ -155,7 +155,7 @@ final class CaseApi implements CaseApiInterface
         );
     }
 
-    public function connectDataset(CaseAbstractId $id, DatasetAbstractId $datasetId, CustomFieldAbstractId $customFieldId): ResponseInterface
+    public function connectDataset(CaseId $id, DatasetAbstractId $datasetId, CustomFieldAbstractId $customFieldId): ResponseInterface
     {
         $this->logger->debug('Connect Dataset to Case via CustomFieldValue', [
             'caseId' => $id->toInt(),

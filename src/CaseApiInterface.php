@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\Case\CaseAbstractId;
+use Datana\Iusta\Api\Domain\Value\Case\CaseId;
 use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldAbstractId;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetAbstractId;
 use Datana\Iusta\Api\Domain\Value\Document\CreatedDocument;
@@ -26,23 +26,23 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
  */
 interface CaseApiInterface
 {
-    public function getById(CaseAbstractId $id): ResponseInterface;
+    public function getById(CaseId $id): ResponseInterface;
 
     public function getAll(): ResponseInterface;
 
     /**
      * @param array<int> $groups
      */
-    public function setUserGroups(CaseAbstractId $id, array $groups): ResponseInterface;
+    public function setUserGroups(CaseId $id, array $groups): ResponseInterface;
 
     /**
      * @param array<mixed> $payload
      */
-    public function addComment(CaseAbstractId $id, array $payload): ResponseInterface;
+    public function addComment(CaseId $id, array $payload): ResponseInterface;
 
-    public function addDocument(CaseAbstractId $id, string $filepath, ?DocumentCategoryAbstractId $documentCategoryId = null): CreatedDocument;
+    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryAbstractId $documentCategoryId = null): CreatedDocument;
 
-    public function connectDocument(CaseAbstractId $id, DocumentAbstractId $documentId, CustomFieldAbstractId $customFieldId): ResponseInterface;
+    public function connectDocument(CaseId $id, DocumentAbstractId $documentId, CustomFieldAbstractId $customFieldId): ResponseInterface;
 
-    public function connectDataset(CaseAbstractId $id, DatasetAbstractId $datasetId, CustomFieldAbstractId $customFieldId): ResponseInterface;
+    public function connectDataset(CaseId $id, DatasetAbstractId $datasetId, CustomFieldAbstractId $customFieldId): ResponseInterface;
 }

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\Case\CaseAbstractId;
+use Datana\Iusta\Api\Domain\Value\Case\CaseId;
 use Datana\Iusta\Api\Domain\Value\Case\CreatedCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -52,7 +52,7 @@ final class ImportApi implements ImportApiInterface
     /**
      * {@inheritDoc}
      */
-    public function updateCase(CaseAbstractId $id, array $customFieldvalues = []): ResponseInterface
+    public function updateCase(CaseId $id, array $customFieldvalues = []): ResponseInterface
     {
         Assert::notEmpty($customFieldvalues);
 

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
-use Datana\Iusta\Api\Domain\Value\Case\CaseAbstractId;
+use Datana\Iusta\Api\Domain\Value\Case\CaseId;
 use Datana\Iusta\Api\Domain\Value\Case\CreatedCase;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -30,5 +30,5 @@ interface ImportApiInterface
     /**
      * @param array<array{id: int, value: int|list<string>|string}> $customFieldvalues
      */
-    public function updateCase(CaseAbstractId $id, array $customFieldvalues = []): ResponseInterface;
+    public function updateCase(CaseId $id, array $customFieldvalues = []): ResponseInterface;
 }
