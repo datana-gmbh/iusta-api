@@ -31,11 +31,6 @@ final readonly class Document
     public function __construct(
         public array $values,
     ) {
-        if (\array_key_exists('createdDocument', $values)) {
-            Assert::notEmpty($values['createdDocument']);
-            $values = $values['createdDocument'];
-        }
-
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
         $this->id = new DocumentId($values['id']);
