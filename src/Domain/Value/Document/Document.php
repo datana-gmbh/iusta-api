@@ -20,12 +20,19 @@ final readonly class Document
     public DocumentId $id;
 
     /**
-     * @param array<mixed> $values
+     * @param array{
+     *     id: int,
+     *     createdAt: string,
+     *     updatedAt: string,
+     *     createdBy: int,
+     *     updatedBy: int
+     * } $values
      */
     public function __construct(
         public array $values,
     ) {
         Assert::keyExists($values, 'id');
+        Assert::integer($values['id']);
         $this->id = new DocumentId($values['id']);
     }
 }
