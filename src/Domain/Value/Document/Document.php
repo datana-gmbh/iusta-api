@@ -13,16 +13,20 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\Document;
 
-use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId;
 use Webmozart\Assert\Assert;
 
 final readonly class Document
 {
     public DocumentId $id;
-    public DocumentCategoryId $documentCategoryId;
 
     /**
-     * @param array{createdDocument: Values}|Values $values
+     * @param array{
+     *     id: int,
+     *     createdAt: string,
+     *     updatedAt: string,
+     *     createdBy: int,
+     *     updatedBy: int
+     * } $values
      */
     public function __construct(
         public array $values,
@@ -35,9 +39,5 @@ final readonly class Document
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
         $this->id = new DocumentId($values['id']);
-
-        Assert::keyExists($values, 'documentCategoryId');
-        Assert::integer($values['documentCategoryId']);
-        $this->documentCategoryId
     }
 }
