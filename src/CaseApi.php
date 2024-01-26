@@ -16,8 +16,8 @@ namespace Datana\Iusta\Api;
 use Datana\Iusta\Api\Domain\Value\Case\CaseId;
 use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
-use Datana\Iusta\Api\Domain\Value\Document\CreatedDocument;
-use Datana\Iusta\Api\Domain\Value\Document\CreatedDocuments;
+use Datana\Iusta\Api\Domain\Value\Document\Document;
+use Datana\Iusta\Api\Domain\Value\Document\Documents;
 use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
 use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId;
 use Datana\Iusta\Api\Exception\MoreThanOneDocumentCreatedException;
@@ -100,7 +100,7 @@ final class CaseApi implements CaseApiInterface
         );
     }
 
-    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryId $documentCategoryId = null): CreatedDocument
+    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryId $documentCategoryId = null): Document
     {
         Assert::fileExists($filepath);
 
@@ -121,7 +121,7 @@ final class CaseApi implements CaseApiInterface
             ],
         );
 
-        $createdDocuments = new CreatedDocuments($response->toArray());
+        $createdDocuments = new Documents($response->toArray());
 
         $count = \count($createdDocuments->documents);
 
