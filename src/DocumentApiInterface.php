@@ -21,5 +21,5 @@ use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
  */
 interface DocumentApiInterface
 {
-    public function update(DocumentId $id, ): Document;
+    public function update(DocumentId $id): Document;
 }
