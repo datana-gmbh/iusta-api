@@ -15,7 +15,7 @@ namespace Datana\Iusta\Api\Domain\Value\Document;
 
 use Webmozart\Assert\Assert;
 
-final readonly class CreatedDocument
+final readonly class Document
 {
     public DocumentId $id;
 

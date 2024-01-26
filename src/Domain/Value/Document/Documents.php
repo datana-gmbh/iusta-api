@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\Document;
 
-final readonly class CreatedDocuments
+final readonly class Documents
 {
     /**
-     * @var array<CreatedDocument>
+     * @var array<Document>
      */
     public array $documents;
 
@@ -28,7 +28,7 @@ final readonly class CreatedDocuments
         $documents = [];
 
         foreach ($response as $document) {
-            $documents[] = new CreatedDocument($document);
+            $documents[] = new Document($document);
         }
 
         $this->documents = $documents;

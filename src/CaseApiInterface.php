@@ -16,7 +16,7 @@ namespace Datana\Iusta\Api;
 use Datana\Iusta\Api\Domain\Value\Case\CaseId;
 use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
 use Datana\Iusta\Api\Domain\Value\Dataset\DatasetId;
-use Datana\Iusta\Api\Domain\Value\Document\CreatedDocument;
+use Datana\Iusta\Api\Domain\Value\Document\Document;
 use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
 use Datana\Iusta\Api\Domain\Value\DocumentCategory\DocumentCategoryId;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -40,7 +40,7 @@ interface CaseApiInterface
      */
     public function addComment(CaseId $id, array $payload): ResponseInterface;
 
-    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryId $documentCategoryId = null): CreatedDocument;
+    public function addDocument(CaseId $id, string $filepath, ?DocumentCategoryId $documentCategoryId = null): Document;
 
     public function connectDocument(CaseId $id, DocumentId $documentId, CustomFieldId $customFieldId): ResponseInterface;
 
