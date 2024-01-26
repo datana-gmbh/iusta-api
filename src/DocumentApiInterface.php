@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
+use Datana\Iusta\Api\Domain\Value\Document\Document;
 use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
 
 /**
@@ -20,5 +21,5 @@ use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
  */
 interface DocumentApiInterface
 {
-    public function update(DocumentId $id, ): Documen
+    public function update(DocumentId $id, ): Document;
 }
