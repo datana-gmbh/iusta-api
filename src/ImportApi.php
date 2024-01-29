@@ -43,6 +43,7 @@ final class ImportApi implements ImportApiInterface
             '/api/Imports/v2/newCase',
             [
                 'json' => $payload,
+                'timeout' => 100, // this call can take quite long...
             ],
         );
 
@@ -63,6 +64,7 @@ final class ImportApi implements ImportApiInterface
                 'json' => [
                     'customFieldValues' => $customFieldvalues,
                 ],
+                'timeout' => 100, // this call can take quite long...
             ],
         );
     }
