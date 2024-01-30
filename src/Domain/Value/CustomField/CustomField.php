@@ -107,7 +107,9 @@ final readonly class CustomField
 
         if (\array_key_exists('sectionHeading', $values)) {
             Assert::nullOrString($values['sectionHeading']);
-            $sectionHeading = null === $values['sectionHeading'] ? null : new SectionHeading($values['sectionHeading']);
+            $sectionHeading = null === $values['sectionHeading'] || '' === trim($values['sectionHeading'])
+                ? null
+                : new SectionHeading($values['sectionHeading']);
         }
 
         $this->sectionHeading = $sectionHeading;
