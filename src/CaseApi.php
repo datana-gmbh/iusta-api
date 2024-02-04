@@ -118,6 +118,7 @@ final class CaseApi implements CaseApiInterface
                 'body' => [
                     'file' => fopen($filepath, 'rb'),
                 ],
+                'timeout' => 100, // this call can take quite long...
             ],
         );
 
