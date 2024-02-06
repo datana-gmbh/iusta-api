@@ -49,7 +49,5 @@ final readonly class Fieldgroup
         Assert::keyExists($values, 'sort');
         Assert::nullOrInteger($values['sort']);
         $this->sort = $values['sort'];
-
-
     }
 }
