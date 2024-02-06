@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\CaseGroup\\\\CaseGroup constructor expects array\\{id\\: int, name\\: string, createdAt\\: string, updatedAt\\: string, createdBy\\: int, updatedBy\\: int\\}, array given\\.$#"
+			count: 1
+			path: src/CaseGroupApi.php
+
+		-
 			message: "#^Property Datana\\\\Iusta\\\\Api\\\\CaseGroupApi\\:\\:\\$logger is never read, only written\\.$#"
 			count: 1
 			path: src/CaseGroupApi.php

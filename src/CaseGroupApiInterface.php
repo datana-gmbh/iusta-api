@@ -15,6 +15,7 @@ namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroup;
 use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupName;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
 
 /**
  * @author Oskar Stark <oskar.stark@googlemail.de>
@@ -22,4 +23,9 @@ use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupName;
 interface CaseGroupApiInterface
 {
     public function getByName(CaseGroupName $name): CaseGroup;
+
+    /**
+     * @return list<CaseGroup>
+     */
+    public function byFieldgroupId(FieldgroupId $fieldgroupId): array;
 }
