@@ -22,7 +22,18 @@ final readonly class Fieldgroup
     public ?int $sort;
 
     /**
-     * @param array{id: int, name: string, shortcode: null|string, sort: null|int, referenceId?: null|int, referenceType?: null|string, createdAt: string, updatedAt: string, createdBy: int, updatedBy: int} $values
+     * @param array{
+     *     id: int,
+     *     name: string,
+     *     shortcode: null|string,
+     *     sort: null|int,
+     *     referenceId?: null|int,
+     *     referenceType?: null|string,
+     *     createdAt: string,
+     *     updatedAt: string,
+     *     createdBy: int,
+     *     updatedBy: int
+     * } $values
      */
     public function __construct(
         public array $values,
@@ -38,5 +49,7 @@ final readonly class Fieldgroup
         Assert::keyExists($values, 'sort');
         Assert::nullOrInteger($values['sort']);
         $this->sort = $values['sort'];
+
+
     }
 }
