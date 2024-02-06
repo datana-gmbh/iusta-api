@@ -15,6 +15,7 @@ namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroup;
 use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupName;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
 use Datana\Iusta\Api\Exception\CaseGroupNotFoundException;
 use Datana\Iusta\Api\Exception\MoreThanOneCaseGroupFoundException;
 use Psr\Log\LoggerInterface;
@@ -58,5 +59,21 @@ final class CaseGroupApi implements CaseGroupApiInterface
         }
 
         return new CaseGroup($array[0]);
+    }
+
+    /**
+     * @return list<CaseGroup>
+     */
+    public function byFieldgroupId(FieldgroupId $fieldgroupId): array
+    {
+        $response = $this->client->request(
+            'GET',
+            sprintf('/api/CustomFieldGroups/%s/CaseGroups', $fieldgroupId->toInt()),
+        );
+
+        return \array_map(
+            static fn (array $values) => new CaseGroup($values),
+            $response->toArray(),
+        );
     }
 }
