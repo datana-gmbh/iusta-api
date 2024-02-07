@@ -25,8 +25,8 @@ final readonly class Fieldgroup
      * @param array{
      *     id: int,
      *     name: string,
-     *     shortcode: null|string,
-     *     sort: null|int,
+     *     shortcode?: null|string,
+     *     sort?: null|int,
      *     referenceId?: null|int,
      *     referenceType?: null|string,
      *     createdAt: string,
@@ -46,8 +46,13 @@ final readonly class Fieldgroup
         Assert::string($values['name']);
         $this->name = new FieldgroupName($values['name']);
 
-        Assert::keyExists($values, 'sort');
-        Assert::nullOrInteger($values['sort']);
-        $this->sort = $values['sort'];
+        $sort = null;
+
+        if (\array_key_exists('sort', $values)) {
+            Assert::nullOrInteger($values['sort']);
+            $sort = $values['sort'];
+        }
+
+        $this->sort = $sort;
     }
 }
