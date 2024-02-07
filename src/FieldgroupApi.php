@@ -15,6 +15,7 @@ namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupId;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\Fieldgroup;
+use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
 use Datana\Iusta\Api\Exception\FieldgroupNotFoundException;
 use Datana\Iusta\Api\Exception\MoreThanOneFieldgroupFoundException;
@@ -81,5 +82,15 @@ final class FieldgroupApi implements FieldgroupApiInterface
         }
 
         return new Fieldgroup($array[0]);
+    }
+
+    public function addCaseGroup(FieldgroupId $fieldgroupId, CaseGroupId $caseGroupId): Fieldgroup
+    {
+        $response = $this->client->request(
+            'POST',
+            sprintf('/api/CustomFieldGroups/%d/CaseGroups/%d', $fieldgroupId->toInt(), $caseGroupId->toInt()),
+        );
+
+        return new Fieldgroup($response->toArray());
     }
 }
