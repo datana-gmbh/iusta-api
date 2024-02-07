@@ -47,10 +47,12 @@ final readonly class Fieldgroup
         $this->name = new FieldgroupName($values['name']);
 
         $sort = null;
-        if (array_key_exists('sort', $values)) {
+
+        if (\array_key_exists('sort', $values)) {
             Assert::nullOrInteger($values['sort']);
             $sort = $values['sort'];
         }
+
         $this->sort = $sort;
     }
 }
