@@ -88,7 +88,7 @@ final class FieldgroupApi implements FieldgroupApiInterface
     {
         $response = $this->client->request(
             'POST',
-            sprintf('/api/CustomFieldGroups/%d/CaseGroups/%d', $fieldgroupId->toInt(), $caseGroupId->toInt()),
+            sprintf('/api/CustomFieldGroups/%d/addCaseGroup/%d', $fieldgroupId->toInt(), $caseGroupId->toInt()),
         );
 
         return new Fieldgroup($response->toArray());
