@@ -21,6 +21,7 @@ use Datana\Iusta\Api\Exception\FieldgroupNotFoundException;
 use Datana\Iusta\Api\Exception\MoreThanOneFieldgroupFoundException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 final class FieldgroupApi implements FieldgroupApiInterface
 {
@@ -92,5 +93,13 @@ final class FieldgroupApi implements FieldgroupApiInterface
         );
 
         return new Fieldgroup($response->toArray());
+    }
+
+    public function removeCaseGroup(FieldgroupId $fieldgroupId, CaseGroupId $caseGroupId): ResponseInterface
+    {
+        return $this->client->request(
+            'DELETE',
+            sprintf('/api/CustomFieldGroups/%d/removeCaseGroup/%d', $fieldgroupId->toInt(), $caseGroupId->toInt()),
+        );
     }
 }

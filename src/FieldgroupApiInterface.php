@@ -17,6 +17,7 @@ use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupId;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\Fieldgroup;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupName;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 /**
  * @author Oskar Stark <oskar.stark@googlemail.de>
@@ -31,4 +32,6 @@ interface FieldgroupApiInterface
     public function getByName(FieldgroupName $name): Fieldgroup;
 
     public function addCaseGroup(FieldgroupId $fieldgroupId, CaseGroupId $caseGroupId): Fieldgroup;
+
+    public function removeCaseGroup(FieldgroupId $fieldgroupId, CaseGroupId $caseGroupId): ResponseInterface;
 }
