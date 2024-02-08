@@ -31,6 +31,11 @@ interface FieldgroupApiInterface
 
     public function getByName(FieldgroupName $name): Fieldgroup;
 
+    /**
+     * @return Fieldgroup[]
+     */
+    public function getAll(): array;
+
     public function addCaseGroup(FieldgroupId $fieldgroupId, CaseGroupId $caseGroupId): Fieldgroup;
 
     public function removeCaseGroup(FieldgroupId $fieldgroupId, CaseGroupId $caseGroupId): ResponseInterface;

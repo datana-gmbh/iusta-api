@@ -56,6 +56,19 @@ final class FieldgroupApi implements FieldgroupApiInterface
         return new Fieldgroup($response->toArray());
     }
 
+    public function getAll(): array
+    {
+        $response = $this->client->request(
+            'GET',
+            '/api/CustomFieldGroups',
+        );
+
+        return \array_map(
+            static fn (array $values) => new Fieldgroup($values),
+            $response->toArray(),
+        );
+    }
+
     public function getByName(FieldgroupName $name): Fieldgroup
     {
         $response = $this->client->request(
