@@ -32,7 +32,7 @@ interface FieldgroupApiInterface
     public function getByName(FieldgroupName $name): Fieldgroup;
 
     /**
-     * @return Fieldgroup[]
+     * @return array<Fieldgroup>
      */
     public function getAll(): array;
 
