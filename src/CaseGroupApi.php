@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroup;
+use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupId;
 use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupName;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
 use Datana\Iusta\Api\Exception\CaseGroupNotFoundException;
@@ -30,6 +31,16 @@ final class CaseGroupApi implements CaseGroupApiInterface
         ?LoggerInterface $logger = null,
     ) {
         $this->logger = $logger ?? new NullLogger();
+    }
+
+    public function getById(CaseGroupId $id): CaseGroup
+    {
+        $response = $this->client->request(
+            'GET',
+            sprintf('/api/CaseGroups/%s', $id->toInt()),
+        );
+
+        return new CaseGroup($response->toArray());
     }
 
     public function getByName(CaseGroupName $name): CaseGroup

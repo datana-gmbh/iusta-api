@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroup;
+use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupId;
 use Datana\Iusta\Api\Domain\Value\CaseGroup\CaseGroupName;
 use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
 
@@ -22,6 +23,8 @@ use Datana\Iusta\Api\Domain\Value\Fieldgroup\FieldgroupId;
  */
 interface CaseGroupApiInterface
 {
+    public function getById(CaseGroupId $id): CaseGroup;
+
     public function getByName(CaseGroupName $name): CaseGroup;
 
     /**
