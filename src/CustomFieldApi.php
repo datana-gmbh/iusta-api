@@ -15,6 +15,7 @@ namespace Datana\Iusta\Api;
 
 use Datana\Iusta\Api\Domain\Value\CustomField\CompoundType;
 use Datana\Iusta\Api\Domain\Value\CustomField\CustomField;
+use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldId;
 use Datana\Iusta\Api\Domain\Value\CustomField\CustomFieldName;
 use Datana\Iusta\Api\Domain\Value\CustomField\Description;
 use Datana\Iusta\Api\Domain\Value\CustomField\RegExp;
@@ -27,6 +28,9 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Webmozart\Assert\Assert;
 
+/**
+ * @phpstan-import-type SelectOptions from CustomFieldApiInterface
+ */
 final class CustomFieldApi implements CustomFieldApiInterface
 {
     private LoggerInterface $logger;
@@ -49,23 +53,46 @@ final class CustomFieldApi implements CustomFieldApiInterface
         ?array $selectOptions = null,
         ?CompoundType $compoundType = null,
     ): CustomField {
-        if (\is_array($selectOptions)) {
-            foreach ($selectOptions as $selectOption) {
-                try {
-                    Assert::isArray($selectOption);
-                    Assert::keyExists($selectOption, 'value');
-                    Assert::string($selectOption['value']);
-                    Assert::keyExists($selectOption, 'text');
-                    Assert::string($selectOption['text']);
-                } catch (\InvalidArgumentException $e) {
-                    throw new \InvalidArgumentException('Invalid select options structure.');
-                }
-            }
-        }
+        self::validateSelectOptions($selectOptions);
 
         $response = $this->client->request(
             'POST',
             '/api/CustomFields',
+            [
+                'json' => array_filter([
+                    'name' => $name->toString(),
+                    'shortcode' => $shortcode->toString(),
+                    'type' => $type->getId(),
+                    'customFieldGroupId' => $fieldgroupId->toInt(),
+                    'sort' => $sort,
+                    'description' => $description?->toString(),
+                    'regexp' => $regexp?->toString(),
+                    'selectOptions' => $selectOptions,
+                    'compoundType' => $compoundType?->toInt(),
+                ]),
+            ],
+        );
+
+        return new CustomField($response->toArray());
+    }
+
+    public function update(
+        CustomFieldId $id,
+        CustomFieldName $name,
+        Shortcode $shortcode,
+        Type $type,
+        FieldgroupId $fieldgroupId,
+        ?int $sort = null,
+        ?Description $description = null,
+        ?RegExp $regexp = null,
+        ?array $selectOptions = null,
+        ?CompoundType $compoundType = null,
+    ): CustomField {
+        self::validateSelectOptions($selectOptions);
+
+        $response = $this->client->request(
+            'PUT',
+            sprintf('/api/CustomFields/%d', $id->toInt()),
             [
                 'json' => array_filter([
                     'name' => $name->toString(),
@@ -145,5 +172,25 @@ final class CustomFieldApi implements CustomFieldApiInterface
         }
 
         return new CustomField($array[0]);
+    }
+
+    /**
+     * @param SelectOptions $selectOptions
+     */
+    private static function validateSelectOptions(?array $selectOptions): void
+    {
+        if (\is_array($selectOptions)) {
+            foreach ($selectOptions as $selectOption) {
+                try {
+                    Assert::isArray($selectOption);
+                    Assert::keyExists($selectOption, 'value');
+                    Assert::string($selectOption['value']);
+                    Assert::keyExists($selectOption, 'text');
+                    Assert::string($selectOption['text']);
+                } catch (\InvalidArgumentException $e) {
+                    throw new \InvalidArgumentException('Invalid select options structure.');
+                }
+            }
+        }
     }
 }
