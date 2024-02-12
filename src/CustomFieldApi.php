@@ -28,6 +28,9 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Webmozart\Assert\Assert;
 
+/**
+ * @phpstan-import-type SelectOptions from CustomFieldApiInterface
+ */
 final class CustomFieldApi implements CustomFieldApiInterface
 {
     private LoggerInterface $logger;
@@ -171,6 +174,9 @@ final class CustomFieldApi implements CustomFieldApiInterface
         return new CustomField($array[0]);
     }
 
+    /**
+     * @param SelectOptions $selectOptions
+     */
     private static function validateSelectOptions(?array $selectOptions): void
     {
         if (\is_array($selectOptions)) {
