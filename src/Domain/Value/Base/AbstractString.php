@@ -23,6 +23,11 @@ abstract class AbstractString
         TrimmedNonEmptyString::fromString($value);
     }
 
+    final public function equals(self $other): bool
+    {
+        return $this->value === $other->value;
+    }
+
     final public function toString(): string
     {
         return $this->value;
