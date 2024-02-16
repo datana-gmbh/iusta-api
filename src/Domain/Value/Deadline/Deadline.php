@@ -19,7 +19,7 @@ use Webmozart\Assert\Assert;
 final readonly class Deadline
 {
     public DeadlineId $id;
-    public DeadlineName $name;
+    public ?DeadlineName $name;
     public Status $status;
     public DateTimeImmutable $dueAt;
     public ?DateTimeImmutable $preDueAt;
@@ -28,7 +28,7 @@ final readonly class Deadline
     /**
      * @param array{
      *     id: positive-int,
-     *     name: string,
+     *     name: null|string,
      *     status: integer,
      *     dueAt: string,
      *     preDueAt: null|string,
@@ -47,8 +47,8 @@ final readonly class Deadline
         $this->id = new DeadlineId($values['id']);
 
         Assert::keyExists($values, 'name');
-        Assert::string($values['name']);
-        $this->name = new DeadlineName($values['name']);
+        Assert::nullOrString($values['name']);
+        $this->name = null === $values['name'] ? null : new DeadlineName($values['name']);
 
         Assert::keyExists($values, 'status');
         Assert::integer($values['status']);

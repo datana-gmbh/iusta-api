@@ -41,7 +41,7 @@ parameters:
 			path: src/DatasetTypeApi.php
 
 		-
-			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\Deadline\\\\Deadline constructor expects array\\{id\\: int\\<1, max\\>, name\\: string, status\\: int, dueAt\\: string, preDueAt\\: string\\|null, comment\\: string\\|null, createdAt\\: string, updatedAt\\: string, \\.\\.\\.\\}, array given\\.$#"
+			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\Deadline\\\\Deadline constructor expects array\\{id\\: int\\<1, max\\>, name\\: string\\|null, status\\: int, dueAt\\: string, preDueAt\\: string\\|null, comment\\: string\\|null, createdAt\\: string, updatedAt\\: string, \\.\\.\\.\\}, array given\\.$#"
 			count: 1
 			path: src/DeadlineApi.php
 
