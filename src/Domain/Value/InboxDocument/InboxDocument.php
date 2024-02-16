@@ -15,20 +15,23 @@ namespace Datana\Iusta\Api\Domain\Value\InboxDocument;
 
 use Webmozart\Assert\Assert;
 
+/**
+ * @phpstan-type Values array{
+ *     id: int,
+ *     categoryId: int,
+ *     createdAt: string,
+ *     updatedAt: string,
+ *     createdBy: int,
+ *     updatedBy: int
+ * }
+ */
 final readonly class InboxDocument
 {
     public InboxDocumentId $id;
     public InboxDocumentCategoryId $categoryId;
 
     /**
-     * @param array{
-     *     id: int,
-     *     categoryId: int,
-     *     createdAt: string,
-     *     updatedAt: string,
-     *     createdBy: int,
-     *     updatedBy: int
-     * } $values
+     * @param Values $values
      */
     public function __construct(
         public array $values,

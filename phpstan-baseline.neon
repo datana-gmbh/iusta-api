@@ -81,11 +81,6 @@ parameters:
 			path: src/DocumentCategoryApi.php
 
 		-
-			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\Document\\\\Document constructor expects array\\{id\\: int, createdAt\\: string, updatedAt\\: string, createdBy\\: int, updatedBy\\: int\\}, array given\\.$#"
-			count: 1
-			path: src/Domain/Value/Document/Documents.php
-
-		-
 			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\Fieldgroup\\\\Fieldgroup constructor expects array\\{id\\: int, name\\: string, shortcode\\?\\: string\\|null, sort\\?\\: int\\|null, referenceId\\?\\: int\\|null, referenceType\\?\\: string\\|null, createdAt\\: string, updatedAt\\: string, \\.\\.\\.\\}, array given\\.$#"
 			count: 3
 			path: src/FieldgroupApi.php
@@ -99,4 +94,9 @@ parameters:
 			message: "#^Property Datana\\\\Iusta\\\\Api\\\\ImportApi\\:\\:\\$logger is never read, only written\\.$#"
 			count: 1
 			path: src/ImportApi.php
+
+		-
+			message: "#^Property Datana\\\\Iusta\\\\Api\\\\InboxDocumentApi\\:\\:\\$logger is never read, only written\\.$#"
+			count: 1
+			path: src/InboxDocumentApi.php
 

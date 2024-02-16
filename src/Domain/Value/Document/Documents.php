@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\Document;
 
+/**
+ * @phpstan-import-type Values from Document
+ */
 final readonly class Documents
 {
     /**
@@ -21,7 +24,7 @@ final readonly class Documents
     public array $documents;
 
     /**
-     * @param list<array<mixed>> $response
+     * @param list<Values> $response
      */
     public function __construct(array $response)
     {

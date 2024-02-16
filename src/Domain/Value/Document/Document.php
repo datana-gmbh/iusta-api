@@ -15,18 +15,21 @@ namespace Datana\Iusta\Api\Domain\Value\Document;
 
 use Webmozart\Assert\Assert;
 
+/**
+ * @phpstan-type Values array{
+ *     id: int,
+ *     createdAt: string,
+ *     updatedAt: string,
+ *     createdBy: int,
+ *     updatedBy: int
+ * }
+ */
 final readonly class Document
 {
     public DocumentId $id;
 
     /**
-     * @param array{
-     *     id: int,
-     *     createdAt: string,
-     *     updatedAt: string,
-     *     createdBy: int,
-     *     updatedBy: int
-     * } $values
+     * @param Values $values
      */
     public function __construct(
         public array $values,

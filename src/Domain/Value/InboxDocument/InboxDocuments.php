@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api\Domain\Value\InboxDocument;
 
+/**
+ * @phpstan-import-type Values from InboxDocument
+ */
 final readonly class InboxDocuments
 {
     /**
@@ -21,7 +24,7 @@ final readonly class InboxDocuments
     public array $documents;
 
     /**
-     * @param list<array<mixed>> $response
+     * @param list<Values> $response
      */
     public function __construct(array $response)
     {
