@@ -21,5 +21,5 @@ use Datana\Iusta\Api\Domain\Value\InboxDocument\InboxDocumentCategoryId;
  */
 interface InboxDocumentApiInterface
 {
-    public function upload(string $filepath, InboxDocumentCategoryId $categoryId): InboxDocument;
+    public function create(string $filepath, InboxDocumentCategoryId $categoryId): InboxDocument;
 }
