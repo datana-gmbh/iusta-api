@@ -100,3 +100,13 @@ parameters:
 			count: 1
 			path: src/InboxDocumentApi.php
 
+		-
+			message: "#^Parameter \\#1 \\$values of class Datana\\\\Iusta\\\\Api\\\\Domain\\\\Value\\\\InboxDocumentTask\\\\InboxDocumentTask constructor expects array\\{id\\: int, status\\: int, createdAt\\: string, updatedAt\\: string, createdBy\\: int, updatedBy\\: int\\}, array given\\.$#"
+			count: 1
+			path: src/InboxDocumentTaskApi.php
+
+		-
+			message: "#^Property Datana\\\\Iusta\\\\Api\\\\InboxDocumentTaskApi\\:\\:\\$logger is never read, only written\\.$#"
+			count: 1
+			path: src/InboxDocumentTaskApi.php
+
