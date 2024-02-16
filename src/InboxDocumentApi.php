@@ -34,7 +34,7 @@ final class InboxDocumentApi implements InboxDocumentApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function upload(string $filepath, InboxDocumentCategoryId $categoryId): InboxDocument
+    public function create(string $filepath, InboxDocumentCategoryId $categoryId): InboxDocument
     {
         Assert::fileExists($filepath);
 
