@@ -25,4 +25,6 @@ use Datana\Iusta\Api\Domain\Value\Document\MimeType;
 interface DocumentApiInterface
 {
     public function update(DocumentId $id, ?FileName $fileName = null, ?MimeType $mimeType = null, ?\DateTimeInterface $timestamp = null, ?OldDocumentId $oldDocumentId = null): Document;
+
+    public function upload(string $filepath): Document;
 }
