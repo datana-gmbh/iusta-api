@@ -16,10 +16,10 @@ namespace Datana\Iusta\Api\Exception;
 /**
  * @author Oskar Stark <oskarstark@googlemail.com>
  */
-final class NoDocumentsCreatedException extends \RuntimeException
+final class NoInboxDocumentsCreatedException extends \RuntimeException
 {
     public function __construct()
     {
-        parent::__construct('No Documents created.');
+        parent::__construct('No InboxDocuments created.');
     }
 }
