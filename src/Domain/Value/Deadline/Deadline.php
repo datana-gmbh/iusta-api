@@ -28,7 +28,7 @@ final readonly class Deadline
     /**
      * @param array{
      *     id: positive-int,
-     *     name: string|null,
+     *     name: null|string,
      *     status: integer,
      *     dueAt: string,
      *     preDueAt: null|string,
