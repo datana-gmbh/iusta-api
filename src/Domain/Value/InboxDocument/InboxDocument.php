@@ -11,22 +11,24 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value\Document;
+namespace Datana\Iusta\Api\Domain\Value\InboxDocument;
 
 use Webmozart\Assert\Assert;
 
 /**
  * @phpstan-type Values array{
  *     id: int,
+ *     categoryId: int,
  *     createdAt: string,
  *     updatedAt: string,
  *     createdBy: int,
  *     updatedBy: int
  * }
  */
-final readonly class Document
+final readonly class InboxDocument
 {
-    public DocumentId $id;
+    public InboxDocumentId $id;
+    public InboxDocumentCategoryId $categoryId;
 
     /**
      * @param Values $values
@@ -36,6 +38,10 @@ final readonly class Document
     ) {
         Assert::keyExists($values, 'id');
         Assert::integer($values['id']);
-        $this->id = new DocumentId($values['id']);
+        $this->id = new InboxDocumentId($values['id']);
+
+        Assert::keyExists($values, 'categoryId');
+        Assert::integer($values['categoryId']);
+        $this->categoryId = new InboxDocumentCategoryId($values['categoryId']);
     }
 }

@@ -11,15 +11,15 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Datana\Iusta\Api\Domain\Value\Document;
+namespace Datana\Iusta\Api\Domain\Value\InboxDocument;
 
 /**
- * @phpstan-import-type Values from Document
+ * @phpstan-import-type Values from InboxDocument
  */
-final readonly class Documents
+final readonly class InboxDocuments
 {
     /**
-     * @var array<Document>
+     * @var array<InboxDocument>
      */
     public array $documents;
 
@@ -31,7 +31,7 @@ final readonly class Documents
         $documents = [];
 
         foreach ($response as $document) {
-            $documents[] = new Document($document);
+            $documents[] = new InboxDocument($document);
         }
 
         $this->documents = $documents;
