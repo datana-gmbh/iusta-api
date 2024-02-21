@@ -29,7 +29,6 @@ use Webmozart\Assert\Assert;
 final class IustaClient
 {
     use CommonApiTrait;
-
     private HttpClientInterface $client;
     private LoggerInterface $logger;
 
