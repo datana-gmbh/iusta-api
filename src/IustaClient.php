@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
+use Datana\Iusta\Api\Trait\CommonApiTrait;
 use OskarStark\Value\TrimmedNonEmptyString;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -27,6 +28,8 @@ use Webmozart\Assert\Assert;
  */
 final class IustaClient
 {
+    use CommonApiTrait;
+
     private HttpClientInterface $client;
     private LoggerInterface $logger;
 
@@ -95,6 +98,8 @@ final class IustaClient
 
             throw $e;
         }
+
+        self::validateResponse($response);
 
         return $response;
     }
