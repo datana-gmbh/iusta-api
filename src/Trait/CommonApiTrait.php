@@ -27,7 +27,7 @@ trait CommonApiTrait
         }
 
         if ($response->getStatusCode() !== 200) {
-            throw new \RuntimeException('Unsuccessful response status. getContent() contains: %s', $response->getContent());
+            throw new \RuntimeException(sprintf('Unsuccessful response status. getContent() contains: %s', $response->getContent()));
         }
     }
 }
