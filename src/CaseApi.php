@@ -86,10 +86,10 @@ final class CaseApi implements CaseApiInterface
     {
         Assert::notEmpty($payload);
         Assert::keyExists($payload, 'msg');
-        TrimmedNonEmptyString::fromString($payload['msg']);
 
         $payload['referenceId'] = $id->toInt();
         $payload['referenceType'] = 'Case';
+        $payload['msg'] = TrimmedNonEmptyString::fromString($payload['msg'])->toString();
 
         return $this->client->request(
             'POST',
