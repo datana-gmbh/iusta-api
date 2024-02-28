@@ -49,6 +49,23 @@ final class CaseApi implements CaseApiInterface
         );
     }
 
+    public function getByAktenzeichen(string $aktenzeichen): ResponseInterface
+    {
+        return $this->client->request(
+            'GET',
+            '/api/Cases',
+            [
+                'query' => [
+                    'filter' => \Safe\json_encode([
+                        'where' => [
+                            'number' => TrimmedNonEmptyString::fromString($aktenzeichen)->toString(),
+                        ],
+                    ]),
+                ],
+            ],
+        );
+    }
+
     public function getAll(): ResponseInterface
     {
         return $this->client->request(

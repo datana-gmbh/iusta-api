@@ -28,6 +28,8 @@ interface CaseApiInterface
 {
     public function getById(CaseId $id): ResponseInterface;
 
+    public function getByAktenzeichen(string $aktenzeichen): ResponseInterface;
+
     public function getAll(): ResponseInterface;
 
     /**
