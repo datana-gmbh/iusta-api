@@ -24,5 +24,5 @@ use Datana\Iusta\Api\Domain\Value\DeadlineType\DeadlineTypeId;
  */
 interface DeadlineApiInterface
 {
-    public function create(CaseId $caseId, \DateTimeImmutable $dueAt, DeadlineTypeId $deadlineTypeId, Status $status = Status::Open, ?\DateTimeImmutable $preDueAt = null, ?DeadlineName $name = null, ?string $comment = null): Deadline;
+    public function create(CaseId $caseId, \DateTimeImmutable $dueAt, ?DeadlineTypeId $deadlineTypeId = null, Status $status = Status::Open, ?\DateTimeImmutable $preDueAt = null, ?DeadlineName $name = null, ?string $comment = null): Deadline;
 }
