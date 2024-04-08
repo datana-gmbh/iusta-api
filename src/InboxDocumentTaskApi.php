@@ -18,7 +18,6 @@ use Datana\Iusta\Api\Domain\Value\InboxDocumentTask\InboxDocumentTask;
 use Datana\Iusta\Api\Formatter\DateTimeFormatterInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Safe\DateTime;
 
 final class InboxDocumentTaskApi implements InboxDocumentTaskApiInterface
 {
@@ -32,16 +31,18 @@ final class InboxDocumentTaskApi implements InboxDocumentTaskApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function createByDocumentId(DocumentId $documentId, \DateTimeInterface $arrivedAt): InboxDocumentTask
+    public function createByDocumentId(DocumentId $documentId, ?\DateTimeInterface $arrivedAt = null): InboxDocumentTask
     {
-        $arrivedAt = $this->dateTimeFormatter->format($arrivedAt);
+        $payload = [];
+
+        if (null !== $arrivedAt) {
+            $payload['body'] = ['arrival' => $this->dateTimeFormatter->format($arrivedAt)];
+        }
 
         $response = $this->client->request(
             'POST',
             sprintf('/api/Documents/%d/DocumentInboxTask', $documentId->toInt()),
-            [
-                'body' => ['arrival' => $arrivedAt],
-            ],
+            $payload,
         );
 
         return new InboxDocumentTask($response->toArray());
