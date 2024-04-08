@@ -21,5 +21,5 @@ use Datana\Iusta\Api\Domain\Value\InboxDocumentTask\InboxDocumentTask;
  */
 interface InboxDocumentTaskApiInterface
 {
-    public function createByDocumentId(DocumentId $documentId): InboxDocumentTask;
+    public function createByDocumentId(DocumentId $documentId, \DateTimeInterface $arrivedAt): InboxDocumentTask;
 }
