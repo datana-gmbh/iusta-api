@@ -105,8 +105,3 @@ parameters:
 			count: 1
 			path: src/InboxDocumentTaskApi.php
 
-		-
-			message: "#^Property Datana\\\\Iusta\\\\Api\\\\InboxDocumentTaskApi\\:\\:\\$logger is never read, only written\\.$#"
-			count: 1
-			path: src/InboxDocumentTaskApi.php
-
