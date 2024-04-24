@@ -32,12 +32,8 @@ final class InboxDocumentTaskApi implements InboxDocumentTaskApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function createByDocumentId(DocumentId $documentId, ?\DateTimeInterface $arrivedAt = null, ?InboxDocumentTaskStatus $inboxDocumentTaskStatus = null): InboxDocumentTask
+    public function createByDocumentId(DocumentId $documentId, ?\DateTimeInterface $arrivedAt = null, ?InboxDocumentTaskStatus $inboxDocumentTaskStatus = InboxDocumentTaskStatus::Add): InboxDocumentTask
     {
-        if (null === $inboxDocumentTaskStatus) {
-            $inboxDocumentTaskStatus = InboxDocumentTaskStatus::Add;
-        }
-
         $payload = [];
 
         if (null !== $arrivedAt) {
