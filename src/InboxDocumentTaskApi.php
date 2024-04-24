@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
+use Datana\Iusta\Api\Domain\Enum\InboxDocumentTaskStatus;
 use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
 use Datana\Iusta\Api\Domain\Value\InboxDocumentTask\InboxDocumentTask;
 use Datana\Iusta\Api\Formatter\DateTimeFormatterInterface;
@@ -31,18 +32,26 @@ final class InboxDocumentTaskApi implements InboxDocumentTaskApiInterface
         $this->logger = $logger ?? new NullLogger();
     }
 
-    public function createByDocumentId(DocumentId $documentId, ?\DateTimeInterface $arrivedAt = null): InboxDocumentTask
+    public function createByDocumentId(DocumentId $documentId, ?\DateTimeInterface $arrivedAt = null, ?InboxDocumentTaskStatus $inboxDocumentTaskStatus = null): InboxDocumentTask
     {
+        if (null === $inboxDocumentTaskStatus) {
+            $inboxDocumentTaskStatus = InboxDocumentTaskStatus::Add;
+        }
+
         $payload = [];
 
         if (null !== $arrivedAt) {
-            $payload['body'] = ['arrival' => $this->dateTimeFormatter->format($arrivedAt)];
+            $payload['arrival'] = $this->dateTimeFormatter->format($arrivedAt);
         }
+
+        $payload['status'] = $inboxDocumentTaskStatus->value;
+
+        $this->logger->debug('Adding DocumentInboxTask with payload', ['payload' => $payload]);
 
         $response = $this->client->request(
             'POST',
             sprintf('/api/Documents/%d/DocumentInboxTask', $documentId->toInt()),
-            $payload,
+            ['body' => $payload],
         );
 
         return new InboxDocumentTask($response->toArray());

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Datana\Iusta\Api;
 
+use Datana\Iusta\Api\Domain\Enum\InboxDocumentTaskStatus;
 use Datana\Iusta\Api\Domain\Value\Document\DocumentId;
 use Datana\Iusta\Api\Domain\Value\InboxDocumentTask\InboxDocumentTask;
 
@@ -21,5 +22,5 @@ use Datana\Iusta\Api\Domain\Value\InboxDocumentTask\InboxDocumentTask;
  */
 interface InboxDocumentTaskApiInterface
 {
-    public function createByDocumentId(DocumentId $documentId, \DateTimeInterface $arrivedAt): InboxDocumentTask;
+    public function createByDocumentId(DocumentId $documentId, ?\DateTimeInterface $arrivedAt = null, ?InboxDocumentTaskStatus $inboxDocumentTaskStatus = null): InboxDocumentTask;
 }
